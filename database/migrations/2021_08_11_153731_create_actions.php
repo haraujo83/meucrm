@@ -15,8 +15,8 @@ class CreateActions extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
-            $table->string('text', 20);
-            $table->string('action', 20);
+            $table->string('text', 30);
+            $table->string('action', 30);
         });
     }
 
