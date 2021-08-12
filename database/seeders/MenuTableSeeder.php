@@ -21,8 +21,8 @@ class MenuTableSeeder extends Seeder
             ['id' => 4, 'name' => 'Contratações', 'module' => 'contractors', 'icon' => 'fas fa-file-invoice-dollar'],
             ['id' => 5, 'name' => 'Avaliações', 'module' => 'valuations', 'icon' => 'fa fa-drafting-compass'],
             ['id' => 6, 'name' => 'Empreendimentos', 'module' => 'developments', 'icon' => 'fa fa-city'],
-            ['id' => 7, 'name' => 'Contas', 'module' => 'accounts', 'icon' => 'fa flaticon2-protection'],
-            ['id' => 8, 'name' => 'Financeiro', 'module' => 'financials', 'icon' => 'fa flaticon2-graphic'],
+            ['id' => 7, 'name' => 'Contas', 'module' => 'accounts', 'icon' => 'fas fa-wallet'],
+            ['id' => 8, 'name' => 'Financeiro', 'module' => 'financials', 'icon' => 'fas fa-file-invoice-dollar'],
             ['id' => 9, 'name' => 'Admin', 'module' => '', 'icon' => ''],
         ]);
     }
