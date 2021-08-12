@@ -9,13 +9,44 @@ class Menu extends Model
 {
     use HasFactory;
 
-    protected $table = "menus";
+    public $table = "menus";
+	public $fillable = [
+		'id', 'name', 'module', 'icon'
+	];
+	public $searchable = [
+		'id', 'name', 'module', 'icon'
+	];
+
 	public $timestamps = false;
+
+	public static function breadcrumb(){
+		$request = $_SERVER['REQUEST_URI'];
+		
+		$module = "leads";
+		$action = "index";
+		if(substr_count($request, "/") > 0){
+			$url = explode("/", $request);
+
+			$module = $url[1];
+			isset($url[2]) ? $action = $url[2] : $action = "index";
+		}
+
+		return self
+		::leftJoin('pages_menus', 'pages_menus.menus_id', '=', 'menus.id')
+		->leftJoin('actions', 'pages_menus.action_id', '=', 'actions.id')
+			//->where('menus.module', $module)
+			//->where('actions.action', $action)
+			->get();
+	}
 
     /**
 	 * Relacionamentos
 	 */
 	public function submenu() {
-		return $this->belongsTo(Submenu::class);
+		return $this->hasMany(Submenu::class);
+	}
+
+	public function pagemenu() {
+		return $this->hasMany(PageMenu::class);
 	}
 }
