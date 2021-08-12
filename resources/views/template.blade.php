@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css")}}">-->
     <!--<link rel="stylesheet" href="{{ asset("css/app.css")}}">-->
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini text-sm">
 <div class="wrapper">
 
     <!-- Header -->
@@ -61,8 +61,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
   /*$(function () {
     $("#example1").DataTable({
-        "responsive": true, 
-        "lengthChange": false, 
+        "responsive": true,
+        "lengthChange": false,
         "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
