@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Leads;
 use Illuminate\Http\Request;
 
 class LeadsController extends Controller
@@ -11,9 +12,11 @@ class LeadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Leads $Leads)
     {
-        return view('leads.index');
+        $leads = $Leads->paginateWithSearch();
+        
+        return view('leads.index', compact('leads'));
     }
 
     /**

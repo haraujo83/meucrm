@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\PaginateWithSearch;
+use App\Models\BaseModel;
+use App\Traits\TrataBuilder;
+use App\Traits\TrataCollection;
 
-class Leads extends Model
+
+class Leads extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TrataCollection, TrataBuilder;
+
+    public $table = 'leads';
+	public $fillable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered'];
+	public $searchable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered'];
+
 }
