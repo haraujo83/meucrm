@@ -1,8 +1,17 @@
 {
+    "/css/tempusdominus-bootstrap-4.min.css": "/css/tempusdominus-bootstrap-4.min.css",
+    "/css/select2.min.css": "/css/select2.min.css",
     "/css/all.min.css": "/css/all.min.css",
     "/css/adminlte.min.css": "/css/adminlte.min.css",
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
     "/js/jquery.min.js": "/js/jquery.min.js",
     "/js/sweetalert2.all.min.js": "/js/sweetalert2.all.min.js",
+    "/js/select2.min.js": "/js/select2.min.js",
+    "/js/select2/pt-BR.js": "/js/select2/pt-BR.js",
+    "/js/tempusdominus-bootstrap-4.min.js": "/js/tempusdominus-bootstrap-4.min.js",
+    "/js/moment.min.js": "/js/moment.min.js",
+    "/js/locales.min.js": "/js/locales.min.js",
+    "/js/moment/pt-br.js": "/js/moment/pt-br.js",
+    "/js/jquery.inputmask.min.js": "/js/jquery.inputmask.min.js",
     "/js/adminlte.min.js": "/js/adminlte.min.js"
 }

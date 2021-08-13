@@ -18,7 +18,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("css/adminlte.min.css")}}">
     <!-- Bootstrap date picker -->
     <!--<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css")}}">-->
-    <!--<link rel="stylesheet" href="{{ asset("css/app.css")}}">-->
+    <link rel="stylesheet" href="{{ asset("css/app.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/select2.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/tempusdominus-bootstrap-4.min.css")}}">
 </head>
 <body class="hold-transition sidebar-mini text-sm">
 <div class="wrapper">
@@ -56,6 +58,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset("js/adminlte.min.js") }}"></script>
 <!--<script src="{{ asset('js/script.js?time=' . date('His')) }}"></script>-->
 <script src="{{ asset("js/sweetalert2.all.min.js") }}"></script>
+
+<script src="{{ asset("js/jquery.inputmask.min.js") }}"></script>
+
+<!-- momment -->
+<script src="{{ asset("js/locales.min.js") }}"></script>
+<script src="{{ asset("js/moment.min.js") }}"></script>
+<script src="{{ asset("js/moment/pt-br.js") }}"></script>
+
+<script src="{{ asset("js/select2.min.js") }}"></script>
+<script src="{{ asset("js/select2/pt-BR.js") }}"></script>
+
+<script src="{{ asset("js/tempusdominus-bootstrap-4.min.js") }}"></script>
 
 <!-- Page specific script -->
 <script>
