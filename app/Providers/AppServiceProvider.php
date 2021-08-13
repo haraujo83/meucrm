@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('breadcrumb', function($view)
         {
-            $request = Menu::breadcrumb();
+            //$request = Menu::breadcrumb();
             
             $view->with('action', 'Listar');
             $view->with('module', 'Contatos');

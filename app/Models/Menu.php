@@ -19,7 +19,7 @@ class Menu extends Model
 
 	public $timestamps = false;
 
-	public static function breadcrumb(){
+	/*public static function breadcrumb(){
 		$request = $_SERVER['REQUEST_URI'];
 		
 		$module = "leads";
@@ -32,12 +32,14 @@ class Menu extends Model
 		}
 
 		return self
-		::leftJoin('pages_menus', 'pages_menus.menus_id', '=', 'menus.id')
-		->leftJoin('actions', 'pages_menus.action_id', '=', 'actions.id')
-			//->where('menus.module', $module)
-			//->where('actions.action', $action)
+		::join('pages_menus', 'pages_menus.menus_id', '=', 'menus.id')
+		->join('actions', 'pages_menus.action_id', '=', 'actions.id')
+			->where('menus.module', $module)
+			->where('actions.action', $action)
+			->select('actions.text AS action', 'menus.name AS module')
+			->first()
 			->get();
-	}
+	}*/
 
     /**
 	 * Relacionamentos
