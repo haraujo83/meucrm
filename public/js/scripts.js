@@ -3,8 +3,8 @@
  *
  * @return bool
  */
-function getBuscaAtiva() {
-	if (typeof buscaAtiva == 'undefined') {
+function getSearchActive() {
+	if (typeof searchActive == 'undefined') {
 		return false;
 	}
 
@@ -290,7 +290,7 @@ function setValueMaskMoney(elemento, valor, precision){
 }
 
 // Se a busca estiver ativa, rola p/ baixo
-var buscando = getBuscaAtiva();
+var buscando = getSearchActive();
 if (buscando) {
     $("html, body").animate({
         'scrollTop' : $(document).height()

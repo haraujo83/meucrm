@@ -26,7 +26,7 @@ const mix = require('laravel-mix');
       .scripts('node_modules/admin-lte/plugins/moment/locales.min.js', 'public/js/locales.min.js')   
       .scripts('node_modules/admin-lte/plugins/moment/locale/pt-br.js', 'public/js/moment/pt-br.js')   
 
-      .scripts('node_modules/admin-lte/plugins/inputmask/dist/jquery.inputmask.min.js', 'public/js/jquery.inputmask.min.js')   
+      .scripts('node_modules/admin-lte/plugins/inputmask/jquery.inputmask.min.js', 'public/js/jquery.inputmask.min.js')   
  
       .scripts('node_modules/admin-lte/dist/js/adminlte.min.js', 'public/js/adminlte.min.js')
       //css admin-lte
