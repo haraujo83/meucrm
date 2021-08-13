@@ -19,20 +19,20 @@ trait TrataCollection {
 	/**
 	 * Retorna somente a propriedade de cada objeto
 	 *
-	 * @param  string $propriedade
+	 * @param  string $property
 	 * @return array
 	 */
-	public static function prop($propriedade) {
-		return self::get()->prop($propriedade);
+	public static function prop($property) {
+		return self::get()->prop($property);
 	}
 
 	/**
 	 * Deixa a collection ficar no formato passado
 	 *
-	 * @param  array $formato
+	 * @param  array $format
 	 * @return \App\SCollection
 	 */
-	public static function formata($formato) {
-		return self::get()->formata($formato);
+	public static function format($format) {
+		return self::get()->format($format);
 	}
 }

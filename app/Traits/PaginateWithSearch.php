@@ -35,26 +35,26 @@ trait PaginateWithSearch {
 		// Percorre os campos passados e confere se fazem parte dos permitidos a se buscar
 		foreach ($data as $param => $term) {
 			if (!is_null($term) && in_array($param, $this->searchable ?? [])) {
-				$term = $this->_formatacaoAutomatica($term);
+				$term = $this->_formattingAutomatic($term);
 				$query = $query->where($param, 'LIKE', "%$term%");
 			}
 		}
 
 		// Aplica a busca interna (se passada)
 		if (!empty($where)) {
-			foreach ($where as $param => $valor) {
+			foreach ($where as $param => $value) {
 				// Comparação simples de igualdade '='
-				if (!is_array($valor)) {
-					$query = is_null($valor)
+				if (!is_array($value)) {
+					$query = is_null($value)
 						? $query->whereNull($param)
-						: $query->where($param, '=', $valor);
+						: $query->where($param, '=', $value);
 				}
 				// Comparação diferente de '=' (ex.: ['id' => ['!=', 3]])
 				else {
-					foreach ($valor as $valor_condicao) {
-						$query = is_null($valor_condicao[1])
+					foreach ($value as $valueCondition) {
+						$query = is_null($valueCondition[1])
 						? $query->whereNotNull($param) // assume-se que é '!='
-						: $query->where($param, $valor_condicao[0], $valor_condicao[1]);
+						: $query->where($param, $valueCondition[0], $valueCondition[1]);
 					}
 				}
 			}
@@ -62,12 +62,12 @@ trait PaginateWithSearch {
 
 		// Em alguns casos é preciso fazer um GROUP BY
 		if (!empty($joins)) {
-			$campoGroupBy = array_map(function($join) {
+			$fieldGroupBy = array_map(function($join) {
 				return $join['group'] ?? null;
 			}, $joins);
-			$campoGroupBy = array_filter($campoGroupBy);
+			$fieldGroupBy = array_filter($fieldGroupBy);
 
-			$query = $query->groupBy($campoGroupBy);
+			$query = $query->groupBy($fieldGroupBy);
 		}
 
 		// Se não houver ordem, usa a default
@@ -83,10 +83,10 @@ trait PaginateWithSearch {
 		}
 
 		// Gera o resultado e insere uma flag p/ apontar se uma busca está em andamento
-		$resultado = $query->select("{$this->table}.*")->paginate( $this->paginate );
-		$resultado->buscaAtiva = array_intersect($this->searchable ?? [], array_keys($data));
+		$result = $query->select("{$this->table}.*")->paginate( $this->paginate );
+		$result->searchActive = array_intersect($this->searchable ?? [], array_keys($data));
 
-		return $resultado;
+		return $result;
 	}
 
 	/**
@@ -115,17 +115,17 @@ trait PaginateWithSearch {
 	 * @param  string $term
 	 * @return string
 	 */
-	private function _formatacaoAutomatica($term) {
-		$tipos = [
+	private function _formattingAutomatic($term) {
+		$types = [
 			'data' => '/\d\d\/\d\d\/\d\d\d\d/'
 		];
-		$formatacao = [
-			'data' => function($t) {return \Formata::dataBanco($t);},
+		$formatting = [
+			'data' => function($t) {return \Format::dataBanco($t);},
 		];
 
-		foreach ($tipos as $tipo => $regexp) {
+		foreach ($types as $type => $regexp) {
 			if (preg_match($regexp, $term)) {
-				return $formatacao[$tipo]($term);
+				return $formatting[$type]($term);
 			}
 		}
 
