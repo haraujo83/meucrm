@@ -7,6 +7,50 @@ use Illuminate\Http\Request;
 
 class LeadsController extends Controller
 {
+    public function listResult($structure = false) {
+        $data = app('request')->All();
+    
+        // Naturezas
+        $leads  = new Leads;
+        $leads = $leads->paginateWithSearch();
+    
+        // Elabora a estrutura do resultado
+        $structureResult = [
+          'columns' => [
+            [
+                'title' => 'Nome',
+                'field' => 'first_name'
+            ],
+            [
+                'title' => 'Sobrenome',
+                'field' => 'last_name'
+            ]
+          ],
+          'actions' => [
+            [
+              'class' => 'btn btn-info btn-alterar',
+              'title' => 'Alterar',
+              'icon' => 'fa fa-edit',
+              'href' => '/leads/edit/{id}'
+            ],
+            [
+              'class' => 'btn btn-danger btn-excluir',
+              'title' => 'Excluir',
+              'icon' => 'fa fa-trash',
+              'href' => '/leads/destroy/{id}',
+              'form' => [
+                'method' => 'POST',
+                'data-confirm' => 'Tem certeza que deseja excluir?'
+              ],
+            ]
+          ],
+          'data' => $leads,
+          'filters' => array_filter($data),
+        ];
+    
+        return $structure ? $structureResult : $leads;
+      }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,12 +58,14 @@ class LeadsController extends Controller
      */
     public function index(Leads $Leads)
     {
-        $leads = $Leads->paginateWithSearch();
+        $structureResult = $this->listResult(true);
+
+        /*$leads = $Leads->paginateWithSearch();
         $visualize = 0;
         $edit = 0;
-        $delete = 0;
+        $delete = 0;*/
         
-        return view('leads.index', compact('leads', 'visualize', 'edit', 'delete'));
+        return view('leads.index', compact('structureResult'));
     }
 
     /**

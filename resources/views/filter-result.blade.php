@@ -7,13 +7,13 @@
 				$lastItemPage = $items->currentPage() * $items->perPage();
 				$count = $items->total() > $lastItemPage ? $lastItemPage : $items->total();
 				?>
-				<label>MOSTRANDO DE {{ $firstItemPage }} ATÉ {{ $count }} DE {{ $items->total() }} REGISTROS</label>
+				<label class="col-form-label">Mostrando de {{ $firstItemPage }} até {{ $count }} de {{ $items->total() }} registros</label>
 			</div>
 			<div class="col-sm-3 text-right">
-				<label>RESULTADOS POR PÁGINA</label>
+				<label class="col-form-label">Resultados por Página</label>
 			</div>
 			<div class="col-sm-1">
-				{{ Form::select('count-record-page', ['20' => 20, '50' => 50, '100' => 100, '500' => 500], $items->perPage(), ['placeholder' => 'Selecione...']) }}
+				{{ Form::select('count-record-page', ['20' => 20, '50' => 50, '100' => 100, '500' => 500], $items->perPage(), ['class' => 'form-control form-control-sm']) }}
 			</div>
 		</div>
 	</div>
