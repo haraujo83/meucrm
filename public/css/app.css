@@ -115,3 +115,20 @@
 .buttons {
 	padding-left: .6rem !important;
 }
+
+.paginacao-area {
+	width: 100%;
+	display: flex;
+  justify-content: center;
+}
+
+.paginacao-area .paginacao-acesso-rapido {
+	margin-right: auto;
+	margin-left: 10px;
+}
+
+.paginacao-area .input-group {
+	width: 100%;
+	max-width: 100px;
+	height: 33px;
+}
