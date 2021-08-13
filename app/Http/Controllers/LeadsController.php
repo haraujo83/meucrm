@@ -15,8 +15,11 @@ class LeadsController extends Controller
     public function index(Leads $Leads)
     {
         $leads = $Leads->paginateWithSearch();
+        $visualize = 0;
+        $edit = 0;
+        $delete = 0;
         
-        return view('leads.index', compact('leads'));
+        return view('leads.index', compact('leads', 'visualize', 'edit', 'delete'));
     }
 
     /**

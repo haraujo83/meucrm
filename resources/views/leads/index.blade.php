@@ -171,7 +171,9 @@
                             <th>Produto</th>-->
                             <th>@include('link-table-order', ['title' => 'Data de Criação', 'field' => 'date_entered'])</th>
                             <!--<th>Fonte</th>-->
-                            <th style="width: 125px;">Ações</th>
+                            @if($visualize == 1 || $edit == 1 || $delete == 1)
+                                <th style="width: 125px;">Ações</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -186,17 +188,25 @@
                             <td><?php //echo $a['produto']?></td>-->
                             <td>{{ $lead->date_entered }}</td>
                             <!--<td><?php //echo $a['lead_source']?></td>-->
-                            <td>
-                                <a href="#" class="btn btn-success btn-xs" title="Ver">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="/leads/edit/{{ $lead->id }}?redirect=on" class="btn btn-primary btn-xs" title="Editar">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs" title="Excluir">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
+                            @if($visualize == 1 || $edit == 1 || $delete == 1)
+                                <td>
+                                    @if($visualize == 1)
+                                        <a href="#" class="btn btn-success btn-xs" title="Ver">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    @endif
+                                    @if($edit == 1)
+                                        <a href="/leads/edit/{{ $lead->id }}?redirect=on" class="btn btn-primary btn-xs" title="Editar">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                    @endif
+                                    @if($delete == 1)
+                                        <a href="#" class="btn btn-danger btn-xs" title="Excluir">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    @endif
+                                </td>
+                            @endif
                         </tr>
                         @endforeach
 
