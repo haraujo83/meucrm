@@ -21,6 +21,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("css/select2.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/daterangepicker.css")}}">
 
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
+
     <link rel="stylesheet" href="{{ asset("css/app.css")}}">
 </head>
 <body class="hold-transition sidebar-mini text-sm sidebar-collapse">
@@ -61,6 +66,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset("js/adminlte.min.js") }}"></script>
 <!--<script src="{{ asset('js/script.js?time=' . date('His')) }}"></script>-->
 <script src="{{ asset("js/sweetalert2.all.min.js") }}"></script>
+
+{{--<script src="{{ asset("js/tippy.umd.min.js") }}"></script>--}}
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 
 <script src="{{ asset("js/jquery.inputmask.min.js") }}"></script>
 

@@ -30,6 +30,9 @@ const mix = require('laravel-mix');
       .scripts('node_modules/admin-lte/plugins/inputmask/jquery.inputmask.min.js', 'public/js/jquery.inputmask.min.js')
 
       .scripts('node_modules/admin-lte/dist/js/adminlte.min.js', 'public/js/adminlte.min.js')
+
+      .scripts('node_modules/tippy.js/dist/tippy.umd.min.js', 'public/js/tippy.umd.min.js')
+
       //css admin-lte
       .css('node_modules/admin-lte/dist/css/adminlte.min.css', 'public/css/adminlte.min.css')
       .css('node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css', 'public/css/all.min.css')

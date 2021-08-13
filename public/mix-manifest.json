@@ -15,5 +15,6 @@
     "/js/locales.min.js": "/js/locales.min.js",
     "/js/moment/pt-br.js": "/js/moment/pt-br.js",
     "/js/jquery.inputmask.min.js": "/js/jquery.inputmask.min.js",
-    "/js/adminlte.min.js": "/js/adminlte.min.js"
+    "/js/adminlte.min.js": "/js/adminlte.min.js",
+    "/js/tippy.umd.min.js": "/js/tippy.umd.min.js"
 }

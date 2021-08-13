@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row p-2">
         <div class="col-12">
-            <a href="#" class="btn btn-primary float-right" title="Criar Lead"><i class="fas fa-plus-circle"></i> Criar</a>
+            <a href="#" class="btn btn-primary float-right" title="Criar Lead" data-tippy><i class="fas fa-plus-circle"></i> Criar</a>
         </div>
     </div>
     <!-- /.row -->
@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-search"></i> Buscar</h3>
                     <div class="card-tools">
-                        {{ Form::button('<i class="fas fa-minus"></i>', ['class' => 'btn btn-tool', 'data-card-widget' => 'collapse', 'title' => 'Minimizar/Maximizar']) }}
+                        {{ Form::button('<i class="fas fa-minus"></i>', ['class' => 'btn btn-tool', 'data-card-widget' => 'collapse', 'title' => 'Minimizar/Maximizar', 'data-tippy' => '']) }}
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -49,25 +49,25 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[produto]', 'Produto:') }}
-                                    {{ Form::select('filtrar[produto]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[produto]', [1, 2, 3], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-produto']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[status]', 'Status:') }}
-                                    {{ Form::select('filtrar[status]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[status]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-status']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[atribuido_a]', 'Atribuído a:') }}
-                                    {{ Form::select('filtrar[atribuido_a]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[atribuido_a]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-atribuido_a']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[rating]', 'Rating:') }}
-                                    {{ Form::select('filtrar[rating]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[rating]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-rating']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -79,19 +79,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[fonte]', 'Fonte do Lead:') }}
-                                    {{ Form::select('filtrar[fonte]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[fonte]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-fonte']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[status_imovel]', 'Status do Imóvel:') }}
-                                    {{ Form::select('filtrar[status_imovel]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[status_imovel]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-status_movel']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[tem_imovel]', 'Tem Imóvel:') }}
-                                    {{ Form::select('filtrar[tem_imovel]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[tem_imovel]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-tem_imovel']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
