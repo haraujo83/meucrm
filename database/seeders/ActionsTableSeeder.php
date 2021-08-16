@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Traits\TraitSeeder;
+use App\Models\Action as Model;
 
 class ActionsTableSeeder extends Seeder
 {
+    use TraitSeeder;
+
     /**
      * Run the database seeds.
      *
@@ -14,7 +17,7 @@ class ActionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('actions')->insert([
+        $this->smartySeeder(new Model, [
             ['id' => 1, 'text' => 'Listar', 'action' => 'index'],
             ['id' => 2, 'text' => 'Criar', 'action' => 'create'],
             ['id' => 3, 'text' => 'Alterar', 'action' => 'edit'],

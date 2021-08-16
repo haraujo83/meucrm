@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Traits\TraitSeeder;
+use App\Models\PageMenu as Model;
 
 class PagesMenuTableSeeder extends Seeder
 {
+    use TraitSeeder;
+
     /**
      * Run the database seeds.
      *
@@ -14,7 +17,7 @@ class PagesMenuTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pages_menus')->insert([
+        $this->smartySeeder(new Model, [
             // contacts
             ['id' => 1, 'menu_id' => 1, 'action_id' => 1],
             ['id' => 2, 'menu_id' => 1, 'action_id' => 2],

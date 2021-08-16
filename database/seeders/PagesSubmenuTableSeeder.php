@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Traits\TraitSeeder;
+use App\Models\PageSubmenu as Model;
 
 class PagesSubmenuTableSeeder extends Seeder
 {
+    use TraitSeeder;
+
     /**
      * Run the database seeds.
      *
@@ -14,7 +17,7 @@ class PagesSubmenuTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pages_submenus')->insert([
+        $this->smartySeeder(new Model, [
             // profiles
             ['id' => 1, 'submenu_id' => 1, 'action_id' => 1],
             ['id' => 2, 'submenu_id' => 1, 'action_id' => 2],

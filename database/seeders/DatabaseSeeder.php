@@ -2,11 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\MenuTableSeeder;
-use Database\Seeders\SubmenuTableSeeder;
-use Database\Seeders\ActionsTableSeeder;
-use Database\Seeders\PagesMenuTableSeeder;
-use Database\Seeders\PagesSubmenuTableSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,10 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(MenuTableSeeder::class);
-        $this->call(SubmenuTableSeeder::class);
-        $this->call(ActionsTableSeeder::class);
-        $this->call(PagesMenuTableSeeder::class);
-        $this->call(PagesSubmenuTableSeeder::class);
+        $seeders = [
+			MenuTableSeeder::class,
+			SubmenuTableSeeder::class,
+			ActionsTableSeeder::class,
+			PagesMenuTableSeeder::class,
+			PagesSubmenuTableSeeder::class,
+		];
+
+		foreach ($seeders as $seeder) {
+			$this->call($seeder);
+		}
     }
 }
