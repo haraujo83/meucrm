@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
@@ -21,7 +22,7 @@ class Menu extends Model
 
 	/*public static function breadcrumb(){
 		$request = $_SERVER['REQUEST_URI'];
-		
+
 		$module = "leads";
 		$action = "index";
 		if(substr_count($request, "/") > 0){
@@ -42,13 +43,18 @@ class Menu extends Model
 	}*/
 
     /**
-	 * Relacionamentos
-	 */
-	public function submenu() {
+     * @return HasMany
+     */
+	public function submenu(): HasMany
+    {
 		return $this->hasMany(Submenu::class);
 	}
 
-	public function pagemenu() {
+    /**
+     * @return HasMany
+     */
+	public function pagemenu(): HasMany
+    {
 		return $this->hasMany(PageMenu::class);
 	}
 }

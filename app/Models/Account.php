@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Model para tabela accounts
@@ -14,7 +15,7 @@ class Account extends Model
 
     public $table = 'accounts';
     public $fillable = [
-        'id', 'name', 'date_entered', 'date_modified', 'modified_user_id', 'created_by', 'description',
+        'name', 'date_entered', 'date_modified', 'modified_user_id', 'created_by', 'description',
         'deleted', 'assigned_user_id', 'account_type', 'billing_address_street', 'billing_address_city',
         'billing_address_state', 'billing_address_postalcode', 'billing_address_country', 'website',
         'parent_id', 'cnpj', 'razao_social', 'billing_address_number', 'billing_address_bairro',
@@ -24,4 +25,13 @@ class Account extends Model
     ];
 
     public $timestamps = false;
+
+    /**
+     * Retorna o registro de lead
+     * @return BelongsTo
+     */
+    public function lead(): BelongsTo
+    {
+        return $this->belongsTo(Leads::class, 'id', 'account_id');
+    }
 }
