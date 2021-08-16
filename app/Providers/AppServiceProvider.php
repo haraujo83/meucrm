@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+
 use App\Models\Menu;
 use App\Models\Submenu;
 
@@ -25,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         view()->composer('sidebar', function($view)
         {
             $menus = Menu::all();
@@ -33,6 +37,12 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('menus', $menus);
             $view->with('submenus', $submenus);
+        });
+
+        view()->composer('header', function($view)
+        {
+            $menus = Menu::all();
+            $view->with('menus', $menus);
         });
 
         view()->composer('breadcrumb', function($view)
