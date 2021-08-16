@@ -36,5 +36,5 @@ Route::resource('developments', DevelopmentsController::class);
 Route::resource('accounts', AccountsController::class);
 Route::resource('financials', FinancialsController::class);
 Route::resource('users', UsersController::class);
-Route::resource('profiles', ProfilesController::class);
+Route::resource('profiles', ProfilesController::class);   
 
