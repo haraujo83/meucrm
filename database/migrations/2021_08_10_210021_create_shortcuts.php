@@ -15,12 +15,12 @@ class CreateShortcuts extends Migration
     {
         Schema::create('shortcuts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('submenu_id');
+            $table->unsignedBigInteger('menu_id');
 
             $table
-                ->foreign('submenu_id')
+                ->foreign('menu_id')
                 ->references('id')
-                ->on('submenus');
+                ->on('menus');
         });
     }
 
