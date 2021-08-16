@@ -12,9 +12,20 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item">
-            <img src="/img/logo.png" width="250" height="50">
+            <img src="/img/logo.png" width="220" height="40">
           </li>
-          
+          <li class="nav-item">
+            <a href="" class="nav-link menu-vertical atalho">
+              <i class="nav-icon fas fa-angle-double-right"></i>
+            </a>
+          </li>
+          @foreach ($menus as $menu)
+            <li class="nav-item d-none d-sm-inline-block">
+              <a href="" class="nav-link menu-vertical {{ (explode("/", Request::url())[3] == strtolower($menu->module)) ? 'active' : '' }}">
+                <i class="nav-icon {{ $menu->icon }} fa-4x"></i>
+              </a>
+            </li>
+          @endforeach
         </ul>
 
         <!-- Right navbar links -->
