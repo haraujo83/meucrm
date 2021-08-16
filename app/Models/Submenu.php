@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Submenu extends Model
 {
@@ -21,11 +23,13 @@ class Submenu extends Model
     /**
 	 * Relacionamentos
 	 */
-	public function menu() {
+	public function menu(): HasOne
+    {
 		return $this->hasOne(Menu::class, 'menu_id');
 	}
 
-	public function pagesubmenu() {
+	public function pagesubmenu(): HasMany
+    {
 		return $this->hasMany(PageSubmenu::class);
 	}
 }

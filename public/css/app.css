@@ -5,7 +5,7 @@
 }
 
 .result-search .result-filter .row{
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 
@@ -79,7 +79,7 @@
 
 .table-with-actions tbody tr td.buttons {
 	vertical-align: middle;
-	padding: 0px;
+	padding: 0;
 	width: 40px;
 }
 
@@ -114,6 +114,12 @@
 
 .buttons {
 	padding-left: .6rem !important;
+}
+.card-secondary2 .card-header {
+    background-color: #f7f7f7;
+}
+.result-search table {
+    border-top: 0;
 }
 
 .paginacao-area {

@@ -3,10 +3,10 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html lang="pt_br">
 <head>
     <meta charset="UTF-8">
-    <title>Crm Credipronto</title>
+    <title>CRM Credipronto</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,9 +20,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css")}}">-->
     <link rel="stylesheet" href="{{ asset("css/app1.css")}}">
     <link rel="stylesheet" href="{{ asset("css/select2.min.css")}}">
-    <link rel="stylesheet" href="{{ asset("css/tempusdominus-bootstrap-4.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/daterangepicker.css")}}">
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
+
+    <link rel="stylesheet" href="{{ asset("css/app.css")}}">
 </head>
-<body class="hold-transition sidebar-mini text-sm sidebar-collapse sidebar-closed">
+<body class="hold-transition sidebar-mini text-sm sidebar-collapse">
 <div class="wrapper">
 
     <!-- Header -->
@@ -49,27 +56,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div><!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-<!-- jQuery 2.1.3 -->
+<!-- jQuery 3.6 -->
 <script src="{{ asset("js/jquery.min.js") }}"></script>
-<!-- Bootstrap 3.3.2 JS -->
+<!-- Bootstrap 4 JS -->
 <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
+
+<script src="{{ asset("js/select2.min.js") }}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{ asset("js/adminlte.min.js") }}"></script>
 <!--<script src="{{ asset('js/script.js?time=' . date('His')) }}"></script>-->
 <script src="{{ asset("js/sweetalert2.all.min.js") }}"></script>
 
+{{--<script src="{{ asset("js/tippy.umd.min.js") }}"></script>--}}
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+
 <script src="{{ asset("js/jquery.inputmask.min.js") }}"></script>
 
 <!-- momment -->
-<script src="{{ asset("js/locales.min.js") }}"></script>
+{{--<script src="{{ asset("js/locales.min.js") }}"></script>--}}
 <script src="{{ asset("js/moment.min.js") }}"></script>
 <script src="{{ asset("js/moment/pt-br.js") }}"></script>
 
-<script src="{{ asset("js/select2.min.js") }}"></script>
-<script src="{{ asset("js/select2/pt-BR.js") }}"></script>
 
-<script src="{{ asset("js/tempusdominus-bootstrap-4.min.js") }}"></script>
+{{--<script src="{{ asset("js/select2/pt-BR.js") }}"></script>--}}
+
+<script src="{{ asset("js/daterangepicker.js") }}"></script>
+
+<script src="{{ asset("js/app.js") }}"></script>
 
 <!-- Page specific script -->
 <script>

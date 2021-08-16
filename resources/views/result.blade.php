@@ -7,12 +7,12 @@
 		<div class="card-body">
 			@include('filter-result', ['items' => $resultData['data']])
 			<div class="result-search">
-				<table class="table table-sm table-striped table-with-actions">
+				<table class="table table-sm table-striped table-with-actions table-hover table-condensed">
 					<thead>
 						<tr>
 
 							@foreach ($resultData['columns'] as $column)
-								<th width="{{ $column['width'] ?? '' }}" align="{{ $column['align'] ?? '' }}">{{ $column['title'] }}</th>
+								<th style="width: {{ $column['width'] ?? '' }}; text-align: {{ $column['align'] ?? '' }};">{{ $column['title'] }}</th>
 							@endforeach
 
 							@if ($resultData['actions'])
@@ -24,9 +24,8 @@
 					<tbody>
 						@foreach($resultData['data'] as $information)
 							<tr>
-
 								@foreach ($resultData['columns'] as $column)
-									<td width="{{ $column['width'] ?? '' }}" align="{{ $column['align'] ?? '' }}">{{ $information->{$column['field']} }}</td>
+									<td style="width:{{ $column['width'] ?? '' }}; text-align: {{ $column['align'] ?? '' }};">{{ $information->{$column['field']} }}</td>
 								@endforeach
 
 								@if ($resultData['actions'])
