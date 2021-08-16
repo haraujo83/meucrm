@@ -11,13 +11,20 @@ class Menu extends Model
 
     public $table = "menus";
 	public $fillable = [
-		'id', 'name', 'module', 'icon'
+		'name', 'module', 'icon'
 	];
 	public $searchable = [
-		'id', 'name', 'module', 'icon'
+		'name', 'module', 'icon'
 	];
 
 	public $timestamps = false;
+
+	public static function getShortcuts() {
+		return self
+		::leftJoin('shortcuts', 'shortcuts.menu_id', '=', 'menus.id')
+			->whereNotNull('shortcuts.menu_id')
+			->get();
+	}
 
 	/*public static function breadcrumb(){
 		$request = $_SERVER['REQUEST_URI'];
@@ -50,5 +57,9 @@ class Menu extends Model
 
 	public function pagemenu() {
 		return $this->hasMany(PageMenu::class);
+	}
+
+	public function shortcut() {
+		return $this->hasMany(Shortcut::class);
 	}
 }

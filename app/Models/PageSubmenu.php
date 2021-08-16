@@ -11,10 +11,10 @@ class PageSubmenu extends Model
 
     public $table = "pages_submenus";
 	public $fillable = [
-		'id', 'action_id', 'submenu_id'
+		'action_id', 'submenu_id'
 	];
 	public $searchable = [
-		'id', 'action_id', 'submenu_id'
+		'action_id', 'submenu_id'
 	];
 
 	public $timestamps = false;

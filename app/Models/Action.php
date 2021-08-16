@@ -12,4 +12,6 @@ class Action extends Model
     public $table = 'actions';
 	public $fillable = ['text', 'action'];
 	public $searchable = ['text', 'action'];
+
+    public $timestamps = false;
 }

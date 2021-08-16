@@ -11,10 +11,10 @@ class Submenu extends Model
 
     public $table = "submenus";
 	public $fillable = [
-		'id', 'name', 'module', 'icon', 'menu_id'
+		'name', 'module', 'icon', 'menu_id'
 	];
 	public $searchable = [
-		'id', 'name', 'module', 'icon', 'menu_id'
+		'name', 'module', 'icon', 'menu_id'
 	];
 	public $timestamps = false;
 
