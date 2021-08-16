@@ -1,9 +1,6 @@
 <!-- Main Header -->
 <header class="main-header">
-
-    <!-- Logo -->
-    <!--<a href="index2.html" class="logo"><b>Admin</b>LTE</a> -->
-
+    
     <!-- Header Navbar -->
     <nav class="navbar navbar-expand navbar-light">
         <!-- Left navbar links -->
@@ -12,14 +9,16 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item">
+            <!-- Logo -->
             <img src="/img/logo.png" width="220" height="40">
           </li>
-
-          <li class="nav-item">
-            <a href="" class="nav-link menu-vertical atalho">
-              <i class="nav-icon fas fa-angle-double-right"></i>
-            </a>
-          </li>
+          @if(empty($shortcuts))
+            <li class="nav-item">
+              <a href="" class="nav-link menu-vertical atalho">
+                <i class="nav-icon fas fa-angle-double-right"></i>
+              </a>
+            </li>
+          @endif
           
           @foreach ($menus as $menu)
             <li class="nav-item d-none d-sm-inline-block">

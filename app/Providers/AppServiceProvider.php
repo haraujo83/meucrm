@@ -33,15 +33,14 @@ class AppServiceProvider extends ServiceProvider
         {
             $menus = Menu::all();
             $submenus = Submenu::all();
-            //$shortcuts = Shortcuts::all();
-
+            
             $view->with('menus', $menus);
             $view->with('submenus', $submenus);
         });
 
         view()->composer('header', function($view)
         {
-            $menus = Menu::all();
+            $menus = Menu::getShortcuts();
             $view->with('menus', $menus);
         });
 
