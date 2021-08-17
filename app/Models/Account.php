@@ -30,7 +30,7 @@ class Account extends Model
      * Retorna lista de contas, em pares id => name
      * @return array
      */
-    public function getList(): array
+    public function getAccountList(): array
     {
         $q = self::query()
         ->select(['id', 'name'])

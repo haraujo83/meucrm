@@ -20,7 +20,7 @@ class Product extends Model
      * Retorna lista de produtos, em pares id => name
      * @return array
      */
-    public function getList(): array
+    public function getProductList(): array
     {
         $q = self::query()
             ->select(['id', 'name']);

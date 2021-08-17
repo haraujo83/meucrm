@@ -29,8 +29,8 @@ class LeadsController extends Controller
             $lead->date_entered = Format::legibleDate($lead->date_entered, false);
         }
 
-        $accountList = [];//$account->getList();
-        $productList = $product->getList();
+        $accountList = [];//$account->getAccountList();
+        $productList = $product->getProductList();
         $statusLeadList = $AuxList::getAuxList('status_lead_list');
         $ratingList = $AuxList::getAuxList('rating_list');
         $leadSourceDom = $AuxList::getAuxList('lead_source_dom');
