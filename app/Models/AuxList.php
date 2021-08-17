@@ -20,12 +20,26 @@ class AuxList extends Model
 
     public $timestamps = false;
 
-    public static function getAuxList($typeList) {
-		return self
-		::where('type_list', '=', $typeList)
+
+    /**
+     * Retorna lista em pares id => descricao
+     *
+     * @param string $typeList
+     * @return array
+     */
+    public static function getAuxList(string $typeList): array
+    {
+		$rows = self::where('type_list', '=', $typeList)
 		    ->where('deleted', '=', '0')
             ->select('id', 'descricao')
 		    ->get()->toArray();
+
+        $rowsAssoc = [];
+        foreach ($rows as $row) {
+            $rowsAssoc[$row['id']] = $row['descricao'];
+        }
+
+        return $rowsAssoc;
 	}
 
     /**
