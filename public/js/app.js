@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    //$('[data-select2]').select2();
+    $('.data-select2').select2({
+        language: "pt-BR"
+    });
 
     tippy('[data-tippy-content]');
 

@@ -4,7 +4,7 @@
 	$params['page'] = null;
 
 	$direction = 'asc';
-	if (isset($params['_order']) && $params['_order'] == $field && $params['_direction'] == 'asc') {
+	if (isset($params['_order']) && $params['_order'] === $field && $params['_direction'] === 'asc') {
 		$direction = 'desc';
 	}
 
@@ -16,5 +16,6 @@
 
 <a href="{{ $params }}">
 	{{ $title }}
-	<i class="fa fa-sort-amount-{{ $direction == 'asc' ? 'down' : 'up' }}"></i>
+	<i class="fas fa-xs fa-arrow-up" style="color: {{ $direction === 'asc' ? 'black' : 'grey' }};"></i>
+    <i class="fas fa-xs fa-arrow-down" style="color:{{ $direction === 'desc' ? 'black': 'grey' }};"></i>
 </a>

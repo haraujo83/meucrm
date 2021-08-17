@@ -16,6 +16,7 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "@popperjs/core": "^2.9.3",
         "admin-lte": "^3.1.0",
         "tippy.js": "^6.3.1"
     }

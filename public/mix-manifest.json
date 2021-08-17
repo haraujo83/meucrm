@@ -16,5 +16,6 @@
     "/js/moment/pt-br.js": "/js/moment/pt-br.js",
     "/js/jquery.inputmask.min.js": "/js/jquery.inputmask.min.js",
     "/js/adminlte.min.js": "/js/adminlte.min.js",
-    "/js/tippy.umd.min.js": "/js/tippy.umd.min.js"
+    "/js/popper.min.js": "/js/popper.min.js",
+    "/js/tippy-bundle.umd.min.js": "/js/tippy-bundle.umd.min.js"
 }
