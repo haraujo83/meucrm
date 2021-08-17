@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lead;
 use Illuminate\Http\Request;
+use App\Helpers\Format;
+
+use App\Models\Lead;
+use App\Models\AuxList;
 
 class LeadsController extends Controller
 {
@@ -12,14 +15,25 @@ class LeadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Lead $Leads)
+    public function index(Lead $Leads, AuxList $AuxList)
     {
         $leads = $Leads::paginate(20);
+        
+        foreach($leads as $lead){
+            $lead->date_entered = Format::legibleDate($lead->date_entered, false);
+        }
+
+        $statusLeadList = $AuxList::getAuxList('status_lead_list');
+        $ratingList = $AuxList::getAuxList('rating_list');
+        $leadSourceDom = $AuxList::getAuxList('lead_source_dom');
+        $statusImovelList = $AuxList::getAuxList('status_imovel_list');
+        $temImovelList = $AuxList::getAuxList('tem_imovel_list');
+
         $visualize = 0;
         $edit = 0;
         $delete = 0;
 
-        return view('leads.index', compact('leads'));
+        return view('leads.index', compact('leads', 'statusLeadList', 'ratingList', 'leadSourceDom', 'statusImovelList', 'temImovelList'));
     }
 
     /**
