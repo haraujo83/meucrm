@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\Product;
+use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Helpers\Format;
 
@@ -18,10 +20,9 @@ class LeadsController extends Controller
      *
      * @param Lead $Leads
      * @param AuxList $AuxList
-     * @param Account $account
-     * @return Response
+     * @return View
      */
-    public function index(Lead $Leads, AuxList $AuxList, Account $account, Product $product)
+    public function index(Lead $Leads, AuxList $AuxList): View
     {
         $leads = $Leads::paginate(20);
 
@@ -29,7 +30,12 @@ class LeadsController extends Controller
             $lead->date_entered = Format::legibleDate($lead->date_entered, false);
         }
 
+        $account = new Account();
+        $product = new Product();
+        $user = new User();
+
         $accountList = [];//$account->getAccountList();
+        $usersList = $user->getUserList();
         $productList = $product->getProductList();
         $statusLeadList = $AuxList::getAuxList('status_lead_list');
         $ratingList = $AuxList::getAuxList('rating_list');
@@ -44,7 +50,7 @@ class LeadsController extends Controller
         $viewData = compact(
             'leads', 'statusLeadList', 'ratingList',
             'leadSourceDom', 'statusImovelList', 'temImovelList',
-            'accountList', 'productList',
+            'accountList', 'productList', 'usersList',
         );
 
         return view('leads.index', $viewData);

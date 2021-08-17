@@ -24,86 +24,86 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[nome]', 'Nome:') }}
-                                    {{ Form::text('filtrar[nome]', null, ['class' => 'form-control form-control-sm']) }}
+                                    {{ Form::label('nome', 'Nome:') }}
+                                    {{ Form::text('nome', null, ['class' => 'form-control form-control-sm']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[cpf]', 'CPF:') }}
-                                    {{ Form::text('filtrar[cpf]', null, ['class' => 'form-control form-control-sm', 'data-mask' => 'cpf']) }}
+                                    {{ Form::label('cpf', 'CPF:') }}
+                                    {{ Form::text('cpf', null, ['class' => 'form-control form-control-sm', 'data-mask' => 'cpf']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[telefone]', 'Telefone:') }}
-                                    {{ Form::text('filtrar[telefone]', null, ['class' => 'form-control form-control-sm', 'data-mask' => 'telefone']) }}
+                                    {{ Form::label('telefone', 'Telefone:') }}
+                                    {{ Form::text('telefone', null, ['class' => 'form-control form-control-sm', 'data-mask' => 'telefone']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[email]', 'E-mail:') }}
-                                    {{ Form::email('filtrar[email]', null, ['class' => 'form-control form-control-sm']) }}
+                                    {{ Form::label('email', 'E-mail:') }}
+                                    {{ Form::email('email', null, ['class' => 'form-control form-control-sm']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[produto]', 'Produto:') }}
-                                    {{ Form::select('filtrar[produto]', $productList, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-produto']) }}
+                                    {{ Form::label('produto', 'Produto:') }}
+                                    {{ Form::select('produto', $productList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[status]', 'Status:') }}
-                                    {{ Form::select('status', $statusLeadList, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-status']) }}
+                                    {{ Form::label('status', 'Status:') }}
+                                    {{ Form::select('status', $statusLeadList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[atribuido_a]', 'Atribuído a:') }}
-                                    {{ Form::select('filtrar[atribuido_a]', [], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-atribuido_a']) }}
+                                    {{ Form::label('atribuido_a', 'Atribuído a:') }}
+                                    {{ Form::select('atribuido_a', $usersList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[rating]', 'Rating:') }}
-                                    {{ Form::select('filtrar[rating]', $ratingList, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-rating']) }}
+                                    {{ Form::label('rating', 'Rating:') }}
+                                    {{ Form::select('rating', $ratingList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[conta]', 'Conta:') }}
-                                    {{ Form::select('filtrar[conta]', $accountList, ['class' => 'form-control form-control-sm data-select2']) }}
+                                    {{ Form::label('conta', 'Conta:') }}
+                                    {{ Form::select('conta', $accountList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[fonte]', 'Fonte do Lead:') }}
-                                    {{ Form::select('filtrar[fonte]', $leadSourceDom, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-fonte']) }}
+                                    {{ Form::label('fonte', 'Fonte do Lead:') }}
+                                    {{ Form::select('fonte', $leadSourceDom, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[status_imovel]', 'Status do Imóvel:') }}
-                                    {{ Form::select('filtrar[status_imovel]', $statusImovelList, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-status_movel']) }}
+                                    {{ Form::label('status_imovel', 'Status do Imóvel:') }}
+                                    {{ Form::select('status_imovel', $statusImovelList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[tem_imovel]', 'Tem Imóvel:') }}
-                                    {{ Form::select('filtrar[tem_imovel]', $temImovelList, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-tem_imovel']) }}
+                                    {{ Form::label('tem_imovel', 'Tem Imóvel:') }}
+                                    {{ Form::select('tem_imovel', $temImovelList, null, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('filtrar[periodo_criacao]', 'Período de Criação:') }}
+                                    {{ Form::label('periodo_criacao', 'Período de Criação:') }}
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                                 <i class="far fa-calendar-alt"></i>
                                             </span>
                                         </div>
-                                        {{ Form::text('filtrar[periodo_criacao]', null, ['class' => 'form-control form-control-sm float-right', 'data-date_range' => '']) }}
+                                        {{ Form::text('periodo_criacao', null, ['class' => 'form-control form-control-sm float-right', 'data-date_range' => '']) }}
                                     </div>
                                 </div>
                             </div>

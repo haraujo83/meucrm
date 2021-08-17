@@ -22,14 +22,17 @@ class Product extends Model
      */
     public function getProductList(): array
     {
-        $q = self::query()
-            ->select(['id', 'name']);
+        $rows = self::query()
+            ->select(['id', 'name'])
+            ->get();
 
-        $rows = [];
-        foreach ($q->lazy() as $row) {
-            $rows[$row->id] = $row->name;
+        $rowsAssoc = [
+            '' => '-- Todos --',
+        ];
+        foreach ($rows as $row) {
+            $rowsAssoc[$row->id] = $row->name;
         }
 
-        return $rows;
+        return $rowsAssoc;
     }
 }
