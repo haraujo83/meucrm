@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row p-2">
         <div class="col-12">
-            <a href="#" class="btn btn-primary float-right" title="Criar Lead" data-tippy><i class="fas fa-plus-circle"></i> Criar</a>
+            <a href="#" class="btn btn-primary float-right" title="Criar novo Lead" data-tippy><i class="fas fa-plus"></i> Novo Lead</a>
         </div>
     </div>
     <!-- /.row -->
@@ -173,7 +173,7 @@
                 <div class="result-filter2">
                     @include('filter-result', ['items' => $leads])
                 </div>
-            </div>        
+            </div>
             {{ $leads->links() }}
         </div>
     @endif
