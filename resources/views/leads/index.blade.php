@@ -49,7 +49,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[produto]', 'Produto:') }}
-                                    {{ Form::select('filtrar[produto]', [1, 2, 3], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-produto']) }}
+                                    {{ Form::select('filtrar[produto]', $productList, null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-produto']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -73,7 +73,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[conta]', 'Conta:') }}
-                                    {{ Form::text('filtrar[conta]', null, ['class' => 'form-control form-control-sm']) }}
+                                    {{ Form::select('filtrar[conta]', $accountList, ['class' => 'form-control form-control-sm data-select2']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">

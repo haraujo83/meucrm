@@ -27,6 +27,26 @@ class Account extends Model
     public $timestamps = false;
 
     /**
+     * Retorna lista de contas, em pares id => name
+     * @return array
+     */
+    public function getList(): array
+    {
+        $q = self::query()
+        ->select(['id', 'name'])
+        ->where('deleted', 0)
+        ->orderBy('name')
+        ->limit(10);
+
+        $rows = [];
+        foreach ($q->lazy() as $row) {
+            $rows[$row->id] = $row->name;
+        }
+
+        return $rows;
+    }
+
+    /**
      * Retorna o registro de lead
      * @return BelongsTo
      */

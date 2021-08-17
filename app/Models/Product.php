@@ -15,4 +15,21 @@ class Product extends Model
     protected $table = 'products';
 
     public $timestamps = false;
+
+    /**
+     * Retorna lista de produtos, em pares id => name
+     * @return array
+     */
+    public function getList(): array
+    {
+        $q = self::query()
+            ->select(['id', 'name']);
+
+        $rows = [];
+        foreach ($q->lazy() as $row) {
+            $rows[$row->id] = $row->name;
+        }
+
+        return $rows;
+    }
 }
