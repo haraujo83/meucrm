@@ -1,13 +1,73 @@
-.result-search .result-filter{
-	padding: 10px;
-	border: 1px solid #DDD;
-	border-bottom: none;
+.content > legend:first-child,
+.content-table > legend:first-child,
+.result-search > legend:first-child {
+	margin-top: -15px;
 }
 
-.result-search .result-filter .row{
-	margin-bottom: 0;
+.result-search > legend:first-child {
+	margin-bottom: 0px;
 }
 
+.result-search {
+	display: inline-table;
+	padding: 0px;
+	box-shadow: 0 0 10px #ccc;
+	width: 100%;
+}
+
+.result-search::before {
+	content: 'RESULTADO';
+	display: block;
+	background: #0096c3;
+	color: #fff;
+	padding: 5px 10px;
+	margin: 0px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.content > .result-search:first-child {
+	margin-top: -10px;
+}
+
+.result-search table {
+	margin: 0;
+	/* border-radius: 3px; */
+}
+
+.result-search table td,
+.content-table table td {
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.result-search table tfoot th,
+.content-table table tfoot th {
+	padding-left: .6rem;
+	padding-right: .6rem;
+}
+
+.result-search table tbody tr:hover,
+.content-table table tbody tr:hover {
+	background: rgba(0, 0, 0, .1);
+}
+
+.result-search table tbody tr td:last-child,
+.result-search table thead tr th:last-child,
+.result-search table tfoot tr th:last-child,
+.content-table table tbody tr td:last-child,
+.content-table table thead tr th:last-child,
+.content-table table tfoot tr th:last-child {
+	border-right: 1px solid #DDD;
+}
+.result-search table tbody tr td:first-child,
+.result-search table thead tr th:first-child,
+.result-search table tfoot tr th:first-child,
+.content-table table tbody tr td:first-child,
+.content-table table thead tr th:first-child,
+.content-table table tfoot tr th:first-child {
+	border-left: 1px solid #DDD;
+}
 
 .result-search .footer {
 	background: #0096c3;
@@ -18,9 +78,22 @@
 	font-size: 11px;
 }
 
+.result-search .result-filter{
+	padding: 10px;
+	border: 1px solid #DDD;
+	border-bottom: none;
+}
+
+.result-filter2{
+	padding-top: 20px !important;
+}
+
+.result-search .result-filter .row{
+	margin-bottom: 0px;
+}
+
 .result-search .resultado-info{
 	background: #E8E8E8;
-	padding: 10px;
 	border-left: 1px solid #DDD;
 	border-right: 1px solid #DDD;
 }
@@ -33,6 +106,10 @@
 
 .result-search input[type='checkbox'] {
 	cursor: pointer;
+}
+
+.pagination{
+	margin-left:20px !important;
 }
 
 .pagination > li > a,
@@ -79,7 +156,7 @@
 
 .table-with-actions tbody tr td.buttons {
 	vertical-align: middle;
-	padding: 0;
+	padding: 0px;
 	width: 40px;
 }
 
@@ -115,26 +192,15 @@
 .buttons {
 	padding-left: .6rem !important;
 }
+
+.shortcut{
+	padding-left: 30px !important;
+}
+
+.menu-vertical .fa{
+	font-size: 20px !important;
+}
+
 .card-secondary2 .card-header {
     background-color: #f7f7f7;
-}
-.result-search table {
-    border-top: 0;
-}
-
-.paginacao-area {
-	width: 100%;
-	display: flex;
-  justify-content: center;
-}
-
-.paginacao-area .paginacao-acesso-rapido {
-	margin-right: auto;
-	margin-left: 10px;
-}
-
-.paginacao-area .input-group {
-	width: 100%;
-	max-width: 100px;
-	height: 33px;
 }
