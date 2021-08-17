@@ -35,6 +35,6 @@ class User extends Authenticatable
      */
     public function lead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'assigned_user_id', 'id');
+        return $this->belongsTo(Lead::class, 'assigned_user_id', 'id');
     }
 }

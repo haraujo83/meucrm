@@ -32,6 +32,6 @@ class Account extends Model
      */
     public function lead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'id', 'account_id');
+        return $this->belongsTo(Lead::class, 'id', 'account_id');
     }
 }

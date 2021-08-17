@@ -34,7 +34,7 @@ class AuxList extends Model
      */
     public function leadSourceLead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'lead_source', 'id');
+        return $this->belongsTo(Lead::class, 'lead_source', 'id');
     }
 
     /**
@@ -43,6 +43,6 @@ class AuxList extends Model
      */
     public function statusLead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'status', 'id');
+        return $this->belongsTo(Lead::class, 'status', 'id');
     }
 }

@@ -22,8 +22,8 @@ class Menu extends Model
 
 	public static function getShortcuts() {
 		return self
-		::leftJoin('shortcuts', 'shortcuts.menu_id', '=', 'menus.id')
-			->whereNotNull('shortcuts.menu_id')
+		::leftJoin('shortcuts', 'shortcuts.submenu_id', '=', 'menus.id')
+			->whereNotNull('shortcuts.submenu_id')
 			->get();
 	}
 
