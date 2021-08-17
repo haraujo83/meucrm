@@ -20,6 +20,14 @@ class AuxList extends Model
 
     public $timestamps = false;
 
+    public static function getAuxList($typeList) {
+		return self
+		::where('type_list', '=', $typeList)
+		    ->where('deleted', '=', '0')
+            ->select('id', 'descricao')
+		    ->get()->toArray();
+	}
+
     /**
      * Retorna o registro de lead pela fonte do lead
      * @return BelongsTo

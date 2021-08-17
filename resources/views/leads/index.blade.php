@@ -49,25 +49,25 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[produto]', 'Produto:') }}
-                                    {{ Form::select('filtrar[produto]', [1, 2, 3], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-produto']) }}
+                                    {{ Form::select('filtrar[produto]', [1, 2, 3], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-produto']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[status]', 'Status:') }}
-                                    {{ Form::select('filtrar[status]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-status']) }}
+                                    {{ Form::select('status', [$statusLeadList], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-status']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[atribuido_a]', 'Atribuído a:') }}
-                                    {{ Form::select('filtrar[atribuido_a]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-atribuido_a']) }}
+                                    {{ Form::select('filtrar[atribuido_a]', [], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-atribuido_a']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[rating]', 'Rating:') }}
-                                    {{ Form::select('filtrar[rating]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-rating']) }}
+                                    {{ Form::select('filtrar[rating]', [], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-rating']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -79,19 +79,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[fonte]', 'Fonte do Lead:') }}
-                                    {{ Form::select('filtrar[fonte]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-fonte']) }}
+                                    {{ Form::select('filtrar[fonte]', [], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-fonte']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[status_imovel]', 'Status do Imóvel:') }}
-                                    {{ Form::select('filtrar[status_imovel]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-status_movel']) }}
+                                    {{ Form::select('filtrar[status_imovel]', [], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-status_movel']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     {{ Form::label('filtrar[tem_imovel]', 'Tem Imóvel:') }}
-                                    {{ Form::select('filtrar[tem_imovel]', [], null, ['data-select2' => '', 'class' => 'form-control form-control-sm', 'id' => 'filtrar-tem_imovel']) }}
+                                    {{ Form::select('filtrar[tem_imovel]', [], null, ['class' => 'form-control form-control-sm data-select2', 'id' => 'filtrar-tem_imovel']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -123,58 +123,58 @@
 
     @if ($leads)
         <div class="card p-0">
-            <div class="container">        
-                <!-- /.card-header -->
-                <div class="card-body">
-                    @include('filter-result', ['items' => $leads])
-                    <div class="result-search">
-                        <table class="table table-sm table-striped table-with-actions">
-                            <thead>
+            <!-- /.card-header -->
+            <div class="card-body">
+                @include('filter-result', ['items' => $leads])
+                <div class="result-search">
+                    <table class="table table-sm table-striped table-with-actions">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @include('link-table-order', ['title' => 'Nome', 'field' => 'name_first'])
+                                </th>
+                                <th>
+                                    @include('link-table-order', ['title' => 'Telefone', 'field' => 'phone_mobile'])
+                                </th>
+                                <th>
+                                    @include('link-table-order', ['title' => 'Data de Criação', 'field' => 'email'])
+                                </th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($leads as $lead)
                                 <tr>
-                                    <th>
-                                        @include('link-table-order', ['title' => 'Nome', 'field' => 'name_first'])
-                                    </th>
-                                    <th>
-                                        @include('link-table-order', ['title' => 'Telefone', 'field' => 'phone_mobile'])
-                                    </th>
-                                    <th>
-                                        @include('link-table-order', ['title' => 'Data de Criação', 'field' => 'email'])
-                                    </th>
-                                    <th>Ações</th>
+                                    <td>{{ $lead->first_name }} {{ $lead->last_name }}</td>
+                                    <td>{{ $lead->phone_mobile }}</td>
+                                    <td>{{ $lead->date_entered }}</td>
+                                    <td class="buttons">
+                                        <a href="/lead/edit/{{ $lead->id }}?redirect=on" class="btn btn-info" title="Alterar">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+
+                                        <button type="submit" class="btn btn-danger" title="Excluir">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($leads as $lead)
-                                    <tr>
-                                        <td>{{ $lead->first_name }} {{ $lead->last_name }}</td>
-                                        <td>{{ $lead->phone_mobile }}</td>
-                                        <td>{{ $lead->date_entered }}</td>
-                                        <td class="buttons">
-                                            <a href="/lead/edit/{{ $lead->id }}?redirect=on" class="btn btn-info" title="Alterar">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
+                            @endforeach
 
-                                            <button type="submit" class="btn btn-danger" title="Excluir">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                                @if ($leads->isEmpty())
-                                    <tr>
-                                        <td colspan="99" class="text-center">
-                                            <em>Nenhum registro encontrado.</em>
-                                        </td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
-                    </div>
+                            @if ($leads->isEmpty())
+                                <tr>
+                                    <td colspan="99" class="text-center">
+                                        <em>Nenhum registro encontrado.</em>
+                                    </td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <div class="result-filter2">
                     @include('filter-result', ['items' => $leads])
-                </div>        
-                {{ $leads->links() }}
-            </div>
+                </div>
+            </div>        
+            {{ $leads->links() }}
         </div>
     @endif
     <!-- /.row -->
