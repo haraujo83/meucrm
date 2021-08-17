@@ -41,15 +41,16 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('header', function($view)
         {
             $menus = Menu::getShortcuts();
+            
             $view->with('menus', $menus);
         });
 
         view()->composer('breadcrumb', function($view)
         {
-            //$request = Menu::breadcrumb();
+            $request = Menu::breadcrumb();
             
-            $view->with('action', 'Listar');
-            $view->with('module', 'Contatos');
+            $view->with('action', $request->first()->action);
+            $view->with('module', $request->first()->module);
         });
     }
 }

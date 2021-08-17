@@ -27,7 +27,7 @@ class Menu extends Model
 			->get();
 	}
 
-	/*public static function breadcrumb(){
+	public static function breadcrumb(){
 		$request = $_SERVER['REQUEST_URI'];
 
 		$module = "leads";
@@ -35,19 +35,24 @@ class Menu extends Model
 		if(substr_count($request, "/") > 0){
 			$url = explode("/", $request);
 
-			$module = $url[1];
+			if(substr_count($request, "?") > 0){
+				$url1 = explode("?", $url[1]);
+				$module = $url1[0];
+			}else{
+				$module = $url[1];
+			}
+
 			isset($url[2]) ? $action = $url[2] : $action = "index";
 		}
 
 		return self
-		::join('pages_menus', 'pages_menus.menus_id', '=', 'menus.id')
+		::join('pages_menus', 'pages_menus.menu_id', '=', 'menus.id')
 		->join('actions', 'pages_menus.action_id', '=', 'actions.id')
 			->where('menus.module', $module)
 			->where('actions.action', $action)
 			->select('actions.text AS action', 'menus.name AS module')
-			->first()
 			->get();
-	}*/
+	}
 
     /**
      * @return HasMany
@@ -65,7 +70,8 @@ class Menu extends Model
 		return $this->hasMany(PageMenu::class);
 	}
 
-	public function shortcut() {
+	public function shortcut(): HasMany
+	{
 		return $this->hasMany(Shortcut::class);
 	}
 }
