@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+/**
+ *
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,14 +14,15 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $seeders = [
 			MenuTableSeeder::class,
-			SubmenuTableSeeder::class,
+			SubMenuTableSeeder::class,
 			ActionsTableSeeder::class,
 			PagesMenuTableSeeder::class,
 			PagesSubmenuTableSeeder::class,
+            ProductsTableSeeder::class,
 		];
 
 		foreach ($seeders as $seeder) {
