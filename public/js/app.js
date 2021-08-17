@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //$('[data-select2]').select2();
 
-    tippy('[title][data-tippy]');
+    tippy('[data-tippy-content]');
 
     var daterangepickerPtBr = {
         "format": "DD/MM/YYYY",
