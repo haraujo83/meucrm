@@ -12,9 +12,9 @@
             <!-- Logo -->
             <img src="/img/logo.png" width="220" height="40">
           </li>
-          @if(empty($shortcuts))
+          @if(count($menus) > 0)
             <li class="nav-item">
-              <a href="" class="nav-link menu-vertical atalho">
+              <a href="" class="nav-link menu-vertical shortcut">
                 <i class="nav-icon fas fa-angle-double-right"></i>
               </a>
             </li>
