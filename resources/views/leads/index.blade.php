@@ -72,8 +72,8 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    {{ Form::label('conta', 'Conta:') }}
-                                    {{ Form::select('conta', $accountList, null, ['class' => 'form-control form-control-sm data-select2']) }}
+                                    {{ Form::label('account', 'Conta:') }}
+                                    {{ Form::select('account', $accountList, null, ['class' => 'form-control form-control-sm data-select2', 'data-placeholder' => 'Digite o nome da conta...']) }}
                                 </div>
                             </div>
                             <div class="col-md-4">

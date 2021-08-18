@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,18 +26,20 @@ class Account extends Model
     ];
 
     public $timestamps = false;
+    public $incrementing = false;
 
     /**
-     * Retorna lista de contas, em pares id => name
+     * Retorna lista de contas, buscando parte do nome, em pares id => name
+     * @param string|null $term
      * @return array
      */
-    public function getAccountList(): array
+    public function searchAccountList(?string $term): array
     {
         $q = self::query()
-        ->select(['id', 'name'])
+        ->select(['id', DB::raw('trim(name) name')])
         ->where('deleted', 0)
-        ->orderBy('name')
-        ->limit(10);
+        ->where(DB::raw('trim(name)'), 'like', "%$term%")
+        ->orderByRaw('trim(name)');
 
         $rows = [];
         foreach ($q->lazy() as $row) {
