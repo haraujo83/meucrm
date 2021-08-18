@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class PageMenu extends Model
+use App\Traits\PaginateWithSearch;
+
+use App\Models\BaseModel;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
+
+class PageMenu extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = "pages_menus";
 	public $fillable = [
@@ -22,11 +27,21 @@ class PageMenu extends Model
     /**
 	 * Relacionamentos
 	 */
-	public function menu() {
+	 /**
+     * Retorna o status do lead
+     * @return HasOne
+     */
+	public function menu(): HasOne 
+	{
 		return $this->hasOne(Menu::class, 'menu_id');
 	}
 
-    public function action() {
+	 /**
+     * Retorna o status do lead
+     * @return HasOne
+     */
+    public function action(): HasOne 
+	{
 		return $this->hasOne(Action::class, 'action_id');
 	}
 }

@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use App\Traits\PaginateWithSearch;
+
+use App\Models\BaseModel;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
 /**
  * Model para tabela aux_list
  */
-class AuxList extends Model
+class AuxList extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = 'aux_list';
     public $fillable = [
@@ -20,12 +23,13 @@ class AuxList extends Model
 
     public $timestamps = false;
 
-    public static function getAuxList($typeList) {
+    public static function getAuxList($typeList) 
+    {
 		return self
 		::where('type_list', '=', $typeList)
 		    ->where('deleted', '=', '0')
             ->select('id', 'descricao')
-		    ->get()->toArray();
+		    ->get();
 	}
 
     /**

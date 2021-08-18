@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+
+use App\Traits\PaginateWithSearch;
+
+use App\Models\BaseModel;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
 
 /**
  * Model para tabela email_addr_bean_rel
  */
-class EmailAddrBeanRel extends Model
+class EmailAddrBeanRel extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = 'email_addr_bean_rel';
     public $fillable = [

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\PaginateWithSearch;
 
-class Financial extends Model
+use App\Models\BaseModel;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
+class Financial extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 }

@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Menu extends Model
+use App\Traits\PaginateWithSearch;
+
+use App\Models\BaseModel;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
+
+class Menu extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = "menus";
 	public $fillable = [
@@ -20,14 +24,16 @@ class Menu extends Model
 
 	public $timestamps = false;
 
-	public static function getShortcuts() {
+	public static function getShortcuts() 
+	{
 		return self
 		::leftJoin('shortcuts', 'shortcuts.menu_id', '=', 'menus.id')
 			->whereNotNull('shortcuts.menu_id')
 			->get();
 	}
 
-	public static function breadcrumb(){
+	public static function breadcrumb()
+	{
 		$request = $_SERVER['REQUEST_URI'];
 
 		$module = "leads";
@@ -70,6 +76,9 @@ class Menu extends Model
 		return $this->hasMany(PageMenu::class);
 	}
 
+	/**
+     * @return HasMany
+     */
 	public function shortcut(): HasMany
 	{
 		return $this->hasMany(Shortcut::class);

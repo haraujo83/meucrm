@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Shortcut extends Model
+use App\Traits\PaginateWithSearch;
+
+use App\Models\BaseModel;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
+
+class Shortcut extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = "shortcuts";
 	public $fillable = ['menu_id'];
@@ -17,7 +22,12 @@ class Shortcut extends Model
 	/**
 	 * Relacionamentos
 	 */
-	public function menu() {
+	 /**
+     * Retorna o status do lead
+     * @return HasOne
+     */
+	public function menu(): HasOne 
+	{
 		return $this->hasOne(Menu::class, 'menu_id');
 	}
 }
