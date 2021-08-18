@@ -4,6 +4,7 @@ namespace App\Models;
 
 use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -69,5 +70,14 @@ class User extends Authenticatable
     public function lead(): BelongsTo
     {
         return $this->belongsTo(Lead::class, 'assigned_user_id', 'id');
+    }
+
+    /**
+     * Retorna o registro de fieldSearch
+     * @return BelongsToMany
+     */
+    public function fieldSearch(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'fields_search');
     }
 }

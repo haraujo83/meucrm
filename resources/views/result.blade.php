@@ -9,7 +9,7 @@
 						<tr>
 
 							@foreach ($resultData['columns'] as $column)
-								@include('link-table-order', ['title' => $column['name'], 'field' => $column['field'], 'width' => $column['width'], 'align' => $column['align']])
+								@include('link-table-order', ['title' => $column['label'], 'field' => $column['field'], 'width' => $column['width'], 'align' => $column['align']])
 							@endforeach
 
 							@if ($resultData['actions'])
@@ -22,7 +22,7 @@
 						@foreach($resultData['data'] as $information)
 							<tr>
 								@foreach ($resultData['columns'] as $column)
-									<td style="width:{{ $column['width'] ?? '' }}; text-align: {{ $column['align'] ?? '' }};">{{ $information->{$column['field']} }}</td>
+									<td style="width:{{ $column['width'] }}%; text-align: {{ $column['align'] }};">{{ $information->{$column['field']} }}</td>
 								@endforeach
 
 								@if ($resultData['actions'])

@@ -21,7 +21,7 @@
 	$params = http_build_query($params);
 	$params = Request::url() . "?{$params}";
 @endphp
-<th style="width: {{ $width }}; text-align: {{ $align }};">
+<th style="width: {{ $width }}%; text-align: {{ $align }};">
 	<a href="{{ $params }}">
 		{{ $title }}
 		<i class="fas fa-xs fa-arrow-up {{ $activeAsc }}"></i>

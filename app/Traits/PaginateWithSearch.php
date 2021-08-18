@@ -84,8 +84,6 @@ trait PaginateWithSearch {
 			$query = $query->orderBy($data['_order'], $data['_direction']);
 		}
 
-		//dd($query);
-
 		// Gera o resultado e insere uma flag p/ apontar se uma busca está em andamento
 		$result = $query->select("{$this->table}.*")->paginate( $this->paginate );
 		$result->ActiveSearch = array_intersect($this->searchable ?? [], array_keys($data));

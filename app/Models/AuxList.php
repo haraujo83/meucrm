@@ -9,6 +9,7 @@ use App\Traits\PaginateWithSearch;
 use App\Models\BaseModel;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
+use App\Helpers\StructureResult;
 /**
  * Model para tabela aux_list
  */
@@ -37,14 +38,9 @@ class AuxList extends BaseModel
             ->select('id', 'descricao')
 		    ->get();
 
-        $rowsAssoc = [
-            '' => '-- Todos --',
-        ];
-        foreach ($rows as $row) {
-            $rowsAssoc[$row['id']] = $row['descricao'];
-        }
+        $structureResult = new StructureResult();
 
-        return $rowsAssoc;
+        return $structureResult->getTraitList($rows);
 	}
 
     /**

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Helpers\Format;
 use App\Helpers\StructureResult;
 
+use App\Models\Field;
 use App\Models\Lead;
 use App\Models\AuxList;
 use Illuminate\Http\Response;
@@ -23,34 +24,13 @@ class LeadsController extends Controller
         $leads  = new Lead;
         $leads = $leads->paginateWithSearch();
 
+        $fields = new Field;
+
+        $columns = $fields->returnFieldsResult('leads');
+        //dd($columns);
         // Elabora a estrutura do resultado
         $resultStructure = [
-          'columns' => [
-            [
-              'name' => 'Nome',
-              'field' => 'first_name',
-              'width' => '100px',
-              'align' => 'left'
-            ],
-            [
-              'name' => 'Sobrenome',
-              'field' => 'last_name',
-              'width' => '100px',
-              'align' => 'left'
-            ],
-            [
-              'name' => 'Telefone',
-              'field' => 'phone_mobile',
-              'width' => '100px',
-              'align' => 'left'
-            ],
-            [
-              'name' => 'Data de Criação',
-              'field' => 'date_entered',
-              'width' => '100px',
-              'align' => 'left'
-            ]
-          ],
+          'columns' => $columns,
           'actions' => [
             [
               'class' => 'btn btn-info btn-alterar',

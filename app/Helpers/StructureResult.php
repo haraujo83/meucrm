@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
-abstract class StructureResult {
+use App\SCollection;
+
+class StructureResult {
 
 	/**
 	 * Coloca a string na formatação de CNPJ ou CPF, dependendo do comprimento dela
@@ -13,8 +15,8 @@ abstract class StructureResult {
 	 * @param  array $filters
 	 * @return array
 	 */
-	public static function resultStructure($columns, $actions, $data, $filters) {
-		
+	public static function resultStructure($module, $columns, $actions, $data, $filters) 
+	{	
 		// Elabora a estrutura do resultado
         $resultStructure = [
 			'columns' => [
@@ -28,6 +30,19 @@ abstract class StructureResult {
 		];
 		
 		return $resultStructure;
+	}
+
+	public function getTraitList(SCollection $resultList, string $default = '-- Todos --', string $fieldsId = 'id', string $fieldDescription = 'descricao'): array
+    {
+		$rowsAssoc = [
+            '' => $default,
+        ];
+
+        foreach ($resultList as $list) {
+            $rowsAssoc[$list[$fieldsId]] = $list[$fieldDescription];
+        }
+
+        return $rowsAssoc;
 	}
 
 }
