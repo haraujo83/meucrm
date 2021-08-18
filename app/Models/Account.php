@@ -43,10 +43,11 @@ class Account extends BaseModel
         ->select(['id', DB::raw('trim(name) name')])
         ->where('deleted', 0)
         ->where(DB::raw('trim(name)'), 'like', "%$term%")
-        ->orderByRaw('trim(name)');
+        ->orderByRaw('trim(name)')
+        ->get();
 
         $rows = [];
-        foreach ($q->lazy() as $row) {
+        foreach ($q as $row) {
             $rows[$row->id] = $row->name;
         }
 

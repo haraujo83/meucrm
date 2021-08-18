@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountNameSearchRequest;
 use App\Models\Account;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -85,16 +86,17 @@ class AccountsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param AccountNameSearchRequest $request
      * @return JsonResponse
      */
-    public function listAjax(Request $request): JsonResponse
+    public function listAjax(AccountNameSearchRequest $request): JsonResponse
     {
+        $validated = $request->validated();
+
         $r = [];
-        if ($request->has('term')) {
-            $term = $request->get('term');
+        if (isset($validated['term'])) {
             $account = new Account();
-            $r = $account->searchAccountList($term);
+            $r = $account->searchAccountList($validated['term']);
         }
 
         return response()->json($r);
