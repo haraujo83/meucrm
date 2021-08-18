@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +22,7 @@ class User extends Authenticatable
 
     public $table = 'users';
     public $fillable = [
+        'id',
         'user_name', 'user_hash', 'system_generated_password', 'pwd_last_changed',
         'first_name', 'last_name', 'reports_to_id', 'is_admin', 'description', 'date_entered',
         'date_modified', 'modified_user_id', 'created_by', 'title', 'department', 'phone_home',
@@ -33,6 +34,33 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+    public $incrementing = false;
+    protected $keyType = 'char';
+
+    /**
+     * Retorna lista de usuários ativos em pares id => name
+     * @return array
+     */
+    public function getUserList(): array
+    {
+        $rows = self::query()
+            ->select('id', DB::raw("concat(trim(first_name), ' ', trim(last_name)) name"))
+            ->where('deleted', 0)
+            ->where('status', 'active')
+            ->where('first_name', '!=', '')
+            ->orderBy('name')
+            ->get()
+            ;
+
+        $rowsAssoc = [
+            '' => ' -- Todos --',
+        ];
+        foreach ($rows as $row) {
+            $rowsAssoc[$row->id] = $row->name;
+        }
+
+        return $rowsAssoc;
+    }
 
     /**
      * Retorna o registro de lead
@@ -40,6 +68,6 @@ class User extends Authenticatable
      */
     public function lead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'assigned_user_id', 'id');
+        return $this->belongsTo(Lead::class, 'assigned_user_id', 'id');
     }
 }

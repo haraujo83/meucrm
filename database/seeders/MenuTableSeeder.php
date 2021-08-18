@@ -6,6 +6,9 @@ use Illuminate\Database\Seeder;
 use App\Traits\TraitSeeder;
 use App\Models\Menu as Model;
 
+/**
+ *
+ */
 class MenuTableSeeder extends Seeder
 {
     use TraitSeeder;
@@ -15,13 +18,13 @@ class MenuTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $this->smartySeeder(new Model, [
+        $this->smartySeeder(new Model(), [
             ['id' => 1, 'name' => 'Contatos', 'module' => 'contacts', 'icon' => 'fa fa-user-check'],
             ['id' => 2, 'name' => 'Leads', 'module' => 'leads', 'icon' => 'fa fa-user'],
             ['id' => 3, 'name' => 'Oportunidades', 'module' => 'opportunities', 'icon' => 'fa fa-search-dollar'],
-            ['id' => 4, 'name' => 'Contratações', 'module' => 'contractors', 'icon' => 'fas fa-file-invoice-dollar'],
+            ['id' => 4, 'name' => 'Contratações', 'module' => 'contractors', 'icon' => 'fas fa-file-signature'],
             ['id' => 5, 'name' => 'Avaliações', 'module' => 'valuations', 'icon' => 'fa fa-drafting-compass'],
             ['id' => 6, 'name' => 'Empreendimentos', 'module' => 'developments', 'icon' => 'fa fa-city'],
             ['id' => 7, 'name' => 'Contas', 'module' => 'accounts', 'icon' => 'fas fa-wallet'],

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Helpers\Format;
 use App\Helpers\StructureResult;
 
 use App\Models\Lead;
 use App\Models\AuxList;
+use Illuminate\Http\Response;
 
 class LeadsController extends Controller
 {
@@ -74,7 +79,9 @@ class LeadsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Lead $Leads
+     * @param AuxList $AuxList
+     * @return View
      */
     public function index(AuxList $AuxList)
     {
@@ -86,6 +93,13 @@ class LeadsController extends Controller
             $lead->date_entered = Format::legibleDate($lead->date_entered, false);
         }*/
 
+        $account = new Account();
+        $product = new Product();
+        $user = new User();
+
+        $accountList = [];//$account->getAccountList();
+        $usersList = $user->getUserList();
+        $productList = $product->getProductList();
         $statusLeadList = $AuxList::getAuxList('status_lead_list');
         $ratingList = $AuxList::getAuxList('rating_list');
         $leadSourceDom = $AuxList::getAuxList('lead_source_dom');
@@ -96,13 +110,19 @@ class LeadsController extends Controller
         $edit = 0;
         $delete = 0;*/
 
-        return view('leads.index', compact('resultStructure', 'statusLeadList', 'ratingList', 'leadSourceDom', 'statusImovelList', 'temImovelList'));
+        $viewData = compact(
+          'resultStructure', 'statusLeadList', 'ratingList',
+          'leadSourceDom', 'statusImovelList', 'temImovelList',
+          'accountList', 'productList', 'usersList',
+        );
+
+        return view('leads.index', $viewData);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -113,7 +133,7 @@ class LeadsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -124,7 +144,7 @@ class LeadsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -135,7 +155,7 @@ class LeadsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -147,7 +167,7 @@ class LeadsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -158,7 +178,7 @@ class LeadsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

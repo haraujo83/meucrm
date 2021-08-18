@@ -41,6 +41,6 @@ class EmailAddrBeanRel extends BaseModel
      */
     public function lead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'bean_id', 'id');
+        return $this->belongsTo(Lead::class, 'bean_id', 'id');
     }
 }

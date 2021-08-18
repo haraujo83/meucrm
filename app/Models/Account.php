@@ -31,11 +31,31 @@ class Account extends BaseModel
     public $timestamps = false;
 
     /**
+     * Retorna lista de contas, em pares id => name
+     * @return array
+     */
+    public function getAccountList(): array
+    {
+        $q = self::query()
+        ->select(['id', 'name'])
+        ->where('deleted', 0)
+        ->orderBy('name')
+        ->limit(10);
+
+        $rows = [];
+        foreach ($q->lazy() as $row) {
+            $rows[$row->id] = $row->name;
+        }
+
+        return $rows;
+    }
+
+    /**
      * Retorna o registro de lead
      * @return BelongsTo
      */
     public function lead(): BelongsTo
     {
-        return $this->belongsTo(Leads::class, 'id', 'account_id');
+        return $this->belongsTo(Lead::class, 'id', 'account_id');
     }
 }
