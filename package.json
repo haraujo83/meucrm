@@ -18,6 +18,7 @@
     "dependencies": {
         "@popperjs/core": "^2.9.3",
         "admin-lte": "^3.1.0",
+        "select2-bootstrap-theme": "^0.1.0-beta.10",
         "tippy.js": "^6.3.1"
     }
 }

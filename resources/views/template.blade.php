@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css")}}">-->
     <link rel="stylesheet" href="{{ asset("css/app.css")}}">
     <link rel="stylesheet" href="{{ asset("css/select2.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/select2-bootstrap.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/daterangepicker.css")}}">
 
     <link rel="stylesheet" href="{{ asset("css/app.css")}}">

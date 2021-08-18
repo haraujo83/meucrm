@@ -1,11 +1,10 @@
 $(document).ready(function() {
-    $('.data-select2').select2({
-        language: "pt-BR"
-    });
+    const select2Params = {
+        language: "pt-BR",
+        theme: "bootstrap"
+    };
 
-    tippy('[data-tippy-content]');
-
-    var daterangepickerPtBr = {
+    const daterangepickerPtBr = {
         "format": "DD/MM/YYYY",
         "separator": " - ",
         "applyLabel": "Aplicar",
@@ -39,6 +38,10 @@ $(document).ready(function() {
         ],
         "firstDay": 1
     };
+
+    $('.data-select2').select2(select2Params);
+
+    tippy('[data-tippy-content]');
 
     $('[data-date_range]').daterangepicker({
         format: 'L',

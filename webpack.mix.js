@@ -40,4 +40,5 @@ const mix = require('laravel-mix');
 
       .css('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css', 'public/css/daterangepicker.css')
       .css('node_modules/select2/dist/css/select2.min.css', 'public/css/select2.min.css')
+      .css('node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css', 'public/css/select2-bootstrap.min.css')
       .css('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/tempusdominus-bootstrap-4.min.css');
