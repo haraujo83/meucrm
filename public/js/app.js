@@ -1,8 +1,6 @@
 $(document).ready(function() {
-    const select2Params = {
-        language: "pt-BR",
-        theme: "bootstrap"
-    };
+    $.fn.select2.defaults.set("theme", "bootstrap");
+    $.fn.select2.defaults.set("language", "pt-BR");
 
     const daterangepickerPtBr = {
         "format": "DD/MM/YYYY",
@@ -39,7 +37,7 @@ $(document).ready(function() {
         "firstDay": 1
     };
 
-    $('.data-select2').select2(select2Params);
+    $('.data-select2').select2();
 
     tippy('[data-tippy-content]');
 
