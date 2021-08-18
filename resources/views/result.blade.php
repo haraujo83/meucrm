@@ -1,18 +1,15 @@
 @if ($resultData['data'])
-	<div class="card card-primary">
-		<div class="card-header">
-			<h3 class="card-title">Resultado</h3>
-		</div>
-		<!-- /.card-header -->
+	<div class="card p-0">
+        <!-- /.card-header -->
 		<div class="card-body">
 			@include('filter-result', ['items' => $resultData['data']])
 			<div class="result-search">
-				<table class="table table-sm table-striped table-with-actions table-hover table-condensed">
+                <table class="table table-sm table-striped table-with-actions">
 					<thead>
 						<tr>
 
 							@foreach ($resultData['columns'] as $column)
-								<th style="width: {{ $column['width'] ?? '' }}; text-align: {{ $column['align'] ?? '' }};">{{ $column['title'] }}</th>
+								@include('link-table-order', ['title' => $column['name'], 'field' => $column['field'], 'width' => $column['width'], 'align' => $column['align']])
 							@endforeach
 
 							@if ($resultData['actions'])
@@ -74,17 +71,17 @@
 						@if ($resultData['data']->isEmpty())
 							<tr>
 								<td colspan="99" class="text-center">
-									<em>Nenhuma registro encontrado.</em>
+									<em>Nenhum registro encontrado.</em>
 								</td>
 							</tr>
 						@endif
 					</tbody>
 				</table>
-				@include('filter-result', ['items' => $resultData['data']])
 			</div>
+			<div class="result-filter2">
+				@include('filter-result', ['items' => $resultData['data']])
+            </div>
 		</div>
-		<div class="card-footer">
 		@include('pagination', ['items' => $resultData['data']])
-		</div>
 	</div>
 @endif
