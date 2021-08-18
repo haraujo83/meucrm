@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AccountsController extends Controller
@@ -80,5 +82,21 @@ class AccountsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function listAjax(Request $request): JsonResponse
+    {
+        $r = [];
+        if ($request->has('term')) {
+            $term = $request->get('term');
+            $account = new Account();
+            $r = $account->searchAccountList($term);
+        }
+
+        return response()->json($r);
     }
 }

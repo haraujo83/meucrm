@@ -18,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("css/adminlte.min.css")}}">
     <!-- Bootstrap date picker -->
     <!--<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css")}}">-->
-    <link rel="stylesheet" href="{{ asset("css/app.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/fontawesome-free.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/select2.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/select2-bootstrap.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/daterangepicker.css")}}">
@@ -81,6 +81,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
 
 <script src="{{ asset("js/app.js") }}"></script>
+
+<script src="{{ asset("js/leads.js") }}"></script>
 
 <!-- Page specific script -->
 <script>
