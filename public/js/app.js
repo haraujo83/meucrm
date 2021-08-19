@@ -2,7 +2,10 @@ $(document).ready(function() {
     $.fn.select2.defaults.set("theme", "bootstrap");
     $.fn.select2.defaults.set("language", "pt-BR");
 
-    app = {
+    let app = {
+        create: function () {
+
+        },
         err: function (err) {
             Swal.fire({
                 icon: 'error',
@@ -10,6 +13,7 @@ $(document).ready(function() {
             });
         }
     };
+    app.create();
 
     const daterangepickerPtBr = {
         "format": "DD/MM/YYYY",

@@ -174,12 +174,12 @@
 	/* border-left: solid 1px #888; */
 }
 
-.buttons .btn {
+/*.buttons .btn {
 	float: left;
 	margin-right: .6rem;
 	padding-top: .3rem;
 	padding-bottom: .3rem;
-}
+}*/
 
 .buttons form {
 	padding: 0;
@@ -189,9 +189,9 @@
 	margin-bottom: 0;
 }
 
-.buttons {
+/*.buttons {
 	padding-left: .6rem !important;
-}
+}*/
 
 .shortcut{
 	padding-left: 30px !important;

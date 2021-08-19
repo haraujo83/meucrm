@@ -30,6 +30,8 @@ mix
 
     .scripts('node_modules/@popperjs/core/dist/umd/popper.min.js', 'public/js/popper.min.js')
     .scripts('node_modules/tippy.js/dist/tippy-bundle.umd.min.js', 'public/js/tippy-bundle.umd.min.js')
+    .scripts('node_modules/sortablejs/Sortable.min.js', 'public/js/Sortable.min.js')
+    .scripts('node_modules/jquery-sortablejs/jquery-sortable.js', 'public/js/jquery-sortable.js')
 
     .scripts('resources/js/leads.js', 'public/js/leads.js')
 

@@ -19,5 +19,7 @@
     "/js/adminlte.min.js": "/js/adminlte.min.js",
     "/js/popper.min.js": "/js/popper.min.js",
     "/js/tippy-bundle.umd.min.js": "/js/tippy-bundle.umd.min.js",
+    "/js/Sortable.min.js": "/js/Sortable.min.js",
+    "/js/jquery-sortable.js": "/js/jquery-sortable.js",
     "/js/leads.js": "/js/leads.js"
 }

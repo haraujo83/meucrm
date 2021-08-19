@@ -20,10 +20,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    @include('leads/search', compact(
-                        'productList', 'statusLeadList', 'usersList', 'ratingList', 'leadSourceDom',
-                        'statusImovelList', 'temImovelList'
-                    ))
+                    @include('leads/search')
                 </div>
                 <!-- /.card-body -->
             </div>

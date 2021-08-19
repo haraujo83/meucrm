@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\FieldSearch;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -59,11 +60,10 @@ class LeadsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Lead $Leads
      * @param AuxList $AuxList
      * @return View
      */
-    public function index(AuxList $AuxList)
+    public function index(AuxList $AuxList): View
     {
         $resultStructure = $this->listResult(true);
 
@@ -73,11 +73,18 @@ class LeadsController extends Controller
             $lead->date_entered = Format::legibleDate($lead->date_entered, false);
         }*/
 
-        $account = new Account();
         $product = new Product();
         $user = new User();
 
-        $accountList = [];//$account->getAccountList();
+        $module = 'leads';
+        $userId = 1;
+
+        $field = new Field();
+        $fieldsSearchListNotSelected = $field->getModuleFieldsListNotSelected($userId, $module);
+
+        $fieldSearch = new FieldSearch();
+        $fieldsSearchListSelected = $fieldSearch->getModuleFieldsListSelected($userId, $module);
+
         $usersList = $user->getUserList();
         $productList = $product->getProductList();
         $statusLeadList = $AuxList::getAuxList('status_lead_list');
@@ -91,9 +98,16 @@ class LeadsController extends Controller
         $delete = 0;*/
 
         $viewData = compact(
-          'resultStructure', 'statusLeadList', 'ratingList',
-          'leadSourceDom', 'statusImovelList', 'temImovelList',
-          'accountList', 'productList', 'usersList',
+            'resultStructure',
+            'statusLeadList',
+            'ratingList',
+            'leadSourceDom',
+            'statusImovelList',
+            'temImovelList',
+            'productList',
+            'usersList',
+            'fieldsSearchListSelected',
+            'fieldsSearchListNotSelected'
         );
 
         return view('leads.index', $viewData);

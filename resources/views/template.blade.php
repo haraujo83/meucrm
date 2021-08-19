@@ -48,34 +48,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </div><!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
-<!-- jQuery 3.6 -->
 <script src="{{ asset("js/jquery.min.js") }}"></script>
-<!-- Bootstrap 4 JS -->
 <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
-
 <script src="{{ asset("js/select2.full.min.js") }}"></script>
-
-<!-- AdminLTE App -->
 <script src="{{ asset("js/adminlte.min.js") }}"></script>
-<!--<script src="{{ asset('js/script.js?time=' . date('His')) }}"></script>-->
 <script src="{{ asset("js/sweetalert2.all.min.js") }}"></script>
-
 <script src="{{ asset("js/popper.min.js") }}"></script>
 <script src="{{ asset("js/tippy-bundle.umd.min.js") }}"></script>
-
-
 <script src="{{ asset("js/jquery.inputmask.min.js") }}"></script>
-
-<!-- momment -->
-{{--<script src="{{ asset("js/locales.min.js") }}"></script>--}}
 <script src="{{ asset("js/moment.min.js") }}"></script>
 <script src="{{ asset("js/moment/pt-br.js") }}"></script>
-
-
 <script src="{{ asset("js/select2/pt-BR.js") }}"></script>
-
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
+<script src="{{ asset("js/Sortable.min.js") }}"></script>
+<script src="{{ asset("js/jquery-sortable.js") }}"></script>
 
 <script src="{{ asset("js/app.js") }}"></script>
 
