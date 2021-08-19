@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-use App\Traits\PaginateWithSearch;
-
 use App\Models\BaseModel;
+
+use App\Traits\PaginateWithSearch;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
 
@@ -26,17 +26,16 @@ class Field extends BaseModel
      * @param string $module
      * @return array
      */
-    public function returnFieldsResult($module)
+    public function returnFieldsResult(String $module)
 	{
 		$rows = self::query()
-			->where('module', '=', $module)
+        //->join('fields_search', 'fields_search.id', '=', 'fields.id_table')
+        	->where('module', '=', $module)
 			->where('show_search', '=', '0')
 		    ->where('deleted', '=', '0')
             ->select('name as field', 'label', 'width', 'align')
 		    ->get()->toArray();
         
-        dd($rows);
-
         return $rows;
     }
 
