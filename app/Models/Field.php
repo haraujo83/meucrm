@@ -20,32 +20,31 @@ class Field extends BaseModel
     ];
 
     public $timestamps = false;
-    
+
     /**
      * Retorna os fields para montar a tabela do resultado
      * @param string $module
      * @return array
      */
-    public function returnFieldsResult(String $module)
+    public function returnFieldsResult(string $module): array
 	{
-		$rows = self::query()
-        //->join('fields_search', 'fields_search.id', '=', 'fields.id_table')
-        	->where('module', '=', $module)
-			->where('show_search', '=', '0')
-		    ->where('deleted', '=', '0')
+		return self::query()
+            ->join('fields_search', 'fields_search.field_id', '=', 'fields.id_table')
+            ->join('users', 'users.id_table', '=', 'fields_search.user_id')
+			->where('module', '=', $module)
+			->where('show_search', 0)
+		    ->where('fields.deleted', 0)
             ->select('name as field', 'label', 'width', 'align')
-		    ->get()->toArray();
-        
-        return $rows;
+		    ->get()->toArray()
+        ;
     }
 
     /**
      * Retorna o registro de fieldSearch
      * @return BelongsToMany
      */
-    public function fieldSearch(): BelongsToMany
+    public function users(): BelongsToMany
     {
-        return $this->belongsToMany(Field::class, 'fields_search');
+        return $this->belongsToMany(User::class,'fields_search', 'field_id', 'user_id');
     }
-
 }
