@@ -76,8 +76,8 @@ class User extends Authenticatable
      * Retorna o registro de fieldSearch
      * @return BelongsToMany
      */
-    public function fieldSearch(): BelongsToMany
+    public function fields(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'fields_search');
+        return $this->belongsToMany(Field::class);
     }
 }

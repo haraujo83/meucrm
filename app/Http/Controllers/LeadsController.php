@@ -19,7 +19,7 @@ class LeadsController extends Controller
 {
     public function listResult($structure = false) {
         $data = app('request')->All();
-        
+
         // Naturezas
         $leads  = new Lead;
         $leads = $leads->paginateWithSearch();
@@ -27,7 +27,7 @@ class LeadsController extends Controller
         $fields = new Field;
 
         $columns = $fields->returnFieldsResult('leads');
-        //dd($columns);
+
         // Elabora a estrutura do resultado
         $resultStructure = [
           'columns' => $columns,
@@ -52,7 +52,7 @@ class LeadsController extends Controller
           'data' => $leads,
           'filters' => array_filter($data),
         ];
-    
+
         return $structure ? $resultStructure : $leads;
     }
 

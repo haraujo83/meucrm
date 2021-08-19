@@ -111,7 +111,9 @@
                         </div>
                         <!--/.row -->
                         <div class="row">
-                            {{ Form::submit('Buscar', ['class' => 'btn btn-primary btn-sm']) }}
+                            <div class="col-md-12">
+                                {{ Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+                            </div>
                         </div>
                         <!--/.row -->
                     {{ Form::close() }}
