@@ -2,57 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 use App\Helpers\Format;
 use App\Helpers\StructureResult;
 
+use App\Models\Account;
+use App\Models\Product;
+use App\Models\User;
 use App\Models\Field;
+use App\Models\Action;
 use App\Models\Lead;
 use App\Models\AuxList;
-use Illuminate\Http\Response;
 
 class LeadsController extends Controller
 {
-    public function listResult($structure = false) {
-        $data = app('request')->All();
-        
+    public function listResult($structure = false) 
+    {
+        $filters = app('request')->All();
+
+        $module = 'leads';
+
         // Naturezas
         $leads  = new Lead;
         $leads = $leads->paginateWithSearch();
 
         $fields = new Field;
+        $actions = new Action;
 
-        $columns = $fields->returnFieldsResult('leads');
-        //dd($columns);
-        // Elabora a estrutura do resultado
-        $resultStructure = [
-          'columns' => $columns,
-          'actions' => [
-            [
-              'class' => 'btn btn-info btn-alterar',
-              'title' => 'Alterar',
-              'icon' => 'fa fa-edit',
-              'href' => '/edit/{id}'
-            ],
-            [
-              'class' => 'btn btn-danger btn-excluir',
-              'title' => 'Excluir',
-              'icon' => 'fa fa-trash',
-              'href' => '/$module/destroy/{id}',
-              'form' => [
-                'method' => 'POST',
-                'data-confirm' => 'Tem certeza que deseja excluir?'
-              ],
-            ]
-          ],
-          'data' => $leads,
-          'filters' => array_filter($data),
-        ];
-    
+        $fieldsColumns = $fields->returnFieldsResult($module);
+        $actionsColumns = $actions->returnActionsResult($module, true, true, true);
+
+        $resultStructure = StructureResult::resultStructure($fieldsColumns, $actionsColumns, $leads, $filters);
+
         return $structure ? $resultStructure : $leads;
     }
 
@@ -86,9 +70,7 @@ class LeadsController extends Controller
         $statusImovelList = $AuxList::getAuxList('status_imovel_list');
         $temImovelList = $AuxList::getAuxList('tem_imovel_list');
 
-        /*$visualize = 0;
-        $edit = 0;
-        $delete = 0;*/
+        /*$create = 0;*/
 
         $viewData = compact(
           'resultStructure', 'statusLeadList', 'ratingList',

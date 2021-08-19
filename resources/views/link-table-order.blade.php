@@ -3,16 +3,16 @@
 	$params = array_map('strval', $params);
 	$params['page'] = null;
 
-	$activeDesc = 'inactive';
-	$activeAsc = 'inactive';
+	$activeDesc = 'inactiveOrder';
+	$activeAsc = 'inactiveOrder';
 	$direction = '';
 	if (isset($params['_order']) && $params['_order'] == $field){
 		if($params['_direction'] == 'asc') {
 			$direction = 'desc';
-			$activeDesc = 'active';
+			$activeDesc = 'activeOrder';
 		}else{
 			$direction = 'asc';
-			$activeAsc = 'active';
+			$activeAsc = 'activeOrder';
 		}
 	}
 

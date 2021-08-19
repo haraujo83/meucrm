@@ -78,9 +78,16 @@ trait PaginateWithSearch {
 			$data['_direction'] = 'asc';
 		}
 
+		//dd($data['_order']);
+
 		// Verifica se os parâmetros de ordenação estão corretos e ordena
-		if (isset($data['_order']) && in_array($data['_order'], $this->searchable)) {
+		/*if (isset($data['_order']) && in_array($data['_order'], $this->searchable)) {
 			$data['_direction'] = in_array($data['_direction'], ['asc', 'desc']) ? $data['_direction'] : 'asc';
+			$query = $query->orderBy($data['_order'], $data['_direction']);
+		}*/
+
+		if (isset($data['_order']) && isset($data['_direction'])) {
+			//$data['_direction'] = in_array($data['_direction'], ['asc', 'desc']) ? $data['_direction'] : 'asc';
 			$query = $query->orderBy($data['_order'], $data['_direction']);
 		}
 
