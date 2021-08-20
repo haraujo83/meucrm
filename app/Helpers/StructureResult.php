@@ -7,25 +7,20 @@ use App\SCollection;
 class StructureResult
 {
 
-    /**
-     * Coloca a string na formatação de CNPJ ou CPF, dependendo do comprimento dela
-     *
-     * @param  array $columns
-     * @param  array $actions
-     * @param  array $data
-     * @param  array $filters
-     * @return array
-     */
-    public static function resultStructure($module, $columns, $actions, $data, $filters)
-    {
-        // Elabora a estrutura do resultado
+	/**
+	 * Estrutura todo o resultado com colunas e actions e o resultado, e filtros da query
+	 * @param  array $columns
+	 * @param  array $actions
+	 * @param  array $data
+	 * @param  array $filters
+	 * @return array
+	 */
+	public static function resultStructure(array $fieldsColumns,  array $actionsColumns, $data, array $filters): array
+	{
+		// Elabora a estrutura do resultado
         $resultStructure = [
-            'columns' => [
-              $columns
-            ],
-            'actions' => [
-              $actions
-            ],
+			'columns' => $fieldsColumns,
+			'actions' => $actionsColumns,
             'data' => $data,
             'filters' => array_filter($filters),
         ];
@@ -33,13 +28,14 @@ class StructureResult
         return $resultStructure;
     }
 
-    /**
-     * @param SCollection $resultList
-     * @param string $default
-     * @param string $fieldsId
-     * @param string $fieldDescription
-     * @return array
-     */
+	/**
+	 * retorna um array associativo para listar no campo select
+	 * @param  array $columns
+	 * @param  array $actions
+	 * @param  array $data
+	 * @param  array $filters
+	 * @return array
+	 */
     public function getTraitList(SCollection $resultList, string $default = '-- Todos --', string $fieldsId = 'id', string $fieldDescription = 'descricao'): array
     {
         $rowsAssoc = [];

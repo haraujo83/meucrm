@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+
+use App\Models\BaseModel;
+
+use App\Traits\PaginateWithSearch;
+use App\Traits\TraitBuilder;
+use App\Traits\TraitCollection;
 
 /**
  * Model para tabela products
  */
-class Product extends Model
+class Product extends BaseModel
 {
-    use HasFactory;
+    use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     protected $table = 'products';
 

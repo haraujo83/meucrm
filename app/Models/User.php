@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Traits\PaginateWithSearch;
-
 use App\Models\BaseModel;
+
+use App\Traits\PaginateWithSearch;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
+
+use App\Helpers\StructureResult;
 
 /**
  * Model para tabela users
@@ -50,17 +52,11 @@ class User extends Authenticatable
             ->where('status', 'active')
             ->where('first_name', '!=', '')
             ->orderBy('name')
-            ->get()
-            ;
+            ->get();
 
-        $rowsAssoc = [
-            '' => ' -- Todos --',
-        ];
-        foreach ($rows as $row) {
-            $rowsAssoc[$row->id] = $row->name;
-        }
+        $structureResult = new StructureResult();
 
-        return $rowsAssoc;
+        return $structureResult->getTraitList($rows);
     }
 
     /**

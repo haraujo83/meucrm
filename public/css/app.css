@@ -205,7 +205,7 @@
     background-color: #f7f7f7;
 }
 
-.active{
+.activeOrder{
 	color: black !important;
 	width: 2px !important;
 	height: 2px !important;
@@ -213,7 +213,7 @@
 	padding-right: 3px !important;
 }
 
-.inactive{
+.inactiveOrder{
 	color: grey !important;
 	width: 2px !important;
 	height: 2px !important;

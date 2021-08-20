@@ -6,9 +6,9 @@ use App\Helpers\StructureResult;
 use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-use App\Traits\PaginateWithSearch;
-
 use App\Models\BaseModel;
+
+use App\Traits\PaginateWithSearch;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
 use Illuminate\Database\Query\Builder;
