@@ -58,15 +58,6 @@ class LeadsController extends Controller
         $product = new Product();
         $user = new User();
 
-        $module = 'leads';
-        $userId = 1;
-
-        $field = new Field();
-        $fieldsSearchListNotSelected = $field->getModuleFieldsListNotSelected($userId, $module);
-
-        $fieldSearch = new FieldSearch();
-        $fieldsSearchListSelected = $fieldSearch->getModuleFieldsListSelected($userId, $module);
-
         $usersList = $user->getUserList();
         $productList = $product->getProductList();
         $statusLeadList = $AuxList::getAuxList('status_lead_list');
@@ -88,8 +79,6 @@ class LeadsController extends Controller
             'temImovelList',
             'productList',
             'usersList',
-            'fieldsSearchListSelected',
-            'fieldsSearchListNotSelected'
         );
 
         return view('leads.index', $viewData);

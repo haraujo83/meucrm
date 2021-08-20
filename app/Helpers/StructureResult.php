@@ -28,14 +28,14 @@ class StructureResult
         return $resultStructure;
     }
 
-	/**
-	 * retorna um array associativo para listar no campo select
-	 * @param  array $columns
-	 * @param  array $actions
-	 * @param  array $data
-	 * @param  array $filters
-	 * @return array
-	 */
+    /**
+     * Retorna um array associativo para listar no campo select
+     * @param SCollection $resultList
+     * @param string $default
+     * @param string $fieldsId
+     * @param string $fieldDescription
+     * @return array
+     */
     public function getTraitList(SCollection $resultList, string $default = '-- Todos --', string $fieldsId = 'id', string $fieldDescription = 'descricao'): array
     {
         $rowsAssoc = [];
@@ -43,7 +43,6 @@ class StructureResult
         if ($default !== '') {
             $rowsAssoc[''] = $default;
         }
-
 
         foreach ($resultList as $list) {
             $rowsAssoc[$list[$fieldsId]] = $list[$fieldDescription];

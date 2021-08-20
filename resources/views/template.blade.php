@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="pt_br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>CRM Credipronto</title>
@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("css/select2.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/select2-bootstrap.min.css")}}">
     <link rel="stylesheet" href="{{ asset("css/daterangepicker.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("css/waves.min.css")}}">
 
     <link rel="stylesheet" href="{{ asset("css/app.css")}}">
 </head>
@@ -62,6 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
 <script src="{{ asset("js/Sortable.min.js") }}"></script>
 <script src="{{ asset("js/jquery-sortable.js") }}"></script>
+<script src="{{ asset("js/waves.min.js") }}"></script>
 
 <script src="{{ asset("js/app.js") }}"></script>
 

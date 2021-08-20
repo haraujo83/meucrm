@@ -1,78 +1,30 @@
 {{ Form::open(['method' => 'GET', 'class' => 'form-search']) }}
     {{ Form::hidden('pagination', 20) }}
     <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('nome', 'Nome:') }}
-                {{ Form::text('nome', null, ['class' => 'form-control form-control-sm']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('cpf', 'CPF:') }}
-                {{ Form::text('cpf', null, ['class' => 'form-control form-control-sm', 'data-mask' => 'cpf']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('telefone', 'Telefone:') }}
-                {{ Form::text('telefone', null, ['class' => 'form-control form-control-sm', 'data-mask' => 'telefone']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('email', 'E-mail:') }}
-                {{ Form::email('email', null, ['class' => 'form-control form-control-sm']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('produto', 'Produto:') }}
-                {{ Form::select('produto', $productList, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('status', 'Status:') }}
-                {{ Form::select('status', $statusLeadList, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('atribuido_a', 'Atribuído a:') }}
-                {{ Form::select('atribuido_a', $usersList, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('rating', 'Rating:') }}
-                {{ Form::select('rating', $ratingList, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('account', 'Conta:') }}
-                {{ Form::select('account', [], null, ['class' => 'form-control form-control-sm data-select2', 'data-placeholder' => 'Digite o nome da conta...']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('fonte', 'Fonte do Lead:') }}
-                {{ Form::select('fonte', $leadSourceDom, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('status_imovel', 'Status do Imóvel:') }}
-                {{ Form::select('status_imovel', $statusImovelList, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                {{ Form::label('tem_imovel', 'Tem Imóvel:') }}
-                {{ Form::select('tem_imovel', $temImovelList, null, ['class' => 'form-control form-control-sm data-select2']) }}
-            </div>
-        </div>
+        {{ Form::bsText('nome', 'Nome:') }}
+
+        {{ Form::bsText('cpf', 'CPF:', [], ['data-mask' => 'cpf']) }}
+
+        {{ Form::bsText('telefone', 'Telefone:', [], ['data-mask' => 'telefone']) }}
+
+        {{ Form::bsEmail('email', 'E-mail:') }}
+
+        {{ Form::bsSelect2('produto', 'Produto:', $productList) }}
+
+        {{ Form::bsSelect2('status', 'Status:', $statusLeadList) }}
+
+        {{ Form::bsSelect2('atribuido_a', 'Atribuído a:', $usersList) }}
+
+        {{ Form::bsSelect2('rating', 'Rating:', $ratingList) }}
+
+        {{ Form::bsSelect2('account', 'Conta:', [], [], ['data-placeholder' => 'Digite o nome da conta...']) }}
+
+        {{ Form::bsSelect2('fonte', 'Fonte do Lead:', $leadSourceDom) }}
+
+        {{ Form::bsSelect2('status_imovel', 'Status do Imóvel:', $statusImovelList) }}
+
+        {{ Form::bsSelect2('tem_imovel', 'Tem Imóvel:', $temImovelList) }}
+
         <div class="col-md-4">
             <div class="form-group">
                 {{ Form::label('periodo_criacao', 'Período de Criação:') }}
@@ -88,12 +40,15 @@
         </div>
     </div>
     <!--/.row -->
-
-
+    <div class="row mb-1">
+        <div class="col-md-2">
+            {{ Form::button('<i class="fas fa-columns"></i> Selecionar Colunas', ['class' => 'btn btn-default btn-xs', 'data-tippy-content' => 'Selecionar colunas a serem exibidas no Resultado', 'data-module' => 'leads', 'id' => 'select-result-cols']) }}
+        </div>
+    </div>
     <!--/.row -->
     <div class="row">
         <div class="col-md-12">
-            {{ Form::submit('Buscar', ['class' => 'btn btn-primary']) }}
+            {{ Form::button('Buscar', ['class' => 'btn btn-primary', 'type' => 'submit']) }}
         </div>
     </div>
     <!--/.row -->

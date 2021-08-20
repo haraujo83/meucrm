@@ -32,16 +32,20 @@ mix
     .scripts('node_modules/tippy.js/dist/tippy-bundle.umd.min.js', 'public/js/tippy-bundle.umd.min.js')
     .scripts('node_modules/sortablejs/Sortable.min.js', 'public/js/Sortable.min.js')
     .scripts('node_modules/jquery-sortablejs/jquery-sortable.js', 'public/js/jquery-sortable.js')
+    .scripts('node_modules/node-waves/dist/waves.min.js', 'public/js/waves.min.js')
 
+    //.scripts('resources/js/app.js', 'public/js/app.js')
     .scripts('resources/js/leads.js', 'public/js/leads.js')
 
     .css('node_modules/admin-lte/dist/css/adminlte.min.css', 'public/css/adminlte.min.css')
-    .css('node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css', 'public/css/fontawesome-free.min.css')
+    .css('node_modules/@fortawesome/fontawesome-free/css/all.min.css', 'public/css/fontawesome-free.min.css')
 
     .css('node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css', 'public/css/daterangepicker.css')
     .css('node_modules/select2/dist/css/select2.min.css', 'public/css/select2.min.css')
     .css('node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css', 'public/css/select2-bootstrap.min.css')
     .css('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/tempusdominus-bootstrap-4.min.css')
+    .css('node_modules/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css', 'public/css/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css')
+    .css('node_modules/node-waves/dist/waves.min.css', 'public/css/waves.min.css')
 
     //.css('resources/css/app.css', 'public/ccs/app.css')
 ;

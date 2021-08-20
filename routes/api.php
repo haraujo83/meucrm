@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AccountsController;
+use App\Http\Controllers as AppHttpControllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('listAccountsAjax', [AccountsController::class, 'listAjax']);
+Route::get('listAccountsAjax', [AppHttpControllers\AccountsController::class, 'listAjax']);
+
+Route::post('fieldsSearch/moduleResultColumnsSave', [AppHttpControllers\FieldsSearchController::class, 'moduleResultColumnsSave']);

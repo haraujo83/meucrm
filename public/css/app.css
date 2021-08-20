@@ -220,3 +220,28 @@
 	padding-left: 3px !important;
 	padding-right: 3px !important;
 }
+.swal-custom1-popup {
+    padding: 0!important;
+    margin-top: 5px!important;
+}
+.swal-custom1-content {
+    padding: 0!important;
+    margin: 0!important;
+    overflow-y: scroll;
+    max-height: 450px;
+}
+.swal-custom1-html-container {
+    margin: 0!important;
+    text-align: left!important;
+    font-size: 1rem;
+}
+#fields_search_result_columns .sortable {
+    font-size: 12px;
+    border: 1px solid #ccc;
+    min-height: 15px;
+}
+#fields_search_result_columns .list-group-item {
+    padding: 1px;
+    cursor: grab;
+    background-color: #f7f7f7;
+}
