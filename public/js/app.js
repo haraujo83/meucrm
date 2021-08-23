@@ -22,8 +22,9 @@ let app = {
 
         $.get(api, data)
         .then(function (html) {
+            let $html = $(html);
             Swal.fire({
-                html: html,
+                html: $html,
                 width: 600,
                 customClass: {
                     popup: 'swal-custom1-popup',
@@ -53,9 +54,30 @@ let app = {
             $('.sortable').sortable({
                 group: 'list',
                 animation: 200,
-                ghostClass: 'ghost'
+                ghostClass: 'ghost',
+                onUpdate: function () {
+                    app.sortableEqualizeHeights();
+                },
+                onChange: function () {
+                    app.sortableEqualizeHeights();
+                }
             });
+
+            app.sortableEqualizeHeights();
         });
+    },
+    sortableEqualizeHeights: function () {
+        let $colLeft = $('.sortable:eq(0)');
+        let $colRight = $('.sortable:eq(1)');
+
+        let col1h = parseInt($colLeft.css('height'));
+        let col2h = parseInt($colRight.css('height'));
+
+        if (col1h > col2h) {
+            $colRight.css('height', col1h+'px');
+        } else if (col1h < col2h) {
+            $colLeft.css('height', col2h+'px');
+        }
     }
 };
 

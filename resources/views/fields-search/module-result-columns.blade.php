@@ -2,7 +2,7 @@
     <div class="card-header">
         <i class="fas fa-columns"></i> Selecionar Colunas para Resultado
     </div>
-    <div class="card-body row m-0 p-0">
+    <div class="card-body row m-0 p-0" style="overflow-y: scroll; max-height: 450px;">
         <div class="col-md-6">
             <div class="text-center">
                 Colunas Disponíveis:

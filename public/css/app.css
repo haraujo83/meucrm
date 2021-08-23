@@ -227,8 +227,6 @@
 .swal-custom1-content {
     padding: 0!important;
     margin: 0!important;
-    overflow-y: scroll;
-    max-height: 450px;
 }
 .swal-custom1-html-container {
     margin: 0!important;
