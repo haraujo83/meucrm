@@ -35,8 +35,7 @@ class Field extends BaseModel
 			->where('show_search', 0)
 		    ->where('fields.deleted', 0)
             ->select('name as field', 'label', 'width', 'align')
-		    ->get()->toArray()
-        ;
+		    ->get()->toArray();
     }
 
     /**
