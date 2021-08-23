@@ -1,15 +1,69 @@
+let app = {
+    create: function () {
+        $('#select-result-cols').on('click', this.clickSelectResultCols);
+    },
+    success: function (msg) {
+        Swal.fire({
+            icon: 'success',
+            text: msg,
+        });
+    },
+    err: function (err) {
+        Swal.fire({
+            icon: 'error',
+            text: err,
+        });
+    },
+    clickSelectResultCols: function (e) {
+        let api = '/fieldsSearch/moduleResultColumnsIndex';
+        let data = {
+            module: $(e.currentTarget).data('module')
+        }
+
+        $.get(api, data)
+        .then(function (html) {
+            Swal.fire({
+                html: html,
+                width: 600,
+                customClass: {
+                    popup: 'swal-custom1-popup',
+                    content: 'swal-custom1-content',
+                    htmlContainer: 'swal-custom1-html-container'
+                },
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText: '<i class="fa fa-save"></i> Gravar',
+                cancelButtonText: 'Cancelar',
+                showLoaderOnConfirm: true,
+                preConfirm: function () {
+                    let api = '/api/fieldsSearch/moduleResultColumnsSave';
+                    let data = $('#form_fields_search_result_columns').serialize();
+
+                    return $.post(api, data)
+                    .catch(function (xhr) {
+                        Swal.showValidationMessage(xhr.responseJSON.message);
+                    });
+                }
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    app.success(result.value.msg);
+                }
+            });
+
+            $('.sortable').sortable({
+                group: 'list',
+                animation: 200,
+                ghostClass: 'ghost'
+            });
+        });
+    }
+};
+
 $(document).ready(function() {
     $.fn.select2.defaults.set("theme", "bootstrap");
     $.fn.select2.defaults.set("language", "pt-BR");
 
-    app = {
-        err: function (err) {
-            Swal.fire({
-                icon: 'error',
-                text: err,
-            });
-        }
-    };
+    app.create();
 
     const daterangepickerPtBr = {
         "format": "DD/MM/YYYY",
@@ -49,6 +103,9 @@ $(document).ready(function() {
     $('.data-select2').select2();
 
     tippy('[data-tippy-content]');
+
+    Waves.attach('.btn')
+    Waves.init();
 
     $('[data-date_range]').daterangepicker({
         format: 'L',

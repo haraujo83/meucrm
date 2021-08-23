@@ -47,11 +47,11 @@ class User extends Authenticatable
     public function getUserList(): array
     {
         $rows = self::query()
-            ->select('id', DB::raw("concat(trim(first_name), ' ', trim(last_name)) name"))
+            ->select('id', DB::raw("concat(trim(first_name), ' ', trim(last_name)) descricao"))
             ->where('deleted', 0)
             ->where('status', 'active')
             ->where('first_name', '!=', '')
-            ->orderBy('name')
+            ->orderBy('descricao')
             ->get();
 
         $structureResult = new StructureResult();

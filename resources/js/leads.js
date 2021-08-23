@@ -1,4 +1,13 @@
+
+let leads = {
+    create: function () {
+
+    }
+};
+
 $(document).ready(function() {
+    leads.create();
+
     $('#account').select2({
         ajax: {
             url: '/api/listAccountsAjax',

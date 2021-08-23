@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\StructureResult;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use App\Models\BaseModel;
@@ -40,4 +41,24 @@ class FieldSearch extends BaseModel
         return $this->belongsTo(User::class, 'user_id', 'id_table');
     }
 
+    /**
+     * @param int $userId
+     * @param string $module
+     * @return array
+     */
+    public function getModuleFieldsListSelected(int $userId, string $module): array
+    {
+        $rows = self::query()
+            ->join('fields', 'fields.id_table', '=', 'fields_search.field_id')
+            ->select('fields.id_table', 'fields.label')
+            ->where('fields.module', '=', $module)
+            ->where('fields_search.user_id', $userId)
+            ->where('fields.deleted', '=', 0)
+            ->where('fields.show_search', '=', 1)
+        ;
+
+        $structureResult = new StructureResult();
+
+        return $structureResult->getTraitList($rows->get(), '', 'id_table', 'label');
+    }
 }

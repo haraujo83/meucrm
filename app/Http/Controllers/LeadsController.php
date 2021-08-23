@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\FieldSearch;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
 use App\Helpers\Format;
 use App\Helpers\StructureResult;
-
-use App\Models\Account;
-use App\Models\Product;
-use App\Models\User;
 use App\Models\Field;
 use App\Models\Action;
 use App\Models\Lead;
@@ -19,7 +18,7 @@ use App\Models\AuxList;
 
 class LeadsController extends Controller
 {
-    public function listResult($structure = false) 
+    public function listResult($structure = false)
     {
         $filters = app('request')->All();
 
@@ -85,11 +84,10 @@ class LeadsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Lead $Leads
      * @param AuxList $AuxList
      * @return View
      */
-    public function index(AuxList $AuxList)
+    public function index(AuxList $AuxList): View
     {
         $filters = app('request')->All();
         $resultStructure = $this->listResult(true);
@@ -100,11 +98,9 @@ class LeadsController extends Controller
             $lead->date_entered = Format::legibleDate($lead->date_entered, false);
         }*/
 
-        $account = new Account();
         $product = new Product();
         $user = new User();
 
-        $accountList = [];//$account->getAccountList();
         $usersList = $user->getUserList();
         $productList = $product->getProductList();
         $statusLeadList = $AuxList::getAuxList('status_lead_list');
@@ -113,12 +109,20 @@ class LeadsController extends Controller
         $statusImovelList = $AuxList::getAuxList('status_imovel_list');
         $temImovelList = $AuxList::getAuxList('tem_imovel_list');
 
-        /*$create = 0;*/
+        /*$visualize = 0;
+        $edit = 0;
+        $delete = 0;*/
 
         $viewData = compact(
-          'resultStructure', 'statusLeadList', 'ratingList',
-          'leadSourceDom', 'statusImovelList', 'temImovelList',
-          'accountList', 'productList', 'usersList', 'filters'
+            'resultStructure',
+            'statusLeadList',
+            'ratingList',
+            'leadSourceDom',
+            'statusImovelList',
+            'temImovelList',
+            'productList',
+            'usersList',
+            'filters'
         );
 
         return view('leads.index', $viewData);

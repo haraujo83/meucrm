@@ -2,16 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\LeadsController;
-use App\Http\Controllers\OpportunitiesController;
-use App\Http\Controllers\ContractorsController;
-use App\Http\Controllers\ValuationsController;
-use App\Http\Controllers\DevelopmentsController;
-use App\Http\Controllers\AccountsController;
-use App\Http\Controllers\FinancialsController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers as AppHttpControllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,14 +18,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('contacts', ContactsController::class);
-Route::resource('leads', LeadsController::class);
-Route::resource('opportunities', OpportunitiesController::class);
-Route::resource('contractors', ContractorsController::class);
-Route::resource('valuations', ValuationsController::class);
-Route::resource('developments', DevelopmentsController::class);
-Route::resource('accounts', AccountsController::class);
-Route::resource('financials', FinancialsController::class);
-Route::resource('users', UsersController::class);
-Route::resource('profiles', ProfilesController::class);   
+Route::resource('contacts', AppHttpControllers\ContactsController::class);
+Route::resource('leads', AppHttpControllers\LeadsController::class);
+Route::resource('opportunities', AppHttpControllers\OpportunitiesController::class);
+Route::resource('contractors', AppHttpControllers\ContractorsController::class);
+Route::resource('valuations', AppHttpControllers\ValuationsController::class);
+Route::resource('developments', AppHttpControllers\DevelopmentsController::class);
+Route::resource('accounts', AppHttpControllers\AccountsController::class);
+Route::resource('financials', AppHttpControllers\FinancialsController::class);
+Route::resource('users', AppHttpControllers\UsersController::class);
+Route::resource('profiles', AppHttpControllers\ProfilesController::class);
 
+Route::get('fieldsSearch/moduleResultColumnsIndex', [AppHttpControllers\FieldsSearchController::class, 'moduleResultColumnsIndex']);
