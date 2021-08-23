@@ -78,15 +78,17 @@ class AppServiceProvider extends ServiceProvider
         Form::macro('bsText', function (
             string $name,
             string $labelText,
-            array $class = [],
+            $value = null,
             array $attribs = []
         ) {
-            $class = array_merge($class, ['form-control', 'form-control-sm']);
+            $attribs['class'] = $attribs['class'] ?? [];
+
+            $class = array_merge($attribs['class'], ['form-control', 'form-control-sm']);
             $classStr = implode(' ', $class);
             $attribs = array_merge($attribs, ['class' => $classStr]);
 
             $label = Form::label($name, $labelText);
-            $field = Form::text($name, null, $attribs);
+            $field = Form::text($name, $value, $attribs);
 
             echo <<<A
             <div class="col-md-4">
@@ -101,15 +103,17 @@ A;
         Form::macro('bsEmail', function (
             string $name,
             string $labelText,
-            array $class = [],
+            $value = null,
             array $attribs = []
         ) {
-            $class = array_merge($class, ['form-control', 'form-control-sm']);
+            $attribs['class'] = $attribs['class'] ?? [];
+
+            $class = array_merge($attribs['class'], ['form-control', 'form-control-sm']);
             $classStr = implode(' ', $class);
             $attribs = array_merge($attribs, ['class' => $classStr]);
 
             $label = Form::label($name, $labelText);
-            $field = Form::email($name, null, $attribs);
+            $field = Form::email($name, $value, $attribs);
 
             echo <<<A
             <div class="col-md-4">
@@ -124,16 +128,18 @@ A;
         Form::macro('bsSelect2', function (
             string $name,
             string $labelText,
+            $value = null,
             array $list = [],
-            array $class = [],
             array $attribs = []
         ) {
-            $class = array_merge($class, ['form-control', 'form-control-sm', 'data-select2']);
+            $attribs['class'] = $attribs['class'] ?? [];
+
+            $class = array_merge($attribs['class'], ['form-control', 'form-control-sm', 'data-select2']);
             $classStr = implode(' ', $class);
             $attribs = array_merge($attribs, ['class' => $classStr]);
 
             $label = Form::label($name, $labelText);
-            $field = Form::select($name, $list, null, $attribs);
+            $field = Form::select($name, $list, $value, $attribs);
 
             echo <<<A
             <div class="col-md-4">
@@ -151,16 +157,16 @@ A;
 	 *
 	 * @return void
 	 */
-	private function registerValidationRules() 
+	private function registerValidationRules()
     {
 		// Valida um número de CNPJ
-		Validator::extend('cnpj', function ($attribute, $number, $parameters) 
+		Validator::extend('cnpj', function ($attribute, $number, $parameters)
         {
 			return Valid::cnpj($number);
 		});
 
 		// Verifica se é um CPF ou CNPJ válido
-		Validator::extend('cpf', function ($attribute, $number, $parameters) 
+		Validator::extend('cpf', function ($attribute, $number, $parameters)
         {
 			return Valid::cpf($number);
 		});

@@ -16,6 +16,9 @@ use App\Models\Action;
 use App\Models\Lead;
 use App\Models\AuxList;
 
+/**
+ *
+ */
 class LeadsController extends Controller
 {
     public function listResult($structure = false)
@@ -41,7 +44,7 @@ class LeadsController extends Controller
                     $dateEnd = trim($datePeriod[1]);
 
                     //date start
-                    $where[$key][] = ['>=', Format::bankDate($dateStart)];    
+                    $where[$key][] = ['>=', Format::bankDate($dateStart)];
 
                     //date end
                     $where[$key][] = ['<=', Format::bankDate($dateEnd)];
@@ -59,13 +62,13 @@ class LeadsController extends Controller
                 }
             }
         }
-        
+
         $module = 'leads';
-        
+
         // Naturezas
         $leads  = new Lead;
         $leads = $leads->paginateWithSearch([], $where);
-        
+
         $fields = new Field;
         $actions = new Action;
         //faltou mandar o id e o user

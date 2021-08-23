@@ -5,6 +5,8 @@
     "/css/daterangepicker.css": "/css/daterangepicker.css",
     "/css/fontawesome-free.min.css": "/css/fontawesome-free.min.css",
     "/css/adminlte.min.css": "/css/adminlte.min.css",
+    "/css/app.css": "/css/app.css",
+    "/css/magnific-popup.css": "/css/magnific-popup.css",
     "/css/waves.min.css": "/css/waves.min.css",
     "/css/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css": "/css/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css",
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js",
@@ -24,5 +26,7 @@
     "/js/Sortable.min.js": "/js/Sortable.min.js",
     "/js/jquery-sortable.js": "/js/jquery-sortable.js",
     "/js/waves.min.js": "/js/waves.min.js",
+    "/js/jquery.magnific-popup.min.js": "/js/jquery.magnific-popup.min.js",
+    "/js/app.js": "/js/app.js",
     "/js/leads.js": "/js/leads.js"
 }
