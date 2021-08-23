@@ -1,25 +1,25 @@
 {{ Form::open(['method' => 'GET', 'class' => 'form-search']) }}
     {{ Form::hidden('pagination', 20) }}
     <div class="row">
-        {{ Form::bsText('nome', 'Nome:') }}
+        {{ Form::bsText('first_name', 'Nome:') }}
 
         {{ Form::bsText('cpf', 'CPF:', [], ['data-mask' => 'cpf']) }}
 
-        {{ Form::bsText('telefone', 'Telefone:', [], ['data-mask' => 'telefone']) }}
+        {{ Form::bsText('telefone_contato', 'Telefone:', [], ['data-mask' => 'telefone']) }}
 
         {{ Form::bsEmail('email', 'E-mail:') }}
 
-        {{ Form::bsSelect2('produto', 'Produto:', $productList) }}
+        {{ Form::bsSelect2('parent_type', 'Produto:', $productList) }}
 
         {{ Form::bsSelect2('status', 'Status:', $statusLeadList) }}
 
-        {{ Form::bsSelect2('atribuido_a', 'Atribuído a:', $usersList) }}
+        {{ Form::bsSelect2('assigned_user_id', 'Atribuído a:', $usersList) }}
 
         {{ Form::bsSelect2('rating', 'Rating:', $ratingList) }}
 
-        {{ Form::bsSelect2('account', 'Conta:', [], [], ['data-placeholder' => 'Digite o nome da conta...']) }}
+        {{ Form::bsSelect2('account_id', 'Conta:', [], [], ['data-placeholder' => 'Digite o nome da conta...']) }}
 
-        {{ Form::bsSelect2('fonte', 'Fonte do Lead:', $leadSourceDom) }}
+        {{ Form::bsSelect2('lead_source', 'Fonte do Lead:', $leadSourceDom) }}
 
         {{ Form::bsSelect2('status_imovel', 'Status do Imóvel:', $statusImovelList) }}
 

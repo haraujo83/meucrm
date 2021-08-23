@@ -24,10 +24,11 @@ class LeadsController extends Controller
 
         $where = [];
 
+        unset($filters['pagination'], $filters['_order'], $filters['_direction'], $filters['page']);
+
         foreach($filters as $key => $val)
         {
-
-            if(isset($val) && $key != 'pagination')
+            if(isset($val))
             {
                 if(substr_count($key, 'periodo') > 0)
                 {
@@ -40,12 +41,10 @@ class LeadsController extends Controller
                     $dateEnd = trim($datePeriod[1]);
 
                     //date start
-                    $filters['dateStart'] = Format::bankDate($dateStart);
-                    $where[$key][] = ['>=', $filters['dateStart']];    
+                    $where[$key][] = ['>=', Format::bankDate($dateStart)];    
 
                     //date end
-                    $filters['dateEnd'] = Format::bankDate($dateEnd);
-                    $where[$key][] = ['<=', $filters['dateEnd']];
+                    $where[$key][] = ['<=', Format::bankDate($dateEnd)];
                 }
                 else
                 {
