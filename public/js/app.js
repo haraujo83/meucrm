@@ -61,3 +61,59 @@ $(document).ready(function() {
 
     $('[data-mask="telefone"]').inputmask("(9{2})9{8}9{0,1}");
 });
+
+// Reload no resultado para exibir a quantidade requerida de itens
+$(document).on('change', '[name="count-record-page"]', function(e) {
+	$('[name="pagination"]').val(this.value);
+	$('.form-search').submit();
+});
+
+/**
+ * Verifica se a variável indicativa de busca existe
+ *
+ * @return bool
+ */
+ function getSearchActive() {
+	if (typeof ActiveSearch == 'undefined') {
+		return false;
+	}
+
+	return true;
+}
+
+// Se a busca estiver ativa, rola p/ baixo
+var buscando = getSearchActive();
+if (buscando) {
+    $("html, body").animate({
+        'scrollTop' : $(document).height()
+    }, 500);
+}
+
+/*$(document).on('click', '[type="submit"]', function(e) {
+
+    var ths        = event.target,
+        formulario = $(ths).closest('.form-search'),
+		url        = formulario.attr('action');
+
+    // Inibe a ação natural do navegador
+    e.preventDefault();
+
+    $.ajax({
+        url: url,
+        method: 'GET',
+        data: formulario,
+        success: function(data) {
+            //console.log(data);
+            //$('.result-index').html();
+            //$('.result-index').html(data);
+        },
+    }).done(function(data) {
+        // Exibe o retorno da requisição
+        /*swal({
+            'title': 'Teste',
+            'text': 'erro',
+            'icon': 'error',
+        });*/
+        /*$('.result-index').html('');
+    });
+});*/
