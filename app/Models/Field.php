@@ -36,11 +36,10 @@ class Field extends BaseModel
             ->join('fields_search', 'fields_search.field_id', '=', 'fields.id_table')
             ->join('users', 'users.id_table', '=', 'fields_search.user_id')
 			->where('module', '=', $module)
-			->where('show_search', 0)
+			->where('show_search', 1)
 		    ->where('fields.deleted', 0)
             ->select('name as field', 'label', 'width', 'align')
-		    ->get()->toArray()
-        ;
+		    ->get()->toArray();
     }
 
     /**

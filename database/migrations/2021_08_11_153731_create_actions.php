@@ -17,6 +17,8 @@ class CreateActions extends Migration
             $table->id();
             $table->string('text', 30);
             $table->string('action', 30);
+            $table->string('class', 20);
+            $table->string('icon', 20);
         });
     }
 

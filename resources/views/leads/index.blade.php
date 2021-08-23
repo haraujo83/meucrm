@@ -26,7 +26,9 @@
             </div>
         </div>
     </div>
-    <!-- /.row -->
-    @include('result', ['resultData' => $resultStructure])
+    <div class="result-index">
+        <!-- /.row -->
+        @include('result', ['resultData' => $resultStructure])
+    </div>
 </div>
 @endsection
