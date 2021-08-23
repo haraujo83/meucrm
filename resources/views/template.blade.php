@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
-    <title>CRM Credipronto</title>
+    <title>CrediProntoCRM</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,6 +21,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset("css/daterangepicker.css")}}">
 
     <link rel="stylesheet" href="{{ asset("css/app.css")}}">
+    @if($existCss)
+        <link rel="stylesheet" href="{{ asset("css/$module.css")}}">
+    @endif
+
 </head>
 <body class="hold-transition sidebar-mini text-sm sidebar-collapse">
 <div class="wrapper">
@@ -58,7 +62,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- AdminLTE App -->
 <script src="{{ asset("js/adminlte.min.js") }}"></script>
-<!--<script src="{{ asset('js/script.js?time=' . date('His')) }}"></script>-->
 <script src="{{ asset("js/sweetalert2.all.min.js") }}"></script>
 
 <script src="{{ asset("js/popper.min.js") }}"></script>
@@ -77,10 +80,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
 
-<script src="{{ asset("js/app.js") }}"></script>
-
-<script src="{{ asset("js/leads.js") }}"></script>
-
+<script src="{{ asset('js/app.js?time=' . date('His')) }}"></script>
+@if($existJs)
+<script src="{{ asset("js/$module.js") }}"></script>
+@endif
 <!-- Page specific script -->
 <script>
     var _token = '{{ csrf_token() }}';
