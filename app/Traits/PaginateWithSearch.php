@@ -35,12 +35,15 @@ trait PaginateWithSearch {
 		}
 
 		// Percorre os campos passados e confere se fazem parte dos permitidos a se buscar
-		foreach ($data as $param => $term) {
-			if (!is_null($term) && in_array($param, $this->searchable ?? [])) {
+		/*foreach ($data as $param => $term) {
+			if (!is_null($term) && isset($this->searchable) && $param != 'pagination' && substr_count($param, 'periodo') == 0) {
+				//echo $param . " " . $term;
 				$term = $this->_automaticFormatting($term);
 				$query = $query->where($param, 'LIKE', "%$term%");
 			}
-		}
+		}*/
+
+		//dd($query);
 
 		// Aplica a busca interna (se passada)
 		if (!empty($where)) {
@@ -61,6 +64,7 @@ trait PaginateWithSearch {
 				}
 			}
 		}
+		//dd($where);
 
 		// Em alguns casos é preciso fazer um GROUP BY
 		if (!empty($joins)) {
@@ -78,8 +82,6 @@ trait PaginateWithSearch {
 			$data['_direction'] = 'asc';
 		}
 
-		//dd($data['_order']);
-
 		// Verifica se os parâmetros de ordenação estão corretos e ordena
 		/*if (isset($data['_order']) && in_array($data['_order'], $this->searchable)) {
 			$data['_direction'] = in_array($data['_direction'], ['asc', 'desc']) ? $data['_direction'] : 'asc';
@@ -87,9 +89,10 @@ trait PaginateWithSearch {
 		}*/
 
 		if (isset($data['_order']) && isset($data['_direction'])) {
-			//$data['_direction'] = in_array($data['_direction'], ['asc', 'desc']) ? $data['_direction'] : 'asc';
 			$query = $query->orderBy($data['_order'], $data['_direction']);
 		}
+
+		//dd($query);
 
 		// Gera o resultado e insere uma flag p/ apontar se uma busca está em andamento
 		$result = $query->select("{$this->table}.*")->paginate( $this->paginate );

@@ -23,17 +23,59 @@ class LeadsController extends Controller
     {
         $filters = app('request')->All();
 
-        $module = 'leads';
+        $where = [];
 
+        foreach($filters as $key => $val)
+        {
+
+            if(isset($val) && $key != 'pagination')
+            {
+                if(substr_count($key, 'periodo') > 0)
+                {
+                    $datePeriod = explode('-', $val);
+                    if($key == 'periodo_criacao'){
+                        $key = 'date_entered';
+                    }
+
+                    $dateStart = trim($datePeriod[0]);
+                    $dateEnd = trim($datePeriod[1]);
+
+                    //date start
+                    $filters['dateStart'] = Format::bankDate($dateStart);
+                    $where[$key][] = ['>=', $filters['dateStart']];    
+
+                    //date end
+                    $filters['dateEnd'] = Format::bankDate($dateEnd);
+                    $where[$key][] = ['<=', $filters['dateEnd']];
+                }
+                else
+                {
+                    if($key == 'first_name')
+                    {
+                        $where[$key][] = ['LIKE', '%'.$val.'%'];
+                    }
+                    else
+                    {
+                        $where[$key][] = ['=', $val];
+                    }
+                }
+            }
+        }
+        
+        $module = 'leads';
+        
         // Naturezas
         $leads  = new Lead;
-        $leads = $leads->paginateWithSearch();
-
+        $leads = $leads->paginateWithSearch([], $where);
+        
         $fields = new Field;
         $actions = new Action;
+        //faltou mandar o id e o user
+        //$id = $leads->idnum;
+        $id = '1';
 
         $fieldsColumns = $fields->returnFieldsResult($module);
-        $actionsColumns = $actions->returnActionsResult($module, true, true, true);
+        $actionsColumns = $actions->returnActionsResult($module, $id, true, true, true);
 
         $resultStructure = StructureResult::resultStructure($fieldsColumns, $actionsColumns, $leads, $filters);
 
@@ -49,6 +91,7 @@ class LeadsController extends Controller
      */
     public function index(AuxList $AuxList)
     {
+        $filters = app('request')->All();
         $resultStructure = $this->listResult(true);
 
         /*$leads = $Leads::paginate(20);
@@ -75,7 +118,7 @@ class LeadsController extends Controller
         $viewData = compact(
           'resultStructure', 'statusLeadList', 'ratingList',
           'leadSourceDom', 'statusImovelList', 'temImovelList',
-          'accountList', 'productList', 'usersList',
+          'accountList', 'productList', 'usersList', 'filters'
         );
 
         return view('leads.index', $viewData);
