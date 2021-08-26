@@ -28,7 +28,7 @@
 								@if ($resultData['actions'])
 									@foreach ($resultData['actions'] as $action)
 
-										<?php
+										@php
 										$href = explode('/', $action['href']);
 
 										$href = array_map(function($x) use ($information){
@@ -45,7 +45,7 @@
 										}, $href);
 
 										$href = implode('/', $href);
-										?>
+										@endphp
 
 										<td class="buttons">
 

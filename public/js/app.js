@@ -59,7 +59,8 @@ let app = {
     }
 };
 
-$(document).ready(function() {
+$(document).ready(function() 
+{
     $.fn.select2.defaults.set("theme", "bootstrap");
     $.fn.select2.defaults.set("language", "pt-BR");
 
@@ -119,58 +120,92 @@ $(document).ready(function() {
     $('[data-mask="telefone"]').inputmask("(9{2})9{8}9{0,1}");
 });
 
-// Reload no resultado para exibir a quantidade requerida de itens
-$(document).on('change', '[name="count-record-page"]', function(e) {
-	$('[name="pagination"]').val(this.value);
-	$('.form-search').submit();
-});
+$(document).on('change', '[name=count-record-page]', function(e) 
+{
 
-/**
- * Verifica se a variável indicativa de busca existe
- *
- * @return bool
- */
- function getSearchActive() {
-	if (typeof ActiveSearch == 'undefined') {
-		return false;
-	}
+    var form = $('.form-search'),
+		method     = form.attr('method');
 
-	return true;
-}
+    var form = $('.form-search').serialize();
 
-// Se a busca estiver ativa, rola p/ baixo
-var buscando = getSearchActive();
-if (buscando) {
-    $("html, body").animate({
-        'scrollTop' : $(document).height()
-    }, 500);
-}
+    //seta quantidade de registros por pagina
+    var pagination = this.value;
+    var parts = form.split('&');
+    var partsUrl = '';
+    parts.forEach(function (part) 
+    {
+        var keyValue = part.split('=');
+        var key = keyValue[0];
+        var value = keyValue[1];
+        
+        if(key == 'pagination')
+        {
+            value = pagination;
+        }
 
-/*$(document).on('click', '[type="submit"]', function(e) {
+        partsUrl += '&'+key+'='+value;
+    });
 
-    var ths        = event.target,
-        formulario = $(ths).closest('.form-search'),
-		url        = formulario.attr('action');
+    form = partsUrl;
 
     // Inibe a ação natural do navegador
     e.preventDefault();
+    searchAjax(method, form);
+});
+
+$(document).on('click', '.form-search [type="submit"]', function(e) 
+{
+
+    var form = $('.form-search'),
+		method     = form.attr('method');
+
+    var form = $('.form-search').serialize();
+
+    // Inibe a ação natural do navegador
+    e.preventDefault();
+    searchAjax(method, form);
+});
+
+$(document).on('click', '.page-link', function(e) 
+{
+
+    var form = $('.form-search'),
+		method     = form.attr('method');
+
+    var linkPagination  = $(this).prop('href');
+    var form = linkPagination.split('?')[1];
+
+    // Inibe a ação natural do navegador
+    e.preventDefault();
+    searchAjax(method, form);
+});
+
+function searchAjax(method, form)
+{
+    var urlForm = 'http://' + $('[name=hostname]').val() + '/' +  $('[name=module]').val() + '/validationSearch';
 
     $.ajax({
-        url: url,
-        method: 'GET',
-        data: formulario,
+        url: urlForm,
+        method: method,
+        data: form,
+        dataType: 'JSON',
         success: function(data) {
-            //console.log(data);
-            //$('.result-index').html();
-            //$('.result-index').html(data);
+            $('.result-index').html('');
         },
+        error: function(data) {
+            console.log(data);
+        }
     }).done(function(data) {
-        // Exibe o retorno da requisição
-        /*swal({
-            'title': 'Teste',
-            'text': 'erro',
-            'icon': 'error',
-        });*/
-        /*$('.result-index').html('');
+        $('.result-index').html(data);
     });
-});*/
+}
+
+function searchOrder(param){
+
+    var form = $('.form-search'),
+		method  = form.attr('method');
+
+    var form = param;
+
+    searchAjax(method, form);
+}

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
-use App\Models\FieldSearch;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+
 use App\Helpers\Format;
 use App\Helpers\StructureResult;
+
+use App\Http\Requests\LeadsSearchRequest;
+use App\Traits\TraitMessage;
+
+use App\Models\Product;
+use App\Models\User;
 use App\Models\Field;
 use App\Models\Action;
 use App\Models\Lead;
@@ -18,13 +20,34 @@ use App\Models\AuxList;
 
 class LeadsController extends Controller
 {
-    public function listResult($structure = false)
+    /*public function validationSearch(LeadsSearchRequest $request)
     {
-        $filters = app('request')->All();
+        dd('aqui');exit;
+        dd($request->validated());exit;
+        /*$data = $request->validated();
+        $errors = TraitMessage::returnMessageJson($data);
+        dd($errors);*/
+        
+    //}
 
+    public function result(): View
+    {
+        $module = 'leads';
+        $resultStructure = $this->listResult($module, true);
+        $viewData = compact(
+            'resultStructure'
+        );
+
+        return view($module.'.result', $viewData);
+    }
+
+    public function listResult($module, $structure = false)
+    {   
         $where = [];
 
-        unset($filters['pagination'], $filters['_order'], $filters['_direction'], $filters['page']);
+        $filters = app('request')->All();
+
+        unset($filters['pagination'], $filters['_order'], $filters['_direction'], $filters['page'], $filters['module'], $filters['hostname']);
 
         foreach($filters as $key => $val)
         {
@@ -60,8 +83,6 @@ class LeadsController extends Controller
             }
         }
         
-        $module = 'leads';
-        
         // Naturezas
         $leads  = new Lead;
         $leads = $leads->paginateWithSearch([], $where);
@@ -88,15 +109,7 @@ class LeadsController extends Controller
      */
     public function index(AuxList $AuxList): View
     {
-        $filters = app('request')->All();
-        $resultStructure = $this->listResult(true);
-
-        /*$leads = $Leads::paginate(20);
-
-        foreach($leads as $lead){
-            $lead->date_entered = Format::legibleDate($lead->date_entered, false);
-        }*/
-
+        $module = 'leads';
         $product = new Product();
         $user = new User();
 
@@ -108,12 +121,7 @@ class LeadsController extends Controller
         $statusImovelList = $AuxList::getAuxList('status_imovel_list');
         $temImovelList = $AuxList::getAuxList('tem_imovel_list');
 
-        /*$visualize = 0;
-        $edit = 0;
-        $delete = 0;*/
-
         $viewData = compact(
-            'resultStructure',
             'statusLeadList',
             'ratingList',
             'leadSourceDom',
@@ -121,10 +129,10 @@ class LeadsController extends Controller
             'temImovelList',
             'productList',
             'usersList',
-            'filters'
+            'module'
         );
 
-        return view('leads.index', $viewData);
+        return view($module.'.index', $viewData);
     }
 
     /**

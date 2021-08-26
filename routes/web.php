@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('leads/result', [AppHttpControllers\LeadsController::class, 'result'])->name('leads.result');
+//Route::post('leads/validationSearch', [AppHttpControllers\LeadsController::class, 'validationSearch'])->name('leads.validationSearch');
+
 Route::resource('contacts', AppHttpControllers\ContactsController::class);
 Route::resource('leads', AppHttpControllers\LeadsController::class);
 Route::resource('opportunities', AppHttpControllers\OpportunitiesController::class);

@@ -1,5 +1,7 @@
-{{ Form::open(['method' => 'GET', 'class' => 'form-search']) }}
+{{ Form::open(['method' => 'GET', 'class' => 'form-search', 'route' => 'leads.result']) }}
     {{ Form::hidden('pagination', 20) }}
+    {{ Form::hidden('module', $module) }}
+    {{ Form::hidden('hostname', $_SERVER['HTTP_HOST']) }}
     <div class="row">
         {{ Form::bsText('first_name', 'Nome:') }}
 
