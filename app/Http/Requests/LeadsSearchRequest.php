@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\BaseFormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class LeadsSearchRequest extends BaseFormRequest
+class LeadsSearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,11 @@ class LeadsSearchRequest extends BaseFormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
 			'cpf'              => 'nullable|min:11|max:11|cpf',
 			'telefone_contato' => 'nullable|min:11|max:11|integer',
 			'email'            => 'nullable|email',
 		];
-
-        return $rules;
     }
 
     public function messages() {
