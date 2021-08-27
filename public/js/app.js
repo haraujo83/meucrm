@@ -37,6 +37,8 @@ let app = {
         type: 'ajax',
         callbacks: {
             ajaxContentAdded: function () {
+                app.init();
+
                 $('.sortable').sortable({
                     group: 'list',
                     animation: 200,
@@ -76,7 +78,7 @@ let app = {
         }
     },
     init: function () {
-        $('.data-select2').select2();
+        $('.select2').select2();
 
         tippy('[data-tippy-content]');
 
