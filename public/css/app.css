@@ -238,6 +238,10 @@
     font-size: 12px!important;
     padding: 0!important;
 }
+#fields_search_result_columns {
+    width: 450px;
+    margin: 0 auto;
+}
 #fields_search_result_columns .sortable {
     font-size: 12px;
     border: 1px solid #ccc;
@@ -245,7 +249,6 @@
 }
 #fields_search_result_columns .list-group-item {
     padding: 1px;
-    cursor: -webkit-grab;
     cursor: grab;
     background-color: #f7f7f7;
 }

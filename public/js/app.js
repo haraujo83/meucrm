@@ -35,6 +35,7 @@ let app = {
     },
     magnificPopupConfig: {
         type: 'ajax',
+        cursor: 'mfp-ajax-cur',
         callbacks: {
             ajaxContentAdded: function () {
                 $('.sortable').sortable({
@@ -76,7 +77,7 @@ let app = {
         }
     },
     init: function () {
-        $('.data-select2').select2();
+        $('.select2').select2();
 
         tippy('[data-tippy-content]');
 

@@ -1,7 +1,7 @@
 
 let leads = {
     create: function () {
-        let accoubtIdSel2Config = {
+        let accountSel2Config = {
             ajax: {
                 url: '/api/listAccountsAjax',
                 dataType: 'json',
@@ -34,7 +34,7 @@ let leads = {
             }
         };
 
-        $('#account_id').select2(accoubtIdSel2Config);
+        $('#account_id').select2(accountSel2Config);
     }
 };
 
