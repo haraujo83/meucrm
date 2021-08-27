@@ -75,83 +75,27 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerValidationRules();
 
-        Form::macro('bsText', function (
-            string $name,
-            string $labelText,
-            $value = null,
-            array $attribs = []
-        ) {
-            $attribs['class'] = $attribs['class'] ?? [];
+        Form::component('bsText', 'components.form.bs-text', [
+            'name',
+            'labelText',
+            'value' => null,
+            'attribs' => []
+        ]);
 
-            $class = array_merge($attribs['class'], ['form-control', 'form-control-sm']);
-            $classStr = implode(' ', $class);
-            $attribs = array_merge($attribs, ['class' => $classStr]);
+        Form::component('bsEmail', 'components.form.bs-email', [
+            'name',
+            'labelText',
+            'value' => null,
+            'attribs' => []
+        ]);
 
-            $label = Form::label($name, $labelText);
-            $field = Form::text($name, $value, $attribs);
-
-            echo <<<A
-            <div class="col-md-4">
-                <div class="form-group">
-                    $label
-                    $field
-                </div>
-            </div>
-A;
-        });
-
-        //@include('error', ['field' => $field])
-
-        Form::macro('bsEmail', function (
-            string $name,
-            string $labelText,
-            $value = null,
-            array $attribs = []
-        ) {
-            $attribs['class'] = $attribs['class'] ?? [];
-
-            $class = array_merge($attribs['class'], ['form-control', 'form-control-sm']);
-            $classStr = implode(' ', $class);
-            $attribs = array_merge($attribs, ['class' => $classStr]);
-
-            $label = Form::label($name, $labelText);
-            $field = Form::email($name, $value, $attribs);
-
-            echo <<<A
-            <div class="col-md-4">
-                <div class="form-group">
-                    $label
-                    $field
-                </div>
-            </div>
-A;
-        });
-
-        Form::macro('bsSelect2', function (
-            string $name,
-            string $labelText,
-            $value = null,
-            array $list = [],
-            array $attribs = []
-        ) {
-            $attribs['class'] = $attribs['class'] ?? [];
-
-            $class = array_merge($attribs['class'], ['form-control', 'form-control-sm', 'data-select2']);
-            $classStr = implode(' ', $class);
-            $attribs = array_merge($attribs, ['class' => $classStr]);
-
-            $label = Form::label($name, $labelText);
-            $field = Form::select($name, $list, $value, $attribs);
-
-            echo <<<A
-            <div class="col-md-4">
-                <div class="form-group">
-                    $label
-                    $field
-                </div>
-            </div>
-A;
-        });
+        Form::component('bsSelect2', 'components.form.bs-select2', [
+            'name',
+            'labelText',
+            'value' => null,
+            'list' => [],
+            'attribs' => []
+        ]);
     }
 
     /**

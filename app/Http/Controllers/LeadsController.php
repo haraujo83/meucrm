@@ -9,7 +9,6 @@ use App\Helpers\Format;
 use App\Helpers\StructureResult;
 
 use App\Http\Requests\LeadsSearchRequest;
-use App\Traits\TraitMessage;
 
 use App\Models\Product;
 use App\Models\User;
@@ -23,6 +22,10 @@ use App\Models\AuxList;
  */
 class LeadsController extends Controller
 {
+    /**
+     * @param LeadsSearchRequest $request
+     * @return View
+     */
     public function result(LeadsSearchRequest $request): View
     {
         $module = 'leads';
@@ -34,22 +37,24 @@ class LeadsController extends Controller
         return view($module.'.result', $viewData);
     }
 
-    public function listResult($module, $structure = false): array
-    {   
+    /**
+     * @param $module
+     * @param false $structure
+     * @return array
+     */
+    public function listResult($module, bool $structure = false): array
+    {
         $where = [];
 
         $filters = app('request')->All();
 
         unset($filters['pagination'], $filters['_order'], $filters['_direction'], $filters['page'], $filters['module'], $filters['hostname']);
 
-        foreach($filters as $key => $val)
-        {
-            if(isset($val))
-            {
-                if(substr_count($key, 'periodo') > 0)
-                {
+        foreach ($filters as $key => $val) {
+            if (isset($val)) {
+                if (substr_count($key, 'periodo') > 0) {
                     $datePeriod = explode('-', $val);
-                    if($key == 'periodo_criacao'){
+                    if ($key === 'periodo_criacao') {
                         $key = 'date_entered';
                     }
 
@@ -61,27 +66,20 @@ class LeadsController extends Controller
 
                     //date end
                     $where[$key][] = ['<=', Format::bankDate($dateEnd)];
-                }
-                else
-                {
-                    if($key == 'first_name')
-                    {
-                        $where[$key][] = ['LIKE', '%'.$val.'%'];
-                    }
-                    else
-                    {
-                        $where[$key][] = ['=', $val];
-                    }
+                } elseif ($key === 'first_name') {
+                    $where[$key][] = ['LIKE', '%'.$val.'%'];
+                } else {
+                    $where[$key][] = ['=', $val];
                 }
             }
         }
-        
+
         // Naturezas
-        $leads  = new Lead;
+        $leads  = new Lead();
         $leads = $leads->paginateWithSearch([], $where);
 
-        $fields = new Field;
-        $actions = new Action;
+        $fields = new Field();
+        $actions = new Action();
         //faltou mandar o id e o user
         //$id = $leads->idnum;
         $id = '1';
