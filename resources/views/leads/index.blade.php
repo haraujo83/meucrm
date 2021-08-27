@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row p-2">
         <div class="col-12">
-            <a href="#" class="btn btn-primary float-right" data-tippy-content="Criar novo Lead"><i class="fas fa-plus"></i> Novo Lead</a>
+            <a href="{{route('leads.create')}}" class="btn btn-primary float-right" data-tippy-content="Criar novo Lead"><i class="fas fa-plus"></i> Novo Lead</a>
         </div>
     </div>
     <!-- /.row -->

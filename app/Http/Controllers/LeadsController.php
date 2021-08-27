@@ -23,18 +23,22 @@ use App\Models\AuxList;
 class LeadsController extends Controller
 {
     /**
+     * @var string
+     */
+    protected string $module = 'leads';
+
+    /**
      * @param LeadsSearchRequest $request
      * @return View
      */
     public function result(LeadsSearchRequest $request): View
     {
-        $module = 'leads';
-        $resultStructure = $this->listResult($module, true);
+        $resultStructure = $this->listResult($this->module, true);
         $viewData = compact(
             'resultStructure'
         );
 
-        return view($module.'.result', $viewData);
+        return view($this->module.'.result', $viewData);
     }
 
     /**
@@ -100,7 +104,6 @@ class LeadsController extends Controller
      */
     public function index(AuxList $AuxList): View
     {
-        $module = 'leads';
         $product = new Product();
         $user = new User();
 
@@ -111,6 +114,8 @@ class LeadsController extends Controller
         $leadSourceDom = $AuxList::getAuxList('lead_source_dom');
         $statusImovelList = $AuxList::getAuxList('status_imovel_list');
         $temImovelList = $AuxList::getAuxList('tem_imovel_list');
+
+        $module = $this->module;
 
         $viewData = compact(
             'statusLeadList',
@@ -127,13 +132,22 @@ class LeadsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $module = $this->module;
+
+        $product = new Product();
+        $auxList = new AuxList();
+
+        $productList = $product->getProductList('-- Selecione --');
+        $statusLeadList = $auxList::getAuxList('status_lead_list', '-- Selecione --');
+        $sexoList = $auxList::getAuxList('contact_sexo_list', '-- Selecione --');
+
+        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList');
+
+        return view($module.'.create', $viewData);
     }
 
     /**

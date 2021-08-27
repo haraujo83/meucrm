@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\StructureResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Models\BaseModel;
@@ -23,21 +24,17 @@ class Product extends BaseModel
 
     /**
      * Retorna lista de produtos, em pares id => name
+     * @param string $default
      * @return array
      */
-    public function getProductList(): array
+    public function getProductList(string $default = '-- Todos --'): array
     {
         $rows = self::query()
             ->select(['id', 'name'])
             ->get();
 
-        $rowsAssoc = [
-            '' => '-- Todos --',
-        ];
-        foreach ($rows as $row) {
-            $rowsAssoc[$row->id] = $row->name;
-        }
+        $structureResult = new StructureResult();
 
-        return $rowsAssoc;
+        return $structureResult->getTraitList($rows, $default, 'id', 'name');
     }
 }

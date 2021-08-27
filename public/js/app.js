@@ -94,7 +94,7 @@ let app = {
 
         $('[data-mask="cpf"]').inputmask('999.999.999-99');
 
-        $('[data-mask="telefone"]').inputmask("(9{2})9{8}9{0,1}");
+        $('[data-mask="phone"]').inputmask("(9{2})9{8}9{0,1}");
     },
     create: function () {
         $.fn.select2.defaults.set("theme", "bootstrap");
