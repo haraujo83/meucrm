@@ -11,7 +11,7 @@ abstract class Valid {
 	 * @param  string $cnpj
 	 * @return bool
 	 */
-	public static function cnpj($cnpj) {
+	/*public static function cnpj($cnpj) {
 		$cnpj = Format::onlyNumbers($cnpj);
 
 		// Não é CNPJ
@@ -39,7 +39,7 @@ abstract class Valid {
 		$rest = $sum % 11;
 
 		return $cnpj{13} == ($rest < 2 ? 0 : 11 - $rest);
-	}
+	}*/
 
 	/**
 	 * Verifica se o CPF é válido
@@ -47,7 +47,7 @@ abstract class Valid {
 	 * @param  string $cpf
 	 * @return bool
 	 */
-	public static function cpf($cpf) {
+	/*public static function cpf($cpf) {
 		$cpf = Format::onlyNumbers($cpf);
 
 		// Verifica se tem o comprimento certo
@@ -73,5 +73,5 @@ abstract class Valid {
 		}
 
 		return true;
-	}
+	}*/
 }

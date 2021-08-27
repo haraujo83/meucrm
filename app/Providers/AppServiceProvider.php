@@ -98,6 +98,8 @@ class AppServiceProvider extends ServiceProvider
 A;
         });
 
+        //@include('error', ['field' => $field])
+
         Form::macro('bsEmail', function (
             string $name,
             string $labelText,

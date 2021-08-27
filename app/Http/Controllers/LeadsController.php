@@ -20,17 +20,7 @@ use App\Models\AuxList;
 
 class LeadsController extends Controller
 {
-    /*public function validationSearch(LeadsSearchRequest $request)
-    {
-        dd('aqui');exit;
-        dd($request->validated());exit;
-        /*$data = $request->validated();
-        $errors = TraitMessage::returnMessageJson($data);
-        dd($errors);*/
-        
-    //}
-
-    public function result(): View
+    public function result(LeadsSearchRequest $request): View
     {
         $module = 'leads';
         $resultStructure = $this->listResult($module, true);
@@ -41,7 +31,7 @@ class LeadsController extends Controller
         return view($module.'.result', $viewData);
     }
 
-    public function listResult($module, $structure = false)
+    public function listResult($module, $structure = false): array
     {   
         $where = [];
 
