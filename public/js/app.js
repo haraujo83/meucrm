@@ -139,9 +139,7 @@ $(document).on('change', '[name=count-record-page]', function(e)
         var value = keyValue[1];
         
         if(key == 'pagination')
-        {
             value = pagination;
-        }
 
         partsUrl += '&'+key+'='+value;
     });
@@ -182,30 +180,51 @@ $(document).on('click', '.page-link', function(e)
 
 function searchAjax(method, form)
 {
-    var urlForm = 'http://' + $('[name=hostname]').val() + '/' +  $('[name=module]').val() + '/validationSearch';
+    var urlForm = 'http://' + $('[name=hostname]').val() + '/' +  $('[name=module]').val() + '/result';
 
     $.ajax({
         url: urlForm,
         method: method,
         data: form,
-        dataType: 'JSON',
         success: function(data) {
+            //limpa os erros
+            limparErros();
             $('.result-index').html('');
         },
         error: function(data) {
-            console.log(data);
+            //limpa os erros
+            limparErros();
+            
+            //mostra os novos erros
+            error = data.responseJSON.errors;
+            $.each(error, function(key, value) {
+                $('[name="'+key+'"]').addClass('is-invalid');
+                $('#validation-'+key+'-error').html(value);
+            });
         }
     }).done(function(data) {
         $('.result-index').html(data);
     });
 }
 
-function searchOrder(param){
-
+function searchOrder(param)
+{
     var form = $('.form-search'),
 		method  = form.attr('method');
 
     var form = param;
 
     searchAjax(method, form);
+}
+
+function limparCampos()
+{
+    $('input, select').val(''); 
+    limparErros();
+}
+
+function limparErros()
+{
+    // Limpa possíveis erros exibidos
+    $('input, select').removeClass('is-invalid');
 }
