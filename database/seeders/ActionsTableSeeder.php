@@ -20,9 +20,9 @@ class ActionsTableSeeder extends Seeder
         $this->smartySeeder(new Model, [
             ['id' => 1, 'text' => 'Listar', 'action' => 'index', 'class' => '', 'icon' => ''],
             ['id' => 2, 'text' => 'Novo', 'action' => 'create', 'class' => 'btn btn-info', 'icon' => 'fas fa-plus'],
-            ['id' => 3, 'text' => 'Alterar', 'action' => 'edit', 'class' => 'btn btn-info', 'icon' => 'fa fa-edit'],
+            ['id' => 3, 'text' => 'Alterar', 'action' => 'edit', 'class' => 'btn btn-success', 'icon' => 'fa fa-edit'],
             ['id' => 4, 'text' => 'Excluir', 'action' => 'destroy', 'class' => 'btn btn-danger', 'icon' => 'fa fa-trash'],
-            ['id' => 5, 'text' => 'Visualizar', 'action' => 'show', 'class' => 'btn btn-info', 'icon' => 'fa fa-edit'],
+            ['id' => 5, 'text' => 'Visualizar', 'action' => 'show', 'class' => 'btn btn-primary', 'icon' => 'fa fa-image'],
             ['id' => 6, 'text' => 'Novo Financiamento', 'action' => 'create_financing', 'class' => 'btn btn-info', 'icon' => 'fas fa-plus'],
             ['id' => 7, 'text' => 'Novo Home', 'action' => 'create_homeequity', 'class' => 'btn btn-info', 'icon' => 'fas fa-plus'],
             ['id' => 8, 'text' => 'Novo Consórcio', 'action' => 'create_consortium', 'class' => 'btn btn-info', 'icon' => 'fas fa-plus'],
