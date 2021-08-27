@@ -75,13 +75,7 @@ class LeadsController extends Controller
                 }
             }
         }
-<<<<<<< HEAD
         
-=======
-
-        $module = 'leads';
-
->>>>>>> a6374c455ce80bc853f95aec48b4edfe6ab327d4
         // Naturezas
         $leads  = new Lead;
         $leads = $leads->paginateWithSearch([], $where);

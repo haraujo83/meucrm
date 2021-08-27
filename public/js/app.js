@@ -170,19 +170,10 @@ let app = {
     }
 };
 
-<<<<<<< HEAD
-$(document).ready(function() 
-{
-    $.fn.select2.defaults.set("theme", "bootstrap");
-    $.fn.select2.defaults.set("language", "pt-BR");
-
-=======
 $(document).ready(function() {
->>>>>>> a6374c455ce80bc853f95aec48b4edfe6ab327d4
     app.create();
 });
 
-<<<<<<< HEAD
 $(document).on('change', '[name=count-record-page]', function(e) 
 {
 
@@ -216,26 +207,6 @@ $(document).on('change', '[name=count-record-page]', function(e)
 
 $(document).on('click', '.form-search [type="submit"]', function(e) 
 {
-=======
-// Reload no resultado para exibir a quantidade requerida de itens
-$(document).on('change', '[name="count-record-page"]', function(e) {
-    $('[name="pagination"]').val(this.value);
-    $('.form-search').submit();
-});
-
-/**
- * Verifica se a variável indicativa de busca existe
- *
- * @return bool
- */
-function getSearchActive() {
-    if (typeof ActiveSearch == 'undefined') {
-        return false;
-    }
-
-    return true;
-}
->>>>>>> a6374c455ce80bc853f95aec48b4edfe6ab327d4
 
     var form = $('.form-search'),
 		method     = form.attr('method');
@@ -286,7 +257,6 @@ function searchAjax(method, form)
             });
         }
     }).done(function(data) {
-<<<<<<< HEAD
         $('.result-index').html(data);
     });
 }
@@ -312,14 +282,3 @@ function limparErros()
     // Limpa possíveis erros exibidos
     $('input, select').removeClass('is-invalid');
 }
-=======
-        // Exibe o retorno da requisição
-        /*swal({
-            'title': 'Teste',
-            'text': 'erro',
-            'icon': 'error',
-        });*/
-/*$('.result-index').html('');
-});
-});*/
->>>>>>> a6374c455ce80bc853f95aec48b4edfe6ab327d4
