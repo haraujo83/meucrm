@@ -9,7 +9,7 @@
             </div>
             <ul class="sortable text-muted list-unstyled" id="left">
                 @foreach($fieldsSearchListNotSelected as $idTable => $label)
-                    <li class="list-group-item text-center">
+                    <li class="list-group-item text-left">
                         {{ $label }}
                         {{ Form::hidden('fields_search[]', $idTable) }}
                     </li>
@@ -24,7 +24,7 @@
             {{ Form::hidden('module', $module) }}
             <ul class="sortable font-weight-bold list-unstyled" id="right">
                 @foreach($fieldsSearchListSelected as $idTable => $label)
-                    <li class="list-group-item text-center">
+                    <li class="list-group-item text-left">
                         {{ $label }}
                         {{ Form::hidden('fields_search[]', $idTable) }}
                     </li>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <!--/.card-body-->
-    <div class="card-footer">
+    <div class="card-footer text-center">
         <button class="btn btn-primary btn-sm" data-action="modal_gravar"><i class="fas fa-save"></i> Gravar</button>
         <button class="btn btn-secondary btn-sm" data-action="modal_cancelar">Cancelar</button>
     </div>

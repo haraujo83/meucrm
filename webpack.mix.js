@@ -35,8 +35,8 @@ mix
     .scripts('node_modules/node-waves/dist/waves.min.js', 'public/js/waves.min.js')
     .scripts('node_modules/magnific-popup/dist/jquery.magnific-popup.min.js', 'public/js/jquery.magnific-popup.min.js')
 
-    .scripts('resources/js/app.js', 'public/js/app.js')
-    .scripts('resources/js/leads.js', 'public/js/leads.js')
+    //.scripts('resources/js/app.js', 'public/js/app.js')
+    //.scripts('resources/js/leads.js', 'public/js/leads.js')
 
     .css('node_modules/admin-lte/dist/css/adminlte.min.css', 'public/css/adminlte.min.css')
     .css('node_modules/@fortawesome/fontawesome-free/css/all.min.css', 'public/css/fontawesome-free.min.css')
@@ -49,5 +49,5 @@ mix
     .css('node_modules/node-waves/dist/waves.min.css', 'public/css/waves.min.css')
     .css('node_modules/magnific-popup/dist/magnific-popup.css', 'public/css/magnific-popup.css')
 
-    .css('resources/css/app.css', 'public/css/app.css')
+    //.css('resources/css/app.css', 'public/css/app.css')
 ;
