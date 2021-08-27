@@ -12,7 +12,8 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function cnpjCpf($number) {
+	public static function cnpjCpf($number) 
+	{
 		if (strlen($number) == 11) {
 			return preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $number);
 		}
@@ -26,7 +27,8 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function cpfCnpj($number) {
+	public static function cpfCnpj($number) 
+	{
 		return self::cnpjCpf($number);
 	}
 	
@@ -36,7 +38,8 @@ abstract class Format {
 	 * @param  string $string
 	 * @return string
 	 */
-	public static function onlyNumbers($string) {
+	public static function onlyNumbers($string) 
+	{
 		if (!$string) {
 			return $string;
 		}
@@ -50,7 +53,8 @@ abstract class Format {
 	 * @param  string $date
 	 * @return string
 	 */
-	public static function legibleDate($date, $hideTime = false) {
+	public static function legibleDate($date, $hideTime = false) 
+	{
 		// Já formatada
 		if (empty($date) || false !== strpos($date, '/')) {
 			return $date;
@@ -76,7 +80,8 @@ abstract class Format {
 	 * @param  string $date
 	 * @return string
 	 */
-	public static function bankDate($date) {
+	public static function bankDate($date) 
+	{
 
 		if ($d = date_create_from_format('d/m/Y', $date)) {
 			return $d->format('Y-m-d');
@@ -95,7 +100,8 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function phone($number) {
+	public static function phone($number) 
+	{
 		// Remove o que não for número
 		$number = preg_replace('/\D/', '', $number);
 
@@ -119,7 +125,8 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function cep($number) {
+	public static function cep($number) 
+	{
 		// Remove o que não for número
 		$number = preg_replace('/\D/', '', $number);
 

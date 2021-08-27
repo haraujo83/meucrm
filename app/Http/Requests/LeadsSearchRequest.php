@@ -24,8 +24,8 @@ class LeadsSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-			'cpf'              => 'nullable|min:11|max:11',
-			'telefone_contato' => 'nullable|min:11|max:11|integer',
+			'cpf'              => 'nullable|min:14|max:14|cpf',
+			'telefone_contato' => 'nullable|min:12|max:13|integer',
 			'email'            => 'nullable|email',
 		];
     }
@@ -35,9 +35,9 @@ class LeadsSearchRequest extends FormRequest
 		return [
 			'cpf.min'              => 'Informe um CPF válido.',
 			'cpf.max'              => 'Informe um CPF válido.',
-			//'cpf.cpf'              => 'Este CPF é inválido.',
-			'telefone_contato.min' => 'Informe um CEP válido.',
-            'telefone_contato.max' => 'Informe um CEP válido.',
+			'cpf.cpf'              => 'Este CPF é inválido.',
+			'telefone_contato.min' => 'Informe um telefone válido.',
+            'telefone_contato.max' => 'Informe um telefone válido.',
 			'telefone_contato.integer' => 'Informe um telefone válido.',
 			'email.email'          => 'Informe um e-mail válido.',
 		];
