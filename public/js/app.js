@@ -35,7 +35,6 @@ let app = {
     },
     magnificPopupConfig: {
         type: 'ajax',
-        cursor: 'mfp-ajax-cur',
         callbacks: {
             ajaxContentAdded: function () {
                 $('.sortable').sortable({
@@ -77,7 +76,7 @@ let app = {
         }
     },
     init: function () {
-        $('.select2').select2();
+        $('.data-select2').select2();
 
         tippy('[data-tippy-content]');
 
@@ -247,13 +246,10 @@ function searchAjax(method, form)
         method: method,
         data: form,
         success: function(data) {
-            //limpa os erros
-            limparErros();
-            $('.result-index').html('');
+            limpaResultado();
         },
         error: function(data) {
-            //limpa os erros
-            limparErros();
+            limpaResultado();
 
             //mostra os novos erros
             error = data.responseJSON.errors;
@@ -275,6 +271,14 @@ function searchOrder(param)
     var form = param;
 
     searchAjax(method, form);
+}
+
+function limpaResultado()
+{
+    //limpa os erros
+    limparErros();
+    //caso de erro não mostra o resultado
+    $('.result-index').html('');
 }
 
 function limparCampos()
