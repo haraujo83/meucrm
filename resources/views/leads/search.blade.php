@@ -3,29 +3,29 @@
     {{ Form::hidden('module', $module) }}
     {{ Form::hidden('hostname', $_SERVER['HTTP_HOST']) }}
     <div class="row">
-        {{ Form::bsText('first_name', 'Nome:') }}
+        {{ Form::bsText('first_name', 'Nome:', $filters['first_name'] ?? null) }}
 
-        {{ Form::bsText('cpf', 'CPF:', [], ['data-mask' => 'cpf']) }}
+        {{ Form::bsText('cpf', 'CPF:', $filters['cpf'] ?? null, ['data-mask' => 'cpf']) }}
 
-        {{ Form::bsText('telefone_contato', 'Telefone:', [], ['data-mask' => 'telefone']) }}
+        {{ Form::bsText('phone_mobile', 'Telefone:', $filters['phone_mobile'] ?? null, ['data-mask' => 'telefone']) }}
 
-        {{ Form::bsEmail('email', 'E-mail:') }}
+        {{ Form::bsEmail('email', 'E-mail:', $filters['email'] ?? null) }}
 
-        {{ Form::bsSelect2('parent_type', 'Produto:', $productList) }}
+        {{ Form::bsSelect2('parent_type', 'Produto:', $filters['parent_type'] ?? null, $productList) }}
 
-        {{ Form::bsSelect2('status', 'Status:', $statusLeadList) }}
+        {{ Form::bsSelect2('status', 'Status:', $filters['status'] ?? null, $statusLeadList) }}
 
-        {{ Form::bsSelect2('assigned_user_id', 'Atribuído a:', $usersList) }}
+        {{ Form::bsSelect2('assigned_user_id', 'Atribuído a:', $filters['phone_mobile'] ?? null, $usersList) }}
 
-        {{ Form::bsSelect2('rating', 'Rating:', $ratingList) }}
+        {{ Form::bsSelect2('rating', 'Rating:', $filters['rating'] ?? null, $ratingList) }}
 
-        {{ Form::bsSelect2('account_id', 'Conta:', [], [], ['data-placeholder' => 'Digite o nome da conta...']) }}
+        {{ Form::bsSelect2('account_id', 'Conta:', $filters['account_id'] ?? null, [], ['data-placeholder' => 'Digite o nome da conta...']) }}
 
-        {{ Form::bsSelect2('lead_source', 'Fonte do Lead:', $leadSourceDom) }}
+        {{ Form::bsSelect2('lead_source', 'Fonte do Lead:', $filters['lead_source'] ?? null, $leadSourceDom) }}
 
-        {{ Form::bsSelect2('status_imovel', 'Status do Imóvel:', $statusImovelList) }}
+        {{ Form::bsSelect2('status_imovel', 'Status do Imóvel:', $filters['status_imovel'] ?? null, $statusImovelList) }}
 
-        {{ Form::bsSelect2('tem_imovel', 'Tem Imóvel:', $temImovelList) }}
+        {{ Form::bsSelect2('tem_imovel', 'Tem Imóvel:', $filters['tem_imovel'] ?? null, $temImovelList) }}
 
         <div class="col-md-4">
             <div class="form-group">
@@ -44,7 +44,13 @@
     <!--/.row -->
     <div class="row mb-1">
         <div class="col-md-2">
-            {{ Form::button('<i class="fas fa-columns"></i> Selecionar Colunas', ['class' => 'btn btn-default btn-xs', 'data-tippy-content' => 'Selecionar colunas a serem exibidas no Resultado', 'data-module' => 'leads', 'id' => 'select-result-cols']) }}
+            <a href="{{route('fields_search.moduleResultColumnsIndex')}}?module=leads" class="btn btn-default btn-xs"
+               data-tippy-content="Selecionar colunas a serem exibidas no Resultado"
+               data-module="leads"
+               id="select-result-cols"
+            >
+                <i class="fas fa-columns"></i> Selecionar Colunas
+            </a>
         </div>
     </div>
     <!--/.row -->

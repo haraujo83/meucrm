@@ -33,8 +33,9 @@ mix
     .scripts('node_modules/sortablejs/Sortable.min.js', 'public/js/Sortable.min.js')
     .scripts('node_modules/jquery-sortablejs/jquery-sortable.js', 'public/js/jquery-sortable.js')
     .scripts('node_modules/node-waves/dist/waves.min.js', 'public/js/waves.min.js')
+    .scripts('node_modules/magnific-popup/dist/jquery.magnific-popup.min.js', 'public/js/jquery.magnific-popup.min.js')
 
-    //.scripts('resources/js/app.js', 'public/js/app.js')
+    .scripts('resources/js/app.js', 'public/js/app.js')
     .scripts('resources/js/leads.js', 'public/js/leads.js')
 
     .css('node_modules/admin-lte/dist/css/adminlte.min.css', 'public/css/adminlte.min.css')
@@ -46,6 +47,7 @@ mix
     .css('node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', 'public/css/tempusdominus-bootstrap-4.min.css')
     .css('node_modules/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css', 'public/css/@sweetalert2/themes/bootstrap-4/bootstrap-4.min.css')
     .css('node_modules/node-waves/dist/waves.min.css', 'public/css/waves.min.css')
+    .css('node_modules/magnific-popup/dist/magnific-popup.css', 'public/css/magnific-popup.css')
 
-    //.css('resources/css/app.css', 'public/ccs/app.css')
+    .css('resources/css/app.css', 'public/css/app.css')
 ;

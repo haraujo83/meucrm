@@ -51,7 +51,7 @@ class FieldsSearchModuleResultColumnsSaveRequest extends FormRequest
         return [
             'module.required' => 'O módulo não foi informado',
             'fields_search.required' => 'Nenhuma coluna foi selecionada',
-            'fields_search.max' => 'É necessário selecionar no máximo :max colunas',
+            'fields_search.max' => 'Selecione no máximo :max colunas',
         ];
     }
 

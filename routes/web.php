@@ -31,4 +31,4 @@ Route::resource('financials', AppHttpControllers\FinancialsController::class);
 Route::resource('users', AppHttpControllers\UsersController::class);
 Route::resource('profiles', AppHttpControllers\ProfilesController::class);
 
-Route::get('fieldsSearch/moduleResultColumnsIndex', [AppHttpControllers\FieldsSearchController::class, 'moduleResultColumnsIndex']);
+Route::get('fieldsSearch/moduleResultColumnsIndex', [AppHttpControllers\FieldsSearchController::class, 'moduleResultColumnsIndex'])->name('fields_search.moduleResultColumnsIndex');
