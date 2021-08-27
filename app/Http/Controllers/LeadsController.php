@@ -133,7 +133,12 @@ class LeadsController extends Controller
      */
     public function create()
     {
-        //
+        $module = 'leads';
+        $viewData = compact(
+            'module'
+        );
+
+        return view($module.'.create', $viewData);
     }
 
     /**
