@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsers extends Migration
+class AlterFieldsSearch extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,16 @@ class AlterUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->bigIncrements('id_table');
+        Schema::table('fields_search', function(Blueprint $table){
+            $table
+                ->foreign('field_id')
+                ->references('id_table')
+                ->on('fields');
+
+            $table
+                ->foreign('user_id')
+                ->references('id_table')
+                ->on('users');
         });
     }
 

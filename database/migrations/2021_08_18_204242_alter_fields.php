@@ -14,11 +14,19 @@ class AlterFields extends Migration
     public function up()
     {
         Schema::table('fields', function(Blueprint $table){
-            $table->increments('id_table');
+            $table->bigIncrements('id_table');
             $table->boolean('show_search')->default(false);
             $table->string('align', 10)->default('left');
             $table->integer('width')->default('20');
         });
+
+        /*$results = DB::table('fields')->select('id')->get();
+
+        DB::table('fields')
+            ->whereIn('id',$result->id)
+            ->update([
+                "show_search" => true
+        ]);*/
     }
 
     /**

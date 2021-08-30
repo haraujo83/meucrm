@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsers extends Migration
+class AlterLeads extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,16 @@ class AlterUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->bigIncrements('id_table');
+        Schema::table('leads', function(Blueprint $table){
+            $table
+                ->foreign('account_id')
+                ->references('id')
+                ->on('accounts');
+
+            /*$table
+                ->foreign('user_id')
+                ->references('id_table')
+                ->on('users');*/
         });
     }
 
