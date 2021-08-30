@@ -19,7 +19,7 @@
 
         {{ Form::bsSelect2('rating', 'Rating:', $filters['rating'] ?? null, $ratingList) }}
 
-        {{ Form::bsSelect2('account_id', 'Conta:', $filters['account_id'] ?? null, [], ['data-placeholder' => 'Digite o nome da conta...']) }}
+        {{ Form::bsSelect2('account_id', 'Conta:', $filters['account_id'] ?? null, [], ['data-placeholder' => 'Digite o nome da conta...', 'data-list_account']) }}
 
         {{ Form::bsSelect2('lead_source', 'Fonte do Lead:', $filters['lead_source'] ?? null, $leadSourceDom) }}
 

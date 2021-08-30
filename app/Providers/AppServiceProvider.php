@@ -91,6 +91,7 @@ class AppServiceProvider extends ServiceProvider
             'list' => [],
             'attribs' => [],
         ];
+
         Form::component('bsText', 'components.form.bs-text', $paramsDefault);
 
         Form::component('bsDate', 'components.form.bs-date', $paramsDefault);
