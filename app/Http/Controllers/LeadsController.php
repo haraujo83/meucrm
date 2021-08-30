@@ -81,7 +81,27 @@ class LeadsController extends Controller
 
         // Naturezas
         $leads  = new Lead();
-        $leads = $leads->paginateWithSearch([], $where);
+        $leads = $leads->paginateWithSearch([
+            'accounts' => [
+				'foreign_id' => 'accounts.id',
+				'group' => 'leads.account_id',
+				'fields' => [
+					'name'
+					/*'reserva', 'draft_deadline',
+					'vgm_deadline', 'carga_deadline'*/
+				],
+			],
+			/*'aux_list' => [
+				'foreign_id' => [
+					'table' => 'leads',
+					'column' => 'processo_exportacao_id'
+				],
+				'group' => 'expor_processos.id',
+				'fields' => [
+					'registro_numero',
+				]
+			]*/
+        ], $where);
 
         $fields = new Field();
         $actions = new Action();

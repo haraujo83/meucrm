@@ -15,8 +15,8 @@ class Lead extends BaseModel
     use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = 'leads';
-	public $fillable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum'];
-	public $searchable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum'];
+	public $fillable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum', 'account_id'];
+	public $searchable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum', 'account_id'];
 
     /**
      * Retorna a conta
