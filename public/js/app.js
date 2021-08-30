@@ -37,6 +37,8 @@ let app = {
         type: 'ajax',
         callbacks: {
             ajaxContentAdded: function () {
+                app.init();
+
                 $('.sortable').sortable({
                     group: 'list',
                     animation: 200,
@@ -76,7 +78,7 @@ let app = {
         }
     },
     init: function () {
-        $('.data-select2').select2();
+        $('.select2').select2();
 
         tippy('[data-tippy-content]');
 
@@ -92,7 +94,7 @@ let app = {
 
         $('[data-mask="cpf"]').inputmask('999.999.999-99');
 
-        $('[data-mask="telefone"]').inputmask("(9{2})9{8}9{0,1}");
+        $('[data-mask="phone"]').inputmask("(9{2})9{8}9{0,1}");
     },
     create: function () {
         $.fn.select2.defaults.set("theme", "bootstrap");

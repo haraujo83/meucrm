@@ -35,7 +35,7 @@
     </div>
     <!--/.card-body-->
     <div class="card-footer text-center">
-        <button class="btn btn-primary btn-sm" data-action="modal_gravar"><i class="fas fa-save"></i> Gravar</button>
-        <button class="btn btn-secondary btn-sm" data-action="modal_cancelar">Cancelar</button>
+        {{ Form::bsBtnStore(['data-action' => 'modal_gravar']) }}
+        {{ Form::bsBtnCancel(['data-action' => 'modal_cancelar']) }}
     </div>
 </div>

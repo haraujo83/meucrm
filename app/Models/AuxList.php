@@ -29,9 +29,10 @@ class AuxList extends BaseModel
      * Retorna lista em pares id => descricao
      *
      * @param string $typeList
+     * @param string $default Texto da opção Todos. Se string vazia, não traz esta opção
      * @return array
      */
-    public static function getAuxList(string $typeList): array
+    public static function getAuxList(string $typeList, string $default = '-- Todos --'): array
     {
 		$rows = self::query()
             ->where('type_list', '=', $typeList)
@@ -41,7 +42,7 @@ class AuxList extends BaseModel
 
         $structureResult = new StructureResult();
 
-        return $structureResult->getTraitList($rows);
+        return $structureResult->getTraitList($rows, $default);
 	}
 
     /**

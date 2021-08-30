@@ -1,6 +1,6 @@
 
 let leads = {
-    create: function () {
+    construct: function () {
         let accountSel2Config = {
             ajax: {
                 url: '/api/listAccountsAjax',
@@ -34,10 +34,26 @@ let leads = {
             }
         };
 
-        $('#account_id').select2(accountSel2Config);
+        $('#account_id.select2').select2(accountSel2Config);
+
+        this.create.construct();
+    },
+    create: {
+        construct: function () {
+            if ($('.form-store').length) {
+                $('#parent_type').on('change', this.parentTypeChange)
+            }
+        },
+        parentTypeChange: function (e) {
+            let $el = $(e.currentTarget);
+            let v = $el.val();
+
+            $('[data-parent_type]:not([data-parent_type='+v+'])').hide();
+            $('[data-parent_type='+v+']').show();
+        }
     }
 };
 
 $(document).ready(function() {
-    leads.create();
+    leads.construct();
 });

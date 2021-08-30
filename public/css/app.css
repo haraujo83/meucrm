@@ -239,7 +239,7 @@
     padding: 0!important;
 }
 #fields_search_result_columns {
-    width: 450px;
+    width: 475px;
     margin: 0 auto;
 }
 #fields_search_result_columns .sortable {
@@ -259,4 +259,3 @@
 #fields_search_result_columns .ghost {
     opacity: 0.4;
 }
-

@@ -75,27 +75,45 @@ class AppServiceProvider extends ServiceProvider
 
         $this->registerValidationRules();
 
-        Form::component('bsText', 'components.form.bs-text', [
+        $paramsDefault = [
             'name',
             'labelText',
             'value' => null,
-            'attribs' => []
-        ]);
-
-        Form::component('bsEmail', 'components.form.bs-email', [
-            'name',
-            'labelText',
-            'value' => null,
-            'attribs' => []
-        ]);
-
-        Form::component('bsSelect2', 'components.form.bs-select2', [
+            'attribs' => [],
+        ];
+        $paramsDefault2 = [
+            'attribs' => [],
+        ];
+        $paramsDefault3 = [
             'name',
             'labelText',
             'value' => null,
             'list' => [],
-            'attribs' => []
-        ]);
+            'attribs' => [],
+        ];
+        Form::component('bsText', 'components.form.bs-text', $paramsDefault);
+
+        Form::component('bsDate', 'components.form.bs-date', $paramsDefault);
+
+        Form::component('bsCpf', 'components.form.bs-cpf', $paramsDefault);
+
+        Form::component('bsMoney', 'components.form.bs-money', $paramsDefault);
+
+        Form::component('bsNumber', 'components.form.bs-number', $paramsDefault);
+
+        Form::component('bsPercent', 'components.form.bs-percent', $paramsDefault);
+
+        Form::component('bsEmail', 'components.form.bs-email', $paramsDefault);
+
+        Form::component('bsPhone', 'components.form.bs-phone', $paramsDefault);
+
+        Form::component('bsDateRange', 'components.form.bs-date-range', $paramsDefault);
+
+        Form::component('bsBtnStore', 'components.form.bs-btn-store', $paramsDefault2);
+
+        Form::component('bsBtnCancel', 'components.form.bs-btn-cancel', $paramsDefault2);
+
+        Form::component('bsSelect2', 'components.form.bs-select2', $paramsDefault3);
     }
 
     /**
