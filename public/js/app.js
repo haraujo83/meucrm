@@ -292,3 +292,42 @@ function limparErros()
     // Limpa possíveis erros exibidos
     $('input, select').removeClass('is-invalid');
 }
+
+$(document).on('click', '.form-create [type="submit"], .form-edit [type="submit"]', function(e)
+{
+
+    var form = $('.form-search'),
+		method     = form.attr('method');
+
+    var form = $('.form-search').serialize();
+
+    // Inibe a ação natural do navegador
+    e.preventDefault();
+    createOrEditAjax(method, form);
+});
+
+function createOrEditAjax(method, form)
+{
+    var urlForm = 'http://' + $('[name=hostname]').val() + '/' +  $('[name=module]').val();
+
+    $.ajax({
+        url: urlForm,
+        method: method,
+        data: form,
+        success: function(data) {
+            
+        },
+        error: function(data) {
+            limparErros();
+
+            //mostra os novos erros
+            error = data.responseJSON.errors;
+            $.each(error, function(key, value) {
+                $('[name="'+key+'"]').addClass('is-invalid');
+                $('#validation-'+key+'-error').html(value);
+            });
+        }
+    }).done(function(data) {
+        
+    });
+}

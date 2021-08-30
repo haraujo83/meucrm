@@ -9,6 +9,7 @@ use App\Helpers\Format;
 use App\Helpers\StructureResult;
 
 use App\Http\Requests\LeadsSearchRequest;
+use App\Http\Requests\LeadsCreateOrEditRequest;
 
 use App\Models\Product;
 use App\Models\User;
@@ -142,7 +143,7 @@ class LeadsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(LeadsCreateOrEditRequest $request)
     {
         //
     }
