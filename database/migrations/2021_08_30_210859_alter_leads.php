@@ -14,15 +14,14 @@ class AlterLeads extends Migration
     public function up()
     {
         Schema::table('leads', function(Blueprint $table){
+            $table->string('account_id', 36)
+                ->charset('utf8mb4')
+                ->change();
+
             $table
                 ->foreign('account_id')
                 ->references('id')
                 ->on('accounts');
-
-            /*$table
-                ->foreign('user_id')
-                ->references('id_table')
-                ->on('users');*/
         });
     }
 
@@ -33,6 +32,8 @@ class AlterLeads extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('leads', function(Blueprint $table){
+            $table->dropForeign('leads_account_id_foreign');
+        });
     }
 }

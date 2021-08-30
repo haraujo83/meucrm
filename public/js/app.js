@@ -80,7 +80,9 @@ let app = {
     init: function () {
         $('.select2').select2();
 
-        tippy('[data-tippy-content]');
+        tippy('[data-tippy][title]', {
+            content: (reference) => reference.getAttribute('title')
+        });
 
         Waves.attach('.btn')
         Waves.init();
@@ -109,6 +111,8 @@ let app = {
         $('#select-result-cols').magnificPopup(this.magnificPopupConfig);
 
         //$('#select-result-cols').on('click', this.clickSelectResultCols);
+
+        this.search.create();
     },
     success: function (msg) {
         Swal.fire({
@@ -171,6 +175,27 @@ let app = {
                     $colLeft.css('height', col2h + 'px');
                 }
             }
+        }
+    },
+    search: {
+        create: function () {
+            $(document).on('click', '.result-search [data-confirm]', this.clickExcluirBtn)
+        },
+        clickExcluirBtn: function (e) {
+            e.preventDefault();
+            let txt = $(e.currentTarget).data('confirm');
+
+            Swal.fire({
+                icon: 'warning',
+                html: txt,
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('', 'Excluído com sucesso', 'success');
+                }
+            })
         }
     }
 };
@@ -260,6 +285,7 @@ function searchAjax(method, form)
         }
     }).done(function(data) {
         $('.result-index').html(data);
+        app.init();
     });
 }
 

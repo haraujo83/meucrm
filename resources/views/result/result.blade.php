@@ -26,6 +26,7 @@
 								@endforeach
 
 								@if ($resultData['actions'])
+                                    <td class="buttons">
 									@foreach ($resultData['actions'] as $action)
 
 										@php
@@ -47,24 +48,25 @@
 										$href = implode('/', $href);
 										@endphp
 
-										<td class="buttons">
+                                        @if(isset($action['form']))
+                                            {{--{!! Form::open(['url' => $href, 'data-confirm' => $action['form']['data-confirm'], 'method' => $action['form']['method'], 'style' => 'display: inline;']) !!}
+                                                <button type="submit" class="{{ $action['class'] }} btn-xs" title="{{ $action['title'] }}" data-tippy-content="{{ $action['title'] }}">
+                                                    <i class="{{ $action['icon'] }}"></i>
+                                                </button>
+                                            {!! Form::close() !!}--}}
 
-											@if(isset($action['form']))
-												{!! Form::open(['url' => $href, 'data-confirm' => $action['form']['data-confirm'], 'method' => $action['form']['method']]) !!}
-													<button type="submit" class="{{ $action['class'] }}" title="{{ $action['title'] }}">
-														<i class="{{ $action['icon'] }}"></i>
-													</button>
-												{!! Form::close() !!}
-											@else
-											<a href="{{ $href }}" class="{{ $action['class'] }}" title="{{ $action['title'] }}">
-												<i class="{{ $action['icon'] }}"></i>
-											</a>
-											@endif
+                                            <a href="#" data-url="{{ $href }}" class="{{ $action['class'] }} btn-xs" data-tippy data-confirm="{{$action['form']['data-confirm']}}" title="{{ $action['title'] }}">
+                                                <i class="{{ $action['icon'] }}"></i>
+                                            </a>
+                                        @else
+                                        <a href="{{ $href }}" class="{{ $action['class'] }} btn-xs" data-tippy title="{{ $action['title'] }}">
+                                            <i class="{{ $action['icon'] }}"></i>
+                                        </a>
+                                        @endif
 
-										</td>
 									@endforeach
 								@endif
-
+                                </td>
 							</tr>
 						@endforeach
 
