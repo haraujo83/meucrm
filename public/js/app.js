@@ -92,9 +92,7 @@ let app = {
             drops: 'up'
         });
 
-        $('[data-mask="cpf"]').inputmask('999.999.999-99');
-
-        $('[data-mask="phone"]').inputmask("(9{2})9{8}9{0,1}");
+        $('[data-inputmask]').inputmask();
     },
     create: function () {
         $.fn.select2.defaults.set("theme", "bootstrap");

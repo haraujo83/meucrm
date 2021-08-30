@@ -9,7 +9,7 @@ if (isset($attribs['div_col_n'])) {
 <div class="col-md-{{ $col_n }}">
     <div class="form-group">
         {{ Form::label($name, $labelText) }}
-        {{ Form::number($name, $value, array_merge(['class' => 'form-control form-control-sm'], $attribs)) }}
+        {{ Form::number($name, $value, array_merge(['class' => 'form-control form-control-sm', 'min' => 0], $attribs)) }}
         @include('error', ['field' => $name])
     </div>
 </div>

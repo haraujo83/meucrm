@@ -99,21 +99,21 @@ class LeadsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param AuxList $AuxList
      * @return View
      */
-    public function index(AuxList $AuxList): View
+    public function index(): View
     {
         $product = new Product();
         $user = new User();
+        $auxList = new AuxList();
 
         $usersList = $user->getUserList();
         $productList = $product->getProductList();
-        $statusLeadList = $AuxList::getAuxList('status_lead_list');
-        $ratingList = $AuxList::getAuxList('rating_list');
-        $leadSourceDom = $AuxList::getAuxList('lead_source_dom');
-        $statusImovelList = $AuxList::getAuxList('status_imovel_list');
-        $temImovelList = $AuxList::getAuxList('tem_imovel_list');
+        $statusLeadList = $auxList::getAuxList('status_lead_list');
+        $ratingList = $auxList::getAuxList('rating_list');
+        $leadSourceDom = $auxList::getAuxList('lead_source_dom');
+        $statusImovelList = $auxList::getAuxList('status_imovel_list');
+        $temImovelList = $auxList::getAuxList('tem_imovel_list');
 
         $module = $this->module;
 
@@ -144,8 +144,10 @@ class LeadsController extends Controller
         $productList = $product->getProductList('-- Selecione --');
         $statusLeadList = $auxList::getAuxList('status_lead_list', '-- Selecione --');
         $sexoList = $auxList::getAuxList('contact_sexo_list', '-- Selecione --');
+        $tipoImovelList = $auxList::getAuxList('tipo_imovel_list', '-- Selecione --');
+        $temImovelList = $auxList::getAuxList('tem_imovel_list', '-- Selecione --');
 
-        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList');
+        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList', 'tipoImovelList', 'temImovelList');
 
         return view($module.'.create', $viewData);
     }

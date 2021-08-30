@@ -5,8 +5,6 @@ namespace App\Models;
 use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use App\Models\BaseModel;
-
 use App\Traits\PaginateWithSearch;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
@@ -16,7 +14,9 @@ use App\Traits\TraitCollection;
  */
 class Account extends BaseModel
 {
-    use PaginateWithSearch, TraitCollection, TraitBuilder;
+    use PaginateWithSearch;
+    use TraitBuilder;
+    use TraitCollection;
 
     public $table = 'accounts';
     public $fillable = [

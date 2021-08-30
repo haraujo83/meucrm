@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountNameSearchRequest;
+use App\Models\Development;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+/**
+ *
+ */
 class DevelopmentsController extends Controller
 {
     /**
@@ -80,5 +86,22 @@ class DevelopmentsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param AccountNameSearchRequest $request
+     * @return JsonResponse
+     */
+    public function listAjax(AccountNameSearchRequest $request): JsonResponse
+    {
+        $validated = $request->validated();
+
+        $r = [];
+        if (isset($validated['term'])) {
+            $account = new Development();
+            $r = $account->searchAccountList($validated['term']);
+        }
+
+        return response()->json($r);
     }
 }
