@@ -87,6 +87,10 @@ class LeadsController extends Controller
 				'group' => 'leads.account_id',
 				'fields' => [
 					'name'
+					'reserva', 'draft_deadline',
+					'vgm_deadline', 'carga_deadline'
+				],
+			],*/
 					/*'reserva', 'draft_deadline',
 					'vgm_deadline', 'carga_deadline'*/
 				/*],
@@ -133,7 +137,7 @@ class LeadsController extends Controller
                 //decimal
                 //
                 //
-                
+
             }
         }
 
@@ -212,12 +216,16 @@ class LeadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param string $id
+     * @return View
      */
-    public function show($id)
+    public function show(string $id): View
     {
-        //
+        $module = $this->module;
+
+        $viewData = compact('module', 'id');
+
+        return view($module.'.show', $viewData);
     }
 
     /**
