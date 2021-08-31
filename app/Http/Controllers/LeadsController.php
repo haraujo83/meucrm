@@ -82,14 +82,14 @@ class LeadsController extends Controller
         // Naturezas
         $leads  = new Lead();
         $leads = $leads->paginateWithSearch([
-            'accounts' => [
+            /*'accounts' => [
 				'foreign_id' => 'accounts.id',
 				'group' => 'leads.account_id',
 				'fields' => [
 					'name'
 					/*'reserva', 'draft_deadline',
 					'vgm_deadline', 'carga_deadline'*/
-				],
+				/*],
 			],
 			/*'aux_list' => [
 				'foreign_id' => [
@@ -113,6 +113,29 @@ class LeadsController extends Controller
         $actionsColumns = $actions->returnActionsResult($module, $id, true, true, true);
 
         $resultStructure = StructureResult::resultStructure($fieldsColumns, $actionsColumns, $leads, $filters);
+
+        foreach($resultStructure['data'] as $result)
+        {
+            foreach($fieldsColumns as $field)
+            {
+                //date
+                if($field['type'] == 'date' || $field['type'] == 'datetime')
+                {
+                    if($result[$field['field']] != '0000-00-00')
+                    {
+                        $field['type'] == 'date' ? $hideTime = true : $hideTime = false;
+                        $result[$field['field']] = Format::legibleDate($result[$field['field']], $hideTime);
+                    }else
+                    {
+                        $result[$field['field']] = '';
+                    }
+                }
+                //decimal
+                //
+                //
+                
+            }
+        }
 
         return $structure ? $resultStructure : $leads;
     }
