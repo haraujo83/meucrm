@@ -156,13 +156,6 @@
 
 .table-with-actions tbody tr td.buttons {
     vertical-align: middle;
-    padding: 0;
-    width: 40px;
-}
-
-.table-with-actions tbody tr td.buttons .btn {
-    margin: 5px 5px 5px 0;
-    min-width: 34px;
 }
 
 .table-with-actions thead tr th i {
@@ -174,24 +167,9 @@
     /* border-left: solid 1px #888; */
 }
 
-/*.buttons .btn {
-	float: left;
-	margin-right: .6rem;
-	padding-top: .3rem;
-	padding-bottom: .3rem;
-}*/
-
-.buttons form {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    float: left;
-    margin-bottom: 0;
+.buttons .btn {
+    margin: 0 1px;
 }
-
-/*.buttons {
-	padding-left: .6rem !important;
-}*/
 
 .shortcut{
     padding-left: 30px !important;

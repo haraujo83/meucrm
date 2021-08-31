@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row p-2">
         <div class="col-12">
-            <a href="{{route($module.'.create')}}" class="btn btn-primary float-right" data-tippy-content="{{ $titleButton }}"><i class="fas fa-plus"></i> {{ $titleButton }}</a>
+            <a href="{{route($module.'.create')}}" class="btn btn-primary float-right" data-tippy title="{{ $titleButton }}"><i class="fas fa-plus"></i> {{ $titleButton }}</a>
         </div>
     </div>
     <!-- /.row -->

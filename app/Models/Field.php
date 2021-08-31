@@ -68,6 +68,33 @@ class Field extends BaseModel
     }
 
     /**
+     * @param string $module
+     * @return array
+     */
+    public function moduleFields(string $module): array
+    {
+        $rows = self::query()
+            ->select('name', 'label', 'len', 'required', 'default_value')
+            ->where('fields.module', '=', $module)
+            ->where('fields.deleted', '=', 0)
+            ->get()
+        ;
+
+        $rowsAssoc = [];
+        foreach ($rows as $row) {
+            $rowsAssoc[$row->name] = [
+                'name' => $row->name,
+                'label' => ($row->required ? '*' : '') . $row->label,
+                'len' => $row->len,
+                'required' => $row->required,
+                'default_value' => $row->default_value,
+            ];
+        }
+
+        return $rowsAssoc;
+    }
+
+    /**
      * Retorna o registro de fieldSearch
      * @return BelongsToMany
      */

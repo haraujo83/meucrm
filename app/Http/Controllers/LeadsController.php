@@ -191,7 +191,9 @@ class LeadsController extends Controller
         $tipoImovelList = $auxList::getAuxList('tipo_imovel_list', '-- Selecione --');
         $temImovelList = $auxList::getAuxList('tem_imovel_list', '-- Selecione --');
 
-        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList', 'tipoImovelList', 'temImovelList');
+        $fields = (new Field())->moduleFields($module);
+
+        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList', 'tipoImovelList', 'temImovelList', 'fields');
 
         return view($module.'.create', $viewData);
     }
