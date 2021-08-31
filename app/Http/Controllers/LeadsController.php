@@ -160,17 +160,17 @@ class LeadsController extends Controller
         $module = $this->module;
 
         $product = new Product();
-        $auxList = new AuxList();
 
         $productList = $product->getProductList('-- Selecione --');
-        $statusLeadList = $auxList::getAuxList('status_lead_list', '-- Selecione --');
-        $sexoList = $auxList::getAuxList('contact_sexo_list', '-- Selecione --');
-        $tipoImovelList = $auxList::getAuxList('tipo_imovel_list', '-- Selecione --');
-        $temImovelList = $auxList::getAuxList('tem_imovel_list', '-- Selecione --');
 
-        $fields = (new Field())->moduleFields($module);
+        $fields = (new Field())->modulesFields([
+            $module,
+            'LeadsFinanciamento',
+            'LeadsHomeequity',
+            'LeadsConsorcio'
+        ]);
 
-        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList', 'tipoImovelList', 'temImovelList', 'fields');
+        $viewData = compact('module', 'productList', 'fields');
 
         return view($module.'.create', $viewData);
     }

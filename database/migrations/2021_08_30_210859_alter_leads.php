@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ *
+ */
 class AlterLeads extends Migration
 {
     /**
@@ -11,12 +14,18 @@ class AlterLeads extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('leads', function(Blueprint $table){
+        Schema::table('leads', function (Blueprint $table) {
             $table->string('account_id', 36)
-                ->charset('utf8mb4')
                 ->change();
+
+            DB::table('leads')
+                ->whereRaw('not exists (
+                select 1 from accounts where accounts.id = leads.account_id)')
+                ->update([
+                    'account_id' => null
+                ]);
 
             $table
                 ->foreign('account_id')
@@ -32,7 +41,7 @@ class AlterLeads extends Migration
      */
     public function down()
     {
-        Schema::table('leads', function(Blueprint $table){
+        Schema::table('leads', function (Blueprint $table) {
             $table->dropForeign('leads_account_id_foreign');
         });
     }
