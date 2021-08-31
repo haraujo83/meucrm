@@ -2,14 +2,14 @@
 	<div class="card p-0">
         <!-- /.card-header -->
 		<div class="card-body">
-			@include('filter-result', ['items' => $resultData['data']])
+			@include('result/filter-result', ['items' => $resultData['data']])
 			<div class="result-search">
                 <table class="table table-sm table-striped table-with-actions">
 					<thead>
 						<tr>
 
 							@foreach ($resultData['columns'] as $column)
-								@include('link-table-order', ['title' => $column['label'], 'field' => $column['field'], 'width' => $column['width'], 'align' => $column['align']])
+								@include('result/link-table-order', ['title' => $column['label'], 'field' => $column['field'], 'width' => $column['width'], 'align' => $column['align']])
 							@endforeach
 
 							@if ($resultData['actions'])
@@ -79,9 +79,9 @@
 				</table>
 			</div>
 			<div class="result-filter2">
-				@include('filter-result', ['items' => $resultData['data']])
+				@include('result/filter-result', ['items' => $resultData['data']])
             </div>
 		</div>
-		@include('pagination', ['items' => $resultData['data']])
+		@include('result/pagination', ['items' => $resultData['data']])
 	</div>
 @endif
