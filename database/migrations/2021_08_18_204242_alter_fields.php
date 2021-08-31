@@ -19,14 +19,6 @@ class AlterFields extends Migration
             $table->string('align', 10)->default('left');
             $table->integer('width')->default('20');
         });
-
-        /*$results = DB::table('fields')->select('id')->get();
-
-        DB::table('fields')
-            ->whereIn('id',$result->id)
-            ->update([
-                "show_search" => true
-        ]);*/
     }
 
     /**
