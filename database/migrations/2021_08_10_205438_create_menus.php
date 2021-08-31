@@ -18,6 +18,8 @@ class CreateMenus extends Migration
             $table->string('name', 20)->unique();
             $table->string('module', 30);
             $table->string('icon', 30);
+            $table->string('new', 5);
+            $table->string('module_singular', 30);
         });
     }
 
