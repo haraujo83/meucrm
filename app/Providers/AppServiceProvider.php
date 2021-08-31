@@ -73,6 +73,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with('existCss', $existCss);
         });
 
+        view()->composer('search/index', function($view)
+        {
+            $request = Menu::newButton();
+            
+            $titleButton = $request->first()->new . ' ' . strtolower($request->first()->module_singular);
+            
+            $view->with('titleButton', $titleButton);
+        });
+
         $this->registerValidationRules();
 
         $paramsDefault = [
