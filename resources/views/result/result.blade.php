@@ -13,7 +13,7 @@
 							@endforeach
 
 							@if ($resultData['actions'])
-								<th colspan="100%">Ações</th>
+								<th colspan="100%" class="text-center">Ações</th>
 							@endif
 
 						</tr>
@@ -22,7 +22,9 @@
 						@foreach($resultData['data'] as $information)
 							<tr>
 								@foreach ($resultData['columns'] as $column)
-									<td style="width:'{{ $column['width'] }}%'; text-align: '{{ $column['align'] }}';">{{ $information->{$column['field']} }}</td>
+									<td style="width:'{{ $column['width'] }}%';" class="text-{{ $column['align'] }}">
+										{{ $information->{$column['field']} }}
+									</td>
 								@endforeach
 
 								@if ($resultData['actions'])
