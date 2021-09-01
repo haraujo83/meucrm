@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
@@ -17,6 +19,7 @@ use App\Models\Field;
 use App\Models\Action;
 use App\Models\Lead;
 use App\Models\AuxList;
+use Illuminate\Support\Env;
 
 /**
  *
@@ -216,14 +219,22 @@ class LeadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $id
      * @return View
      */
-    public function show(string $id): View
+    public function show(): View
     {
+        $id = app('request')->get('id');
+
         $module = $this->module;
 
-        $viewData = compact('module', 'id');
+        $lead = (new Lead())->find($id);
+        $account = $lead->account()->first();
+        $status = $lead->status()->first();
+        $emailAddrBeanRel = $lead->emailAddrBeanRel()->first();
+        $emailAddress = $emailAddrBeanRel->emailAddress()->first();
+        $sexo = $lead->sexo()->first();
+
+        $viewData = compact('module', 'id', 'lead', 'account', 'status', 'emailAddress', 'sexo');
 
         return view($module.'.show', $viewData);
     }

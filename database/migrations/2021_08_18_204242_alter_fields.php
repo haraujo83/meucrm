@@ -17,6 +17,8 @@ class AlterFields extends Migration
     public function up()
     {
         Schema::table('fields', function(Blueprint $table){
+            $table->dropIndex('PRIMARY');
+
             $table->bigIncrements('id_table');
             $table->boolean('show_search')->default(false);
             $table->string('align', 10)->default('left');
