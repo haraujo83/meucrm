@@ -24,7 +24,7 @@ class Menu extends BaseModel
 
 	public $timestamps = false;
 
-	public static function getShortcuts() 
+	public static function getShortcuts()
 	{
 		return self
 		::leftJoin('shortcuts', 'shortcuts.menu_id', '=', 'menus.id')
@@ -34,7 +34,7 @@ class Menu extends BaseModel
 
 	public static function breadcrumb()
 	{
-		$request = $_SERVER['REQUEST_URI'];
+		$request = str_replace('?'.$_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
 
 		$module = "leads";
 		$action = "index";

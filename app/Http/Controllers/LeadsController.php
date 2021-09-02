@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
@@ -16,6 +18,7 @@ use App\Models\User;
 use App\Models\Field;
 use App\Models\Lead;
 use App\Models\AuxList;
+use Illuminate\Support\Env;
 
 /**
  *
@@ -85,6 +88,10 @@ class LeadsController extends Controller
 				'group' => 'leads.account_id',
 				'fields' => [
 					'name'
+					'reserva', 'draft_deadline',
+					'vgm_deadline', 'carga_deadline'
+				],
+			],*/
 					/*'reserva', 'draft_deadline',
 					'vgm_deadline', 'carga_deadline'*/
 				/*],
@@ -148,17 +155,17 @@ class LeadsController extends Controller
         $module = $this->module;
 
         $product = new Product();
-        $auxList = new AuxList();
 
         $productList = $product->getProductList('-- Selecione --');
-        $statusLeadList = $auxList::getAuxList('status_lead_list', '-- Selecione --');
-        $sexoList = $auxList::getAuxList('contact_sexo_list', '-- Selecione --');
-        $tipoImovelList = $auxList::getAuxList('tipo_imovel_list', '-- Selecione --');
-        $temImovelList = $auxList::getAuxList('tem_imovel_list', '-- Selecione --');
 
-        $fields = (new Field())->moduleFields($module);
+        $fields = (new Field())->modulesFields([
+            $module,
+            'LeadsFinanciamento',
+            'LeadsHomeequity',
+            'LeadsConsorcio'
+        ]);
 
-        $viewData = compact('module', 'productList', 'statusLeadList', 'sexoList', 'tipoImovelList', 'temImovelList', 'fields');
+        $viewData = compact('module', 'productList', 'fields');
 
         return view($module.'.create', $viewData);
     }
@@ -177,12 +184,24 @@ class LeadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @return View
      */
-    public function show($id)
+    public function show(): View
     {
-        //
+        $id = app('request')->get('id');
+
+        $module = $this->module;
+
+        $lead = (new Lead())->find($id);
+        $account = $lead->account()->first();
+        $status = $lead->status()->first();
+        $emailAddrBeanRel = $lead->emailAddrBeanRel()->first();
+        $emailAddress = $emailAddrBeanRel->emailAddress()->first();
+        $sexo = $lead->sexo()->first();
+
+        $viewData = compact('module', 'id', 'lead', 'account', 'status', 'emailAddress', 'sexo');
+
+        return view($module.'.show', $viewData);
     }
 
     /**
