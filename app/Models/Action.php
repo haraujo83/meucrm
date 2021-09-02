@@ -51,21 +51,24 @@ class Action extends BaseModel
         {
             $idAction = 5;
             $actionVisualize = $this->returnAction($module, $id, $idAction);
-            array_push($actionsResult, $actionVisualize);	
+            $action = ['visualize' => $actionVisualize];
+            $actionsResult = array_merge($actionsResult, $action);	
         }
 
         if($permissionEdit)
         {
             $idAction = 3;
             $actionEdit = $this->returnAction($module, $id, $idAction);
-            array_push($actionsResult, $actionEdit);	
+            $action = ['edit' => $actionEdit];
+            $actionsResult = array_merge($actionsResult, $action);	
         }
 
         if($permissionDelete)
         {
             $idAction = 4;
             $actionDelete = $this->returnAction($module, $id, $idAction);
-            array_push($actionsResult, $actionDelete);	
+            $action = ['delete' => $actionDelete];
+            $actionsResult = array_merge($actionsResult, $action);	
         }
         
         return $actionsResult;

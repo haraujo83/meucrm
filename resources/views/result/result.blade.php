@@ -27,10 +27,9 @@
 									</td>
 								@endforeach
 
-								@if ($resultData['actions'])
+								@if ($resultData['actions'][$information['idnum']])
                                     <td class="buttons">
-									@foreach ($resultData['actions'] as $action)
-
+									@foreach ($resultData['actions'][$information['idnum']] as $action)
 										@php
 										$href = explode('/', $action['href']);
 
@@ -50,21 +49,17 @@
 										$href = implode('/', $href);
 										@endphp
 
-                                        @if(isset($action['form']))
-                                            {{--{!! Form::open(['url' => $href, 'data-confirm' => $action['form']['data-confirm'], 'method' => $action['form']['method'], 'style' => 'display: inline;']) !!}
-                                                <button type="submit" class="{{ $action['class'] }} btn-xs" title="{{ $action['title'] }}" data-tippy-content="{{ $action['title'] }}">
-                                                    <i class="{{ $action['icon'] }}"></i>
-                                                </button>
-                                            {!! Form::close() !!}--}}
-
-                                            <a href="#" data-url="{{ $href }}" class="{{ $action['class'] }} btn-xs" data-tippy data-confirm="{{$action['form']['data-confirm']}}" title="{{ $action['title'] }}">
-                                                <i class="{{ $action['icon'] }}"></i>
-                                            </a>
-                                        @else
-                                        <a href="{{ $href }}" class="{{ $action['class'] }} btn-xs" data-tippy title="{{ $action['title'] }}">
-                                            <i class="{{ $action['icon'] }}"></i>
-                                        </a>
-                                        @endif
+										@if(isset($action['form']))
+											{!! Form::open(['url' => $href, 'data-confirm' => $action['form']['data-confirm'], 'method' => $action['form']['method'], 'style' => 'display: inline;']) !!}
+												<button type="submit" class="{{ $action['class'] }} btn-xs" title="{{ $action['title'] }}" data-tippy-content="{{ $action['title'] }}">
+													<i class="{{ $action['icon'] }}"></i>
+												</button>
+											{!! Form::close() !!}
+										@else
+											<a href="{{ $href }}" class="{{ $action['class'] }} btn-xs" data-tippy title="{{ $action['title'] }}">
+												<i class="{{ $action['icon'] }}"></i>
+											</a>
+										@endif
 
 									@endforeach
 								@endif

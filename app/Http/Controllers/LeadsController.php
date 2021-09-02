@@ -14,7 +14,6 @@ use App\Http\Requests\LeadsCreateOrEditRequest;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Field;
-use App\Models\Action;
 use App\Models\Lead;
 use App\Models\AuxList;
 
@@ -52,7 +51,6 @@ class LeadsController extends Controller
         $where = [];
 
         $filters = app('request')->All();
-
         unset($filters['pagination'], $filters['_order'], $filters['_direction'], $filters['page'], $filters['module'], $filters['hostname']);
 
         foreach ($filters as $key => $val) {
@@ -103,40 +101,7 @@ class LeadsController extends Controller
 			]*/
         ], $where);
 
-        $fields = new Field();
-        $actions = new Action();
-        //faltou mandar o id e o user
-        //$id = $leads->idnum;
-        $id = '1';
-
-        $fieldsColumns = $fields->returnFieldsResult($module);
-        $actionsColumns = $actions->returnActionsResult($module, $id, true, true, true);
-
-        $resultStructure = StructureResult::resultStructure($fieldsColumns, $actionsColumns, $leads, $filters);
-
-        foreach($resultStructure['data'] as $result)
-        {
-            foreach($fieldsColumns as $field)
-            {
-                //date
-                if($field['type'] == 'date' || $field['type'] == 'datetime')
-                {
-                    if($result[$field['field']] != '0000-00-00')
-                    {
-                        $field['type'] == 'date' ? $hideTime = true : $hideTime = false;
-                        $result[$field['field']] = Format::legibleDate($result[$field['field']], $hideTime);
-                    }else
-                    {
-                        $result[$field['field']] = '';
-                    }
-                }
-                //decimal
-                //
-                //
-                
-            }
-        }
-
+        $resultStructure = StructureResult::resultData($module, $leads, $filters, 'idnum');
         return $structure ? $resultStructure : $leads;
     }
 
