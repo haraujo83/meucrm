@@ -14,11 +14,9 @@ class AlterFields extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('fields', function(Blueprint $table){
-            $table->dropIndex('PRIMARY');
-
+        Schema::table('fields', function (Blueprint $table) {
             $table->bigIncrements('id_table');
             $table->boolean('show_search')->default(false);
             $table->string('align', 10)->default('left');
@@ -33,7 +31,7 @@ class AlterFields extends Migration
      */
     public function down()
     {
-        Schema::table('fields', function(Blueprint $table){
+        Schema::table('fields', function (Blueprint $table) {
             $table->dropColumn('id_table');
             $table->dropColumn('show_search');
             $table->dropColumn('align');

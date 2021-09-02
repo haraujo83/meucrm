@@ -4,9 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/**
- *
- */
 class AlterUsers extends Migration
 {
     /**
@@ -14,11 +11,9 @@ class AlterUsers extends Migration
      *
      * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropIndex('PRIMARY');
-
+        Schema::table('users', function(Blueprint $table){
             $table->bigIncrements('id_table');
         });
     }
@@ -28,9 +23,9 @@ class AlterUsers extends Migration
      *
      * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function(Blueprint $table){
             $table->dropColumn('id_table');
         });
     }
