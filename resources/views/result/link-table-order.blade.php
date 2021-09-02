@@ -20,7 +20,7 @@
 	$params['_direction'] = $direction;
 	$params = http_build_query($params);
 @endphp
-<th style="width: '{{ $width }}%'; text-align: '{{ $align }}';">
+<th style="width: '{{ $width }}%';" class="text-{{ $column['align'] }}">
 	{{ $title }}
 	<i onclick="searchOrder('{{ $params }}')" class="fas fa-xs fa-arrow-up {{ $activeAsc }}"></i>
 	<i onclick="searchOrder('{{ $params }}')" class="fas fa-xs fa-arrow-down {{ $activeDesc }}"></i>

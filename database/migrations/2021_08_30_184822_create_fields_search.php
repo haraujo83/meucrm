@@ -17,16 +17,6 @@ class CreateFieldsSearch extends Migration
             $table->id();
             $table->unsignedBigInteger('field_id');
             $table->unsignedBigInteger('user_id');
-            
-            $table
-                ->foreign('field_id')
-                ->references('id_table')
-                ->on('fields');
-
-            $table
-                ->foreign('user_id')
-                ->references('id_table')
-                ->on('users');
         });
     }
 

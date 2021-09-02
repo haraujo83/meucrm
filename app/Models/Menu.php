@@ -24,7 +24,7 @@ class Menu extends BaseModel
 
 	public $timestamps = false;
 
-	public static function getShortcuts() 
+	public static function getShortcuts()
 	{
 		return self
 		::leftJoin('shortcuts', 'shortcuts.menu_id', '=', 'menus.id')
@@ -33,6 +33,34 @@ class Menu extends BaseModel
 	}
 
 	public static function breadcrumb()
+	{
+		$request = str_replace('?'.$_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
+
+		$module = "leads";
+		$action = "index";
+		if(substr_count($request, "/") > 0){
+			$url = explode("/", $request);
+
+			if(substr_count($request, "?") > 0){
+				$url1 = explode("?", $url[1]);
+				$module = $url1[0];
+			}else{
+				$module = $url[1];
+			}
+
+			isset($url[2]) ? $action = $url[2] : $action = "index";
+		}
+
+		return self
+		::join('pages_menus', 'pages_menus.menu_id', '=', 'menus.id')
+		->join('actions', 'pages_menus.action_id', '=', 'actions.id')
+			->where('menus.module', $module)
+			->where('actions.action', $action)
+			->select('actions.text AS action', 'menus.name AS module', 'menus.module_singular AS module_singular', 'menus.new AS new')
+			->get();
+	}
+
+	public static function newButton()
 	{
 		$request = $_SERVER['REQUEST_URI'];
 
@@ -56,7 +84,7 @@ class Menu extends BaseModel
 		->join('actions', 'pages_menus.action_id', '=', 'actions.id')
 			->where('menus.module', $module)
 			->where('actions.action', $action)
-			->select('actions.text AS action', 'menus.name AS module')
+			->select('menus.module_singular AS module_singular', 'menus.new AS new')
 			->get();
 	}
 

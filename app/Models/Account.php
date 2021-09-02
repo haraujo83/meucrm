@@ -5,8 +5,6 @@ namespace App\Models;
 use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use App\Models\BaseModel;
-
 use App\Traits\PaginateWithSearch;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
@@ -16,7 +14,9 @@ use App\Traits\TraitCollection;
  */
 class Account extends BaseModel
 {
-    use PaginateWithSearch, TraitCollection, TraitBuilder;
+    use PaginateWithSearch;
+    use TraitBuilder;
+    use TraitCollection;
 
     public $table = 'accounts';
     public $fillable = [
@@ -26,7 +26,19 @@ class Account extends BaseModel
         'parent_id', 'cnpj', 'razao_social', 'billing_address_number', 'billing_address_bairro',
         'account_status', 'porte', 'account_situacao', 'codigo_siav', 'lead_source', 'frequencia',
         'perfil_conta', 'frequencia_lead', 'frequencia_venda', 'consultor_prosp_id', 'codigo_sap',
-        'date_followup', 'rating_conta', 'termometro', 'motivo', 'crediline_user', 'crediline_pass'
+        'date_followup', 'rating_conta', 'termometro', 'motivo', 'crediline_user', 'crediline_pass',
+        'id'
+    ];
+
+    public $searchable = [
+        'name', 'date_entered', 'date_modified', 'modified_user_id', 'created_by', 'description',
+        'deleted', 'assigned_user_id', 'account_type', 'billing_address_street', 'billing_address_city',
+        'billing_address_state', 'billing_address_postalcode', 'billing_address_country', 'website',
+        'parent_id', 'cnpj', 'razao_social', 'billing_address_number', 'billing_address_bairro',
+        'account_status', 'porte', 'account_situacao', 'codigo_siav', 'lead_source', 'frequencia',
+        'perfil_conta', 'frequencia_lead', 'frequencia_venda', 'consultor_prosp_id', 'codigo_sap',
+        'date_followup', 'rating_conta', 'termometro', 'motivo', 'crediline_user', 'crediline_pass',
+        'id'
     ];
 
     public $timestamps = false;

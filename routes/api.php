@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('listAccountsAjax', [AppHttpControllers\AccountsController::class, 'listAjax']);
+Route::get('listAccounts', [AppHttpControllers\AccountsController::class, 'listAjax']);
+
+Route::get('listDevelopments', [AppHttpControllers\DevelopmentsController::class, 'listAjax']);
 
 Route::post('fieldsSearch/moduleResultColumnsSave', [AppHttpControllers\FieldsSearchController::class, 'moduleResultColumnsSave']);

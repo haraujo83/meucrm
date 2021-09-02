@@ -2,21 +2,24 @@
 
 namespace App\Models;
 
+use App\Helpers\FieldElement;
 use App\Helpers\StructureResult;
 use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
-use App\Models\BaseModel;
 
 use App\Traits\PaginateWithSearch;
 use App\Traits\TraitBuilder;
 use App\Traits\TraitCollection;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Database\Query\JoinClause;
 
+/**
+ *
+ */
 class Field extends BaseModel
 {
-    use PaginateWithSearch, TraitCollection, TraitBuilder;
+    use PaginateWithSearch;
+    use TraitBuilder;
+    use TraitCollection;
 
     public $table = 'fields';
     public $fillable = [
@@ -31,15 +34,15 @@ class Field extends BaseModel
      * @return array
      */
     public function returnFieldsResult(string $module): array
-	{
-		return self::query()
+    {
+        return self::query()
             ->join('fields_search', 'fields_search.field_id', '=', 'fields.id_table')
             ->join('users', 'users.id_table', '=', 'fields_search.user_id')
-			->where('module', '=', $module)
-			->where('show_search', 1)
-		    ->where('fields.deleted', 0)
-            ->select('name as field', 'label', 'width', 'align')
-		    ->get()->toArray();
+            ->where('module', '=', $module)
+            ->where('show_search', 1)
+            ->where('fields.deleted', 0)
+            ->select('name as field', 'label', 'width', 'align', 'type')
+            ->get()->toArray();
     }
 
     /**
@@ -68,11 +71,50 @@ class Field extends BaseModel
     }
 
     /**
+     * @param array $modules
+     * @return array
+     */
+    public function modulesFields(array $modules): array
+    {
+        $rows = self::query()
+            ->select('module', 'name', 'label', 'len', 'required', 'default_value', 'type', 'type_list')
+            ->whereIn('fields.module', $modules)
+            ->where('fields.deleted', '=', 0)
+            ->get()
+        ;
+
+        $rowsAssoc = [];
+        foreach ($rows as $row) {
+            $moduleKey = strtolower($row->module);
+
+            if (!isset($rowsAssoc[$moduleKey])) {
+                $rowsAssoc[$moduleKey] = [];
+            }
+
+            $fieldElement = new FieldElement();
+
+            $fieldElement
+                ->setName($row->name)
+                ->setType($row->type)
+                ->setTypeList($row->type_list)
+                ->setLabel($row->label)
+                ->setDefaultValue($row->default_value)
+                ->setRequired($row->required)
+                ->setLen($row->len)
+                ;
+
+            $rowsAssoc[$moduleKey][$row->name] = $fieldElement;
+        }
+
+        return $rowsAssoc;
+    }
+
+    /**
      * Retorna o registro de fieldSearch
      * @return BelongsToMany
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'fields_search', 'field_id', 'user_id');
+        return $this->belongsToMany(User::class, 'fields_search', 'field_id', 'user_id');
     }
 }

@@ -37,6 +37,8 @@ let app = {
         type: 'ajax',
         callbacks: {
             ajaxContentAdded: function () {
+                app.init();
+
                 $('.sortable').sortable({
                     group: 'list',
                     animation: 200,
@@ -76,9 +78,11 @@ let app = {
         }
     },
     init: function () {
-        $('.data-select2').select2();
+        $('.select2').select2();
 
-        tippy('[data-tippy-content]');
+        tippy('[data-tippy][title]', {
+            content: (reference) => reference.getAttribute('title')
+        });
 
         Waves.attach('.btn')
         Waves.init();
@@ -90,9 +94,7 @@ let app = {
             drops: 'up'
         });
 
-        $('[data-mask="cpf"]').inputmask('999.999.999-99');
-
-        $('[data-mask="telefone"]').inputmask("(9{2})9{8}9{0,1}");
+        $('[data-inputmask]').inputmask();
     },
     create: function () {
         $.fn.select2.defaults.set("theme", "bootstrap");
@@ -109,6 +111,8 @@ let app = {
         $('#select-result-cols').magnificPopup(this.magnificPopupConfig);
 
         //$('#select-result-cols').on('click', this.clickSelectResultCols);
+
+        this.search.create();
     },
     success: function (msg) {
         Swal.fire({
@@ -171,6 +175,27 @@ let app = {
                     $colLeft.css('height', col2h + 'px');
                 }
             }
+        }
+    },
+    search: {
+        create: function () {
+            $(document).on('click', '.result-search [data-confirm]', this.clickExcluirBtn)
+        },
+        clickExcluirBtn: function (e) {
+            e.preventDefault();
+            let txt = $(e.currentTarget).data('confirm');
+
+            Swal.fire({
+                icon: 'warning',
+                html: txt,
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('', 'Excluído com sucesso', 'success');
+                }
+            })
         }
     }
 };
@@ -260,6 +285,7 @@ function searchAjax(method, form)
         }
     }).done(function(data) {
         $('.result-index').html(data);
+        app.init();
     });
 }
 
@@ -291,4 +317,43 @@ function limparErros()
 {
     // Limpa possíveis erros exibidos
     $('input, select').removeClass('is-invalid');
+}
+
+$(document).on('click', '.form-create [type="submit"], .form-edit [type="submit"]', function(e)
+{
+
+    var form = $('.form-search'),
+		method     = form.attr('method');
+
+    var form = $('.form-search').serialize();
+
+    // Inibe a ação natural do navegador
+    e.preventDefault();
+    createOrEditAjax(method, form);
+});
+
+function createOrEditAjax(method, form)
+{
+    var urlForm = 'http://' + $('[name=hostname]').val() + '/' +  $('[name=module]').val();
+
+    $.ajax({
+        url: urlForm,
+        method: method,
+        data: form,
+        success: function(data) {
+            
+        },
+        error: function(data) {
+            limparErros();
+
+            //mostra os novos erros
+            error = data.responseJSON.errors;
+            $.each(error, function(key, value) {
+                $('[name="'+key+'"]').addClass('is-invalid');
+                $('#validation-'+key+'-error').html(value);
+            });
+        }
+    }).done(function(data) {
+        
+    });
 }

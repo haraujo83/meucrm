@@ -1,1 +1,1 @@
-@include('result', ['resultData' => $resultStructure])
+@include('result/result', ['resultData' => $resultStructure])

@@ -15,8 +15,8 @@ class Lead extends BaseModel
     use PaginateWithSearch, TraitCollection, TraitBuilder;
 
     public $table = 'leads';
-	public $fillable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum'];
-	public $searchable = ['fist_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum'];
+    public $fillable = ['first_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum', 'account_id'];
+    public $searchable = ['first_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum', 'account_id'];
 
     /**
      * Retorna a conta
@@ -31,7 +31,7 @@ class Lead extends BaseModel
      * Retorna a fonte do lead
      * @return HasOne
      */
-	public function leadSource(): HasOne
+    public function leadSource(): HasOne
     {
         return $this->hasOne(AuxList::class, 'id', 'lead_source')
             ->where('type_list', 'lead_source_dom');
@@ -48,14 +48,23 @@ class Lead extends BaseModel
     }
 
     /**
+     * Retorna o sexo
+     * @return HasOne
+     */
+    public function sexo(): HasOne
+    {
+        return $this->hasOne(AuxList::class, 'id', 'sexo');
+    }
+
+    /**
      * Retorna o registro de relação do email
      * @return HasOne
      */
     public function emailAddrBeanRel(): HasOne
     {
-        return $this->hasOne(EmailAddrBeanRel::class, 'bean_id', 'id')
-            ->where('deleted', 0)
-            ->where('bean_module', 'Leads');
+        return $this->hasOne(EmailAddrBeanRel::class, 'bean_id', 'id');
+        //->where('deleted', 0)
+            //->where('bean_module', 'Leads');
     }
 
     /**

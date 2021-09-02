@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
@@ -9,13 +11,14 @@ use App\Helpers\Format;
 use App\Helpers\StructureResult;
 
 use App\Http\Requests\LeadsSearchRequest;
+use App\Http\Requests\LeadsCreateOrEditRequest;
 
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Field;
-use App\Models\Action;
 use App\Models\Lead;
 use App\Models\AuxList;
+use Illuminate\Support\Env;
 
 /**
  *
@@ -23,18 +26,22 @@ use App\Models\AuxList;
 class LeadsController extends Controller
 {
     /**
+     * @var string
+     */
+    protected string $module = 'leads';
+
+    /**
      * @param LeadsSearchRequest $request
      * @return View
      */
     public function result(LeadsSearchRequest $request): View
     {
-        $module = 'leads';
-        $resultStructure = $this->listResult($module, true);
+        $resultStructure = $this->listResult($this->module, true);
         $viewData = compact(
             'resultStructure'
         );
 
-        return view($module.'.result', $viewData);
+        return view($this->module.'.result', $viewData);
     }
 
     /**
@@ -47,7 +54,6 @@ class LeadsController extends Controller
         $where = [];
 
         $filters = app('request')->All();
-
         unset($filters['pagination'], $filters['_order'], $filters['_direction'], $filters['page'], $filters['module'], $filters['hostname']);
 
         foreach ($filters as $key => $val) {
@@ -76,41 +82,56 @@ class LeadsController extends Controller
 
         // Naturezas
         $leads  = new Lead();
-        $leads = $leads->paginateWithSearch([], $where);
+        $leads = $leads->paginateWithSearch([
+            /*'accounts' => [
+				'foreign_id' => 'accounts.id',
+				'group' => 'leads.account_id',
+				'fields' => [
+					'name'
+					'reserva', 'draft_deadline',
+					'vgm_deadline', 'carga_deadline'
+				],
+			],*/
+					/*'reserva', 'draft_deadline',
+					'vgm_deadline', 'carga_deadline'*/
+				/*],
+			],
+			/*'aux_list' => [
+				'foreign_id' => [
+					'table' => 'leads',
+					'column' => 'processo_exportacao_id'
+				],
+				'group' => 'expor_processos.id',
+				'fields' => [
+					'registro_numero',
+				]
+			]*/
+        ], $where);
 
-        $fields = new Field();
-        $actions = new Action();
-        //faltou mandar o id e o user
-        //$id = $leads->idnum;
-        $id = '1';
-
-        $fieldsColumns = $fields->returnFieldsResult($module);
-        $actionsColumns = $actions->returnActionsResult($module, $id, true, true, true);
-
-        $resultStructure = StructureResult::resultStructure($fieldsColumns, $actionsColumns, $leads, $filters);
-
+        $resultStructure = StructureResult::resultData($module, $leads, $filters, 'idnum');
         return $structure ? $resultStructure : $leads;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param AuxList $AuxList
      * @return View
      */
-    public function index(AuxList $AuxList): View
+    public function index(): View
     {
-        $module = 'leads';
         $product = new Product();
         $user = new User();
+        $auxList = new AuxList();
 
         $usersList = $user->getUserList();
         $productList = $product->getProductList();
-        $statusLeadList = $AuxList::getAuxList('status_lead_list');
-        $ratingList = $AuxList::getAuxList('rating_list');
-        $leadSourceDom = $AuxList::getAuxList('lead_source_dom');
-        $statusImovelList = $AuxList::getAuxList('status_imovel_list');
-        $temImovelList = $AuxList::getAuxList('tem_imovel_list');
+        $statusLeadList = $auxList::getAuxList('status_lead_list');
+        $ratingList = $auxList::getAuxList('rating_list');
+        $leadSourceDom = $auxList::getAuxList('lead_source_dom');
+        $statusImovelList = $auxList::getAuxList('status_imovel_list');
+        $temImovelList = $auxList::getAuxList('tem_imovel_list');
+
+        $module = $this->module;
 
         $viewData = compact(
             'statusLeadList',
@@ -127,16 +148,24 @@ class LeadsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        $module = 'leads';
-        $viewData = compact(
-            'module'
-        );
+        $module = $this->module;
+
+        $product = new Product();
+
+        $productList = $product->getProductList('-- Selecione --');
+
+        $fields = (new Field())->modulesFields([
+            $module,
+            'LeadsFinanciamento',
+            'LeadsHomeequity',
+            'LeadsConsorcio'
+        ]);
+
+        $viewData = compact('module', 'productList', 'fields');
 
         return view($module.'.create', $viewData);
     }
@@ -147,7 +176,7 @@ class LeadsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(LeadsCreateOrEditRequest $request)
     {
         //
     }
@@ -155,12 +184,24 @@ class LeadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @return View
      */
-    public function show($id)
+    public function show(): View
     {
-        //
+        $id = app('request')->get('id');
+
+        $module = $this->module;
+
+        $lead = (new Lead())->find($id);
+        $account = $lead->account()->first();
+        $status = $lead->status()->first();
+        $emailAddrBeanRel = $lead->emailAddrBeanRel()->first();
+        $emailAddress = $emailAddrBeanRel->emailAddress()->first();
+        $sexo = $lead->sexo()->first();
+
+        $viewData = compact('module', 'id', 'lead', 'account', 'status', 'emailAddress', 'sexo');
+
+        return view($module.'.show', $viewData);
     }
 
     /**

@@ -156,13 +156,6 @@
 
 .table-with-actions tbody tr td.buttons {
     vertical-align: middle;
-    padding: 0;
-    width: 40px;
-}
-
-.table-with-actions tbody tr td.buttons .btn {
-    margin: 5px 5px 5px 0;
-    min-width: 34px;
 }
 
 .table-with-actions thead tr th i {
@@ -174,24 +167,12 @@
     /* border-left: solid 1px #888; */
 }
 
-/*.buttons .btn {
-	float: left;
-	margin-right: .6rem;
-	padding-top: .3rem;
-	padding-bottom: .3rem;
-}*/
-
-.buttons form {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    float: left;
-    margin-bottom: 0;
+.buttons {
+    text-align: center;
 }
-
-/*.buttons {
-	padding-left: .6rem !important;
-}*/
+.buttons .btn {
+    margin: 0 1px;
+}
 
 .shortcut{
     padding-left: 30px !important;
@@ -239,7 +220,7 @@
     padding: 0!important;
 }
 #fields_search_result_columns {
-    width: 450px;
+    width: 475px;
     margin: 0 auto;
 }
 #fields_search_result_columns .sortable {
@@ -259,4 +240,3 @@
 #fields_search_result_columns .ghost {
     opacity: 0.4;
 }
-
