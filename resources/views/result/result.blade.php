@@ -7,13 +7,12 @@
                 <table class="table table-sm table-striped table-with-actions">
 					<thead>
 						<tr>
-
 							@foreach ($resultData['columns'] as $column)
 								@include('result/link-table-order', ['title' => $column['label'], 'field' => $column['field'], 'width' => $column['width'], 'align' => $column['align']])
 							@endforeach
 
 							@if ($resultData['actions'])
-								<th colspan="100%" class="text-center">Ações</th>
+								<th width="20%" class="text-center" colspan="100%">Ações</th>
 							@endif
 
 						</tr>
