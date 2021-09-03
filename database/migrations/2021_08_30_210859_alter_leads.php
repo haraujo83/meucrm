@@ -26,7 +26,7 @@ class AlterLeads extends Migration
             ]);
 
         Schema::table('leads', function (Blueprint $table) {
-            $table->bigIncrements('account_idnum');
+            $table->unsignedBigInteger('account_idnum', false)->nullable();
 
             $table
                 ->foreign('account_idnum')

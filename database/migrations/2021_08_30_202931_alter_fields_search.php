@@ -13,7 +13,7 @@ class AlterFieldsSearch extends Migration
      */
     public function up()
     {
-        Schema::table('fields_search', function(Blueprint $table){
+        Schema::table('fields_search', function(Blueprint $table) {
             $table
                 ->foreign('field_id')
                 ->references('idnum')
@@ -24,15 +24,5 @@ class AlterFieldsSearch extends Migration
                 ->references('idnum')
                 ->on('users');
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
     }
 }

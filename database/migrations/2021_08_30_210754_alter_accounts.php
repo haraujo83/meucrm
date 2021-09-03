@@ -13,18 +13,12 @@ class AlterAccounts extends Migration
      */
     public function up()
     {
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->dropPrimary();
+        });
+
         Schema::table('accounts', function(Blueprint $table){
             $table->bigIncrements('idnum');
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
     }
 }

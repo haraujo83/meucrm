@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 /**
  *
  */
-class UpdateFieldsTemImovelList extends Migration
+class AlterFields3 extends Migration
 {
     /**
      * Run the migrations.

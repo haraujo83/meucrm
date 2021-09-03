@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 /**
  *
  */
-class AuxListDivisao extends Migration
+class AlterAuxListDivisao extends Migration
 {
     /**
      * @param string $typeList
