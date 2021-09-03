@@ -83,14 +83,4 @@ class AlterFields2 extends Migration
                 "width" => '50'
         ]);
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
 }
