@@ -17,6 +17,7 @@ class AlterLeads extends Migration
      */
     public function up(): void
     {
+        //limpando registros com account_id indevido
         DB::table('leads')
             ->whereRaw('not exists (
             select 1 from accounts where accounts.id = leads.account_id)')
@@ -25,13 +26,11 @@ class AlterLeads extends Migration
             ]);
 
         Schema::table('leads', function (Blueprint $table) {
-            $table->string('account_id', 36)
-                //->charset('utf8')
-                ->change();
+            $table->bigIncrements('account_idnum');
 
             $table
-                ->foreign('account_id')
-                ->references('id')
+                ->foreign('account_idnum')
+                ->references('idnum')
                 ->on('accounts');
         });
     }

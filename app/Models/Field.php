@@ -36,8 +36,8 @@ class Field extends BaseModel
     public function returnFieldsResult(string $module): array
     {
         return self::query()
-            ->join('fields_search', 'fields_search.field_id', '=', 'fields.id_table')
-            ->join('users', 'users.id_table', '=', 'fields_search.user_id')
+            ->join('fields_search', 'fields_search.field_id', '=', 'fields.idnum')
+            ->join('users', 'users.idnum', '=', 'fields_search.user_id')
             ->where('module', '=', $module)
             ->where('show_search', 1)
             ->where('fields.deleted', 0)
@@ -53,21 +53,21 @@ class Field extends BaseModel
     public function getModuleFieldsListNotSelected(int $userId, string $module): array
     {
         $rows = self::query()
-            ->select('id_table', 'label')
+            ->select('idnum', 'label')
             ->where('fields.module', '=', $module)
             ->where('fields.deleted', '=', 0)
             ->where('fields.show_search', '=', 1)
             ->whereNotExists(function (Builder $query) use ($userId) {
                 $query->select(DB::raw(1))
                     ->from('fields_search')
-                    ->whereRaw('fields_search.field_id = fields.id_table')
+                    ->whereRaw('fields_search.field_id = fields.idnum')
                     ->where('fields_search.user_id', '=', $userId);
             })
         ;
 
         $structureResult = new StructureResult();
 
-        return $structureResult->getTraitList($rows->get(), '', 'id_table', 'label');
+        return $structureResult->getTraitList($rows->get(), '', 'idnum', 'label');
     }
 
     /**

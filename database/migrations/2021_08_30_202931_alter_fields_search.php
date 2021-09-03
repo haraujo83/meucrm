@@ -16,12 +16,12 @@ class AlterFieldsSearch extends Migration
         Schema::table('fields_search', function(Blueprint $table){
             $table
                 ->foreign('field_id')
-                ->references('id_table')
+                ->references('idnum')
                 ->on('fields');
 
             $table
                 ->foreign('user_id')
-                ->references('id_table')
+                ->references('idnum')
                 ->on('users');
         });
     }

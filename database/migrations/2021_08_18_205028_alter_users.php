@@ -14,7 +14,7 @@ class AlterUsers extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->bigIncrements('id_table');
+            $table->bigIncrements('idnum');
         });
     }
 
@@ -26,7 +26,7 @@ class AlterUsers extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->dropColumn('id_table');
+            $table->dropColumn('idnum');
         });
     }
 }

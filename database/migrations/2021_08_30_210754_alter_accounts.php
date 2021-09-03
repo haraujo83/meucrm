@@ -14,9 +14,7 @@ class AlterAccounts extends Migration
     public function up()
     {
         Schema::table('accounts', function(Blueprint $table){
-            $table->string('id', 36)
-                //->charset('utf8')
-                ->change();
+            $table->bigIncrements('idnum');
         });
     }
 

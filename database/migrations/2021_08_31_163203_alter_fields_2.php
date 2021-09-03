@@ -21,7 +21,7 @@ class AlterFields2 extends Migration
                      '406'];
 
         DB::table('fields')
-            ->whereIn('id_table', $showTrue)
+            ->whereIn('idnum', $showTrue)
             ->update([
                 "show_search" => '1'
         ]);
@@ -30,7 +30,7 @@ class AlterFields2 extends Migration
                      '398', '445', '403', '449', '452', '411'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnCenter)
+            ->whereIn('idnum', $columnCenter)
             ->update([
                 "align" => 'center'
         ]);
@@ -38,7 +38,7 @@ class AlterFields2 extends Migration
         $columnWidth5 = ['391', '417'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnWidth5)
+            ->whereIn('idnum', $columnWidth5)
             ->update([
                 "width" => '5'
         ]);
@@ -46,7 +46,7 @@ class AlterFields2 extends Migration
         $columnWidth10 = ['536', '440', '412'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnWidth10)
+            ->whereIn('idnum', $columnWidth10)
             ->update([
                 "width" => '10'
         ]);
@@ -54,7 +54,7 @@ class AlterFields2 extends Migration
         $columnWidth15 = ['398', '445', '452'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnWidth15)
+            ->whereIn('idnum', $columnWidth15)
             ->update([
                 "width" => '15'
         ]);
@@ -62,7 +62,7 @@ class AlterFields2 extends Migration
         $columnWidth30 = ['456', '117', '222', '406'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnWidth30)
+            ->whereIn('idnum', $columnWidth30)
             ->update([
                 "width" => '30'
         ]);
@@ -70,7 +70,7 @@ class AlterFields2 extends Migration
         $columnWidth40 = ['459'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnWidth40)
+            ->whereIn('idnum', $columnWidth40)
             ->update([
                 "width" => '40'
         ]);
@@ -78,7 +78,7 @@ class AlterFields2 extends Migration
         $columnWidth50 = ['549'];
                      
         DB::table('fields')
-            ->whereIn('id_table', $columnWidth50)
+            ->whereIn('idnum', $columnWidth50)
             ->update([
                 "width" => '50'
         ]);

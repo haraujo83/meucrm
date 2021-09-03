@@ -29,7 +29,7 @@ class FieldSearch extends BaseModel
      */
     public function field(): BelongsTo
     {
-        return $this->belongsTo(Field::class, 'field_id', 'id_table');
+        return $this->belongsTo(Field::class, 'field_id', 'idnum');
     }
 
     /**
@@ -38,7 +38,7 @@ class FieldSearch extends BaseModel
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id_table');
+        return $this->belongsTo(User::class, 'user_id', 'idnum');
     }
 
     /**
@@ -49,8 +49,8 @@ class FieldSearch extends BaseModel
     public function getModuleFieldsListSelected(int $userId, string $module): array
     {
         $rows = self::query()
-            ->join('fields', 'fields.id_table', '=', 'fields_search.field_id')
-            ->select('fields.id_table', 'fields.label')
+            ->join('fields', 'fields.idnum', '=', 'fields_search.field_id')
+            ->select('fields.idnum', 'fields.label')
             ->where('fields.module', '=', $module)
             ->where('fields_search.user_id', $userId)
             ->where('fields.deleted', '=', 0)
@@ -59,6 +59,6 @@ class FieldSearch extends BaseModel
 
         $structureResult = new StructureResult();
 
-        return $structureResult->getTraitList($rows->get(), '', 'id_table', 'label');
+        return $structureResult->getTraitList($rows->get(), '', 'idnum', 'label');
     }
 }
