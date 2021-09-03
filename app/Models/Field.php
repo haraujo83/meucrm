@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Helpers\FieldElement;
 use App\Helpers\StructureResult;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use App\Traits\PaginateWithSearch;
