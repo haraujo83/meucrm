@@ -1,6 +1,5 @@
 @if ($resultData['data'])
 	<div class="card p-0">
-        <!-- /.card-header -->
 		<div class="card-body">
 			@include('result/filter-result', ['items' => $resultData['data']])
 			<div class="result-search">
@@ -12,7 +11,7 @@
 							@endforeach
 
 							@if ($resultData['actions'])
-								<th width="20%" class="text-center" colspan="100%">Ações</th>
+								<th style="width: 20%;" class="text-center" colspan="100%">Ações</th>
 							@endif
 
 						</tr>
@@ -32,7 +31,7 @@
 										@php
 										$href = explode('/', $action['href']);
 
-										$href = array_map(function($x) use ($information){
+										$href = array_map(static function($x) use ($information){
 
 											// Verifica se possui chaves
 											if (preg_match('/{\w*}/', $x)) {
@@ -50,7 +49,7 @@
 
 										@if(isset($action['form']))
 											{!! Form::open(['url' => $href, 'data-confirm' => $action['form']['data-confirm'], 'method' => $action['form']['method'], 'style' => 'display: inline;']) !!}
-												<button type="submit" class="{{ $action['class'] }} btn-xs" title="{{ $action['title'] }}" data-tippy-content="{{ $action['title'] }}">
+												<button type="submit" class="{{ $action['class'] }} btn-xs" title="{{ $action['title'] }}" data-tippy>
 													<i class="{{ $action['icon'] }}"></i>
 												</button>
 											{!! Form::close() !!}

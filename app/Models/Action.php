@@ -52,7 +52,7 @@ class Action extends BaseModel
             $idAction = 5;
             $actionVisualize = $this->returnAction($module, $id, $idAction);
             $action = ['visualize' => $actionVisualize];
-            $actionsResult = array_merge($actionsResult, $action);	
+            $actionsResult = array_merge($actionsResult, $action);
         }
 
         if($permissionEdit)
@@ -60,7 +60,7 @@ class Action extends BaseModel
             $idAction = 3;
             $actionEdit = $this->returnAction($module, $id, $idAction);
             $action = ['edit' => $actionEdit];
-            $actionsResult = array_merge($actionsResult, $action);	
+            $actionsResult = array_merge($actionsResult, $action);
         }
 
         if($permissionDelete)
@@ -68,9 +68,9 @@ class Action extends BaseModel
             $idAction = 4;
             $actionDelete = $this->returnAction($module, $id, $idAction);
             $action = ['delete' => $actionDelete];
-            $actionsResult = array_merge($actionsResult, $action);	
+            $actionsResult = array_merge($actionsResult, $action);
         }
-        
+
         return $actionsResult;
     }
 

@@ -35,7 +35,7 @@ class Menu extends BaseModel
 	public static function breadcrumb()
 	{
 		$request = $_SERVER['REQUEST_URI'];
-		
+
 		$module = "leads";
 		$action = "index";
 		if(substr_count($request, "/") > 0){
@@ -49,6 +49,10 @@ class Menu extends BaseModel
 			}
 
 			isset($url[2]) ? $action = $url[2] : $action = "index";
+
+            if (isset($url[2]) && is_numeric($url[2])) {
+                $action = 'show';
+            }
 		}
 
 		return self

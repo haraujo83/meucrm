@@ -26,6 +26,8 @@ class EmailAddrBeanRel extends BaseModel
 
     public $timestamps = false;
 
+
+
     /**
      * Retorna o email
      * @return HasOne

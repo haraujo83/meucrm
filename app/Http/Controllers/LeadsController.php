@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Action;
+use App\Models\LeadFinanciamento;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
@@ -184,22 +186,61 @@ class LeadsController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param int $idnum
      * @return View
      */
-    public function show(): View
+    public function show(int $idnum): View
     {
-        $id = app('request')->get('id');
-
         $module = $this->module;
 
-        $lead = (new Lead())->find($id);
+        $lead = Lead::getForShow($idnum);
+
+        /* @var User $assignedUser */
+        $assignedUser = $lead->assignedUser()->first();
         $account = $lead->account()->first();
         $status = $lead->status()->first();
         $emailAddrBeanRel = $lead->emailAddrBeanRel()->first();
         $emailAddress = $emailAddrBeanRel->emailAddress()->first();
         $sexo = $lead->sexo()->first();
 
-        $viewData = compact('module', 'id', 'lead', 'account', 'status', 'emailAddress', 'sexo');
+        /* @var User $reportsTo */
+        $reportsTo = $assignedUser ? $assignedUser->reportsTo()->first() : null;
+
+        /* @var User $reportsTo */
+        $superintendent = $reportsTo ? $reportsTo->reportsTo()->first() : null;
+
+        /* @var LeadFinanciamento $leadFinanciamento */
+        $leadFinanciamento = $lead->leadFinanciamento()->first();
+        $tipoImovel = $leadFinanciamento->tipoImovel()->first();
+        $temImovel = $leadFinanciamento->temImovel()->first();
+        $empreendimento = null;//$leadFinanciamento->empreendimento()->first();
+        $rating = $leadFinanciamento->rating()->first();
+
+        $actionsColumns = ( new Action())->returnActionsResult($module, $idnum, true, true, true);
+
+        $actionEdit = $actionsColumns['edit'];
+        $actionDelete = $actionsColumns['delete'];
+        //$actionCreate = $actionsColumns['create'];
+
+        $viewData = compact(
+            'module',
+            'idnum',
+            'lead',
+            'account',
+            'status',
+            'emailAddress',
+            'sexo',
+            'leadFinanciamento',
+            'tipoImovel',
+            'temImovel',
+            'empreendimento',
+            'rating',
+            'assignedUser',
+            'reportsTo',
+            'superintendent',
+            'actionEdit',
+            'actionDelete',
+        );
 
         return view($module.'.show', $viewData);
     }

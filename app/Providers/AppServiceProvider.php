@@ -76,9 +76,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('search/index', function($view)
         {
             $request = Menu::newButton();
-            
+
             $titleButton = $request->first()->new . ' ' . strtolower($request->first()->module_singular);
-            
+
             $view->with('titleButton', $titleButton);
         });
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use DB;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -41,6 +42,14 @@ class User extends Authenticatable
     protected $keyType = 'char';
 
     /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return "$this->first_name $this->last_name";
+    }
+
+    /**
      * Retorna lista de usuários ativos em pares id => name
      * @return array
      */
@@ -66,6 +75,14 @@ class User extends Authenticatable
     public function lead(): BelongsTo
     {
         return $this->belongsTo(Lead::class, 'assigned_user_id', 'id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function reportsTo(): HasOne
+    {
+        return $this->hasOne(__CLASS__, 'id', 'reports_to_id');
     }
 
     /**

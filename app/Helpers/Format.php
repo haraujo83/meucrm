@@ -12,7 +12,7 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function cnpjCpf($number) 
+	public static function cnpjCpf($number)
 	{
 		if (strlen($number) == 11) {
 			return preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $number);
@@ -27,18 +27,18 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function cpfCnpj($number) 
+	public static function cpfCnpj($number)
 	{
 		return self::cnpjCpf($number);
 	}
-	
+
 	/**
 	 * Devolve somente caracteres numéricos
 	 *
 	 * @param  string $string
 	 * @return string
 	 */
-	public static function onlyNumbers($string) 
+	public static function onlyNumbers($string)
 	{
 		if (!$string) {
 			return $string;
@@ -53,7 +53,7 @@ abstract class Format {
 	 * @param  string $date
 	 * @return string
 	 */
-	public static function legibleDate($date, $hideTime = false) 
+	public static function legibleDate($date, $hideTime = false)
 	{
 		// Já formatada
 		if (empty($date) || false !== strpos($date, '/')) {
@@ -80,7 +80,7 @@ abstract class Format {
 	 * @param  string $date
 	 * @return string
 	 */
-	public static function bankDate($date) 
+	public static function bankDate($date)
 	{
 
 		if ($d = date_create_from_format('d/m/Y', $date)) {
@@ -100,7 +100,7 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function phone($number) 
+	public static function phone($number)
 	{
 		// Remove o que não for número
 		$number = preg_replace('/\D/', '', $number);
@@ -125,7 +125,7 @@ abstract class Format {
 	 * @param  string $number
 	 * @return string
 	 */
-	public static function cep($number) 
+	public static function cep($number)
 	{
 		// Remove o que não for número
 		$number = preg_replace('/\D/', '', $number);
@@ -218,5 +218,17 @@ abstract class Format {
 
 		return $number;
 	}
+
+    /**
+     * @param float|null $value
+     * @return null|string
+     */
+    public static function money(?float $value): ?string
+    {
+        $r = null;
+        if ($value !== null) {
+            $r = 'R$ ' . number_format($value, 2, ',', '.');
+        }
+        return $r;
+    }
 }
-?>
