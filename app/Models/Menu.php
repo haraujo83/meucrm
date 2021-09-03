@@ -16,10 +16,10 @@ class Menu extends BaseModel
 
     public $table = "menus";
 	public $fillable = [
-		'name', 'module', 'icon'
+		'id', 'name', 'module', 'icon', 'new', 'module_singular'
 	];
 	public $searchable = [
-		'name', 'module', 'icon'
+		'id', 'name', 'module', 'icon', 'new', 'module_singular'
 	];
 
 	public $timestamps = false;
@@ -34,8 +34,8 @@ class Menu extends BaseModel
 
 	public static function breadcrumb()
 	{
-		$request = str_replace('?'.$_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
-
+		$request = $_SERVER['REQUEST_URI'];
+		
 		$module = "leads";
 		$action = "index";
 		if(substr_count($request, "/") > 0){
