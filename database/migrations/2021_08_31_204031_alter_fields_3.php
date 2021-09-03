@@ -19,5 +19,17 @@ class UpdateFieldsTemImovelList extends Migration
             ->update([
                 'label' => 'Tem imóvel'
         ]);
+
+        DB::table('fields')
+            ->where('name', '=', 'parcela_ultima')
+            ->update([
+                'label' => 'Última parcela'
+            ]);
+
+        DB::table('fields')
+            ->where('name', '=', 'last_name')
+            ->update([
+                'label' => 'Sobrenome'
+            ]);
     }
 }

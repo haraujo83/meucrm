@@ -28,7 +28,7 @@ class AuxListDivisao extends Migration
     public function up()
     {
         DB::table('aux_list')
-            ->whereIn('type_list', ['true_false', 'true_false2'])
+            ->whereIn('type_list', ['', 'true_false2'])
             ->update([
                 'deleted' => 1
             ]);
