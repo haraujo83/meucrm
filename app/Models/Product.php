@@ -30,11 +30,11 @@ class Product extends BaseModel
     public function getProductList(string $default = '-- Todos --'): array
     {
         $rows = self::query()
-            ->select(['id', 'name'])
+            ->select(['submodule', 'name'])
             ->get();
 
         $structureResult = new StructureResult();
 
-        return $structureResult->getTraitList($rows, $default, 'id', 'name');
+        return $structureResult->getTraitList($rows, $default, 'submodule', 'name');
     }
 }

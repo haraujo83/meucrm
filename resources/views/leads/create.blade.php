@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-{{ Form::open(['method' => 'GET', 'class' => 'form-store', 'route' => 'leads.store']) }}
+{{ Form::open(['method' => 'POST', 'class' => 'form-store', 'route' => 'leads.store']) }}
     {{ Form::hidden('module', $module) }}
     <div class="card card-secondary2">
         <div class="card-header">
@@ -77,11 +77,11 @@
         </div>
         <div class="card-body">
             <div class="row">
-                {{ Form::bsSelect2($fields['leadsfinanciamento']['tipo_imovel_list'], null, null, null, ['div_col_n' => 6]) }}
+                {{ Form::bsSelect2($fields['leadsfinanciamento']['tipo_imovel_list'], null, null, null, ['div_col_n' => 6, 'one']) }}
 
-                {{ Form::bsSelect2($fields['leadsfinanciamento']['tem_imovel_list'], null, null, null, ['div_col_n' => 6]) }}
+                {{ Form::bsSelect2($fields['leadsfinanciamento']['tem_imovel_list'], null, null, null, ['div_col_n' => 6, 'one']) }}
 
-                {{ Form::bsSelect2($fields['leadsfinanciamento']['rating'], null, null, null, ['div_col_n' => 6]) }}
+                {{ Form::bsSelect2($fields['leadsfinanciamento']['rating'], null, null, null, ['div_col_n' => 6, 'one']) }}
 
                 <div class="col-md-6"></div>
 
@@ -97,7 +97,7 @@
 
                 {{ Form::bsMoney($fields['leadsfinanciamento']['parcela_ultima'], null, null, ['div_col_n' => 6]) }}
 
-                {{ Form::bsSelect2($fields['leadsfinanciamento']['empreendimento_id'], null, null, [], ['data-placeholder' => 'Digite o nome do empreendimento...', 'data-list_empreendimento', 'div_col_n' => 6]) }}
+                {{ Form::bsSelect2($fields['leadsfinanciamento']['empreendimento_id'], null, null, [], ['data-placeholder' => 'Digite o nome do empreendimento...', 'data-list_empreendimento', 'div_col_n' => 6, 'one']) }}
             </div>
             <!--/.row -->
         </div>
@@ -114,7 +114,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                {{ Form::bsSelect2($fields['leadshomeequity']['tipo_imovel_list'], null, null, null, ['div_col_n' => 6]) }}
+                {{ Form::bsSelect2($fields['leadshomeequity']['tipo_imovel_list'], null, null, null, ['div_col_n' => 6, 'one']) }}
 
                 {{ Form::bsMoney($fields['leadshomeequity']['valor_imovel'], null, null, ['div_col_n' => 6]) }}
 

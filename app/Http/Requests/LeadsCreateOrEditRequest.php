@@ -23,26 +23,26 @@ class LeadsCreateOrEditRequest extends FormRequest
      */
     public function rules(): array
     {
-        $requestProduct = request()->input("parent_id");
+        $requestProduct = request()->input('parent_type');
 
         return [
 			'cpf'              => 'nullable|min:14|max:14|cpf',
-			'parent_id'        => 'required',
+			'parent_type'      => 'required',
             'first_name'       => 'required|min:3|max:20',
-            'last_name'        => 'required|min:3|max:60', 
+            'last_name'        => 'required|min:3|max:60',
             'birthdate'        => 'nullable|date_format:d/m/Y',
             'email'            => 'nullable|email',
-            'phone_mobile'     => 'required|min:12|max:13|integer',
-            'account_id'       => 'required',
+            'phone_mobile'     => 'nullable|min:12|max:13|integer',
+            'account_id'       => 'nullable',
             'telefone_contato' => 'nullable|min:12|max:13|integer',
-            'status'           => 'required',
-            //'amount'           => 'required|numeric|between:0,99999999.99',
+            'status'           => 'nullable',
+            'amount'           => 'nullable|numeric|between:0,99999999.99',
             'parcela'          => 'nullable|numeric|between:0,9999999.99',
             'prazo'            => 'nullable|integer',
-            //'tipo_imovel_list' => 'required',
-            //'tem_imovel_list'  => 'required',
-            //'valor_imovel'     => 'required|numeric|between:0,99999999.99',
-            //'valor_financiamento' => 'required|numeric|between:0,99999999.99',
+            'tipo_imovel_list' => 'nullable',
+            'tem_imovel_list'  => 'nullable',
+            'valor_imovel'     => 'nullable|numeric|between:0,99999999.99',
+            'valor_financiamento' => 'nullable|numeric|between:0,99999999.99',
             'taxa_juros'        => 'nullable|numeric|between:0,999.99',
             'parcela_primeira'  => 'nullable|numeric|between:0,9999999.99',
             'parcela_ultima'    => 'nullable|numeric|between:0,9999999.99',
@@ -61,7 +61,7 @@ class LeadsCreateOrEditRequest extends FormRequest
 			'cpf.min'              => 'Informe um CPF válido.',
 			'cpf.max'              => 'Informe um CPF válido.',
 			'cpf.cpf'              => 'Este CPF é inválido.',
-            'parent_id.required'   => 'Informe o produto',
+            'parent_type.required'   => 'Informe o produto',
             'first_name.required'  => 'Informe o nome',
             'first_name.min'       => 'Informe o nome com no mínimo de :min caracteres.',
             'first_name.max'       => 'Informe o nome com no máximo de :max caracteres.',

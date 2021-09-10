@@ -25,7 +25,7 @@
     if (in_array('one', $attribs, true)) {
         $key = array_search('one', $attribs, true);
 
-        $list = array_merge(['' => '-- Selecione --'], $list);
+        $list = ['' => '-- Selecione --']+$list;
         unset($attribs[$key]);
     }
 @endphp

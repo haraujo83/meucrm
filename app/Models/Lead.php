@@ -22,12 +22,13 @@ class Lead extends BaseModel
     public $table = 'leads';
     public $fillable = ['first_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum', 'account_id'];
     public $searchable = ['first_name', 'last_name', 'phone_mobile', 'date_entered', 'idnum', 'account_id'];
+    public $incrementing = false;
 
     /**
      * @param int $idnum
      * @return $this
      */
-    public static function getForShow(int $idnum): self
+    public function getForShow(int $idnum): self
     {
         return self::where('idnum', $idnum)
             ->where('deleted', 0)
@@ -49,6 +50,18 @@ class Lead extends BaseModel
                 'parent_id',
                 'cod_empreendimento',
             )
+            ->firstOrFail();
+    }
+
+    /**
+     * @param int $idnum
+     * @return string
+     */
+    public function getId(int $idnum): string
+    {
+        return self::where('idnum', $idnum)
+            ->where('deleted', 0)
+            ->select('id')
             ->firstOrFail();
     }
 

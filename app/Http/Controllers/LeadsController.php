@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Action;
 use App\Models\LeadFinanciamento;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\Helpers\Format;
@@ -20,7 +20,6 @@ use App\Models\User;
 use App\Models\Field;
 use App\Models\Lead;
 use App\Models\AuxList;
-use Illuminate\Support\Env;
 
 /**
  *
@@ -175,12 +174,50 @@ class LeadsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param LeadsCreateOrEditRequest $request
+     * @return JsonResponse
      */
-    public function store(LeadsCreateOrEditRequest $request)
+    public function store(LeadsCreateOrEditRequest $request): JsonResponse
     {
-        //
+        $post = $request->all();
+
+        $data = [
+            'module'  => $this->module,
+            'tipo'    => 'Colaborador',
+            'user_id' => 1,
+            'action'  => 'insert',
+            'data' => [
+                'first_name'       => $post['first_name'],
+                'last_name'        => $post['last_name'],
+                'sexo'             => $post['sexo'],
+                'birthdate'        => $post['birthdate'],
+                'email'            => $post['email'],
+                'phone_mobile'     => $post['phone_mobile'],
+                'telefone_contato' => $post['telefone_contato'],
+                'status'           => $post['status'],
+                'account_id'       => $post['account_id'],
+            ]
+        ];
+
+        if ($post['parent_type'] === 'LeadsFinanciamento') {
+            $data['data']['produto_financiamento'] = [
+                'valor_imovel' => Format::decimalVirgula($post['valor_imovel']),
+                'valor_financiamento' => Format::decimalVirgula($post['valor_financiamento']),
+                'tipo_imovel_list' => $post['tipo_imovel_list'],
+                'parcela_primeira' => Format::decimalVirgula($post['parcela_primeira']),
+                'parcela_ultima' => Format::decimalVirgula($post['parcela_ultima']),
+                'prazo' => $post['prazo'],
+                'taxa_juros' => Format::decimalVirgula($post['taxa_juros']),
+                'tem_imovel_list' => $post['tem_imovel_list']
+            ];
+        }
+
+        $r = $this->apiPost($data);
+        //if ($r['return']['type'] === 'success') {
+
+        //}
+
+        return response()->json($r);
     }
 
     /**
@@ -193,7 +230,7 @@ class LeadsController extends Controller
     {
         $module = $this->module;
 
-        $lead = Lead::getForShow($idnum);
+        $lead = (new Lead())->getForShow($idnum);
 
         /* @var User $assignedUser */
         $assignedUser = $lead->assignedUser()->first();
@@ -259,7 +296,7 @@ class LeadsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */
