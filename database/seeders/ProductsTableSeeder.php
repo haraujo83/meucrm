@@ -22,9 +22,9 @@ class ProductsTableSeeder extends Seeder
     public function run(): void
     {
         $this->smartySeeder(new Model(), [
-            ['id' => 1, 'name' => 'Financiamento'],
-            ['id' => 2, 'name' => 'Home Equity'],
-            ['id' => 3, 'name' => 'Consórcio'],
+            ['id' => 1, 'name' => 'Financiamento', 'submodule' => 'LeadsFinanciamento'],
+            ['id' => 2, 'name' => 'Home Equity', 'submodule' => 'LeadsHomeequity'],
+            ['id' => 3, 'name' => 'Consórcio', 'submodule' => 'LeadsConsorcio'],
         ]);
     }
 }
