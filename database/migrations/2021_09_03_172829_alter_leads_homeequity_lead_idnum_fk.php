@@ -16,10 +16,6 @@ class AlterLeadsHomeequityLeadIdnumFk extends Migration
      */
     public function up(): void
     {
-        Schema::table('leads', function (Blueprint $table) {
-            $table->bigInteger('idnum')->unsigned()->change();
-        });
-
         Schema::table('leads_homeequity', function (Blueprint $table) {
             $table
                 ->foreign('lead_idnum')
