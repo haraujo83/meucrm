@@ -10,12 +10,11 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  imageName: 'pipelines-javascript-docker'
   phpVersion: 7.4
 
 steps:
-- script: 
-    #sudo rm -r ./vendor
-    #sudo rm -r ./composer.lock
+- script:
     sudo ls
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
@@ -29,8 +28,23 @@ steps:
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
 
-- script: phpunit
+- script: php -r "file_exists('.env') || copy('.env.example', '.env');"
+  displayName: 'copy .env'
+
+- script: php artisan key:generate --ansi
+  displayName: 'artisan key:generate'
+
+- script: ./vendor/bin/phpunit
   displayName: 'Run tests with phpunit'
+
+- script: php artisan route:list
+  displayName: 'route:list'
+
+- script: npm install
+  displayName: 'npm install'
+
+- script: npx mix
+  displayName: 'npx mix'
 
 - task: ArchiveFiles@2
   inputs:
