@@ -14,8 +14,8 @@ variables:
 
 steps:
 - script: 
-    sudo rm -r ./vendor
-    sudo rm -r ./composer.lock
+    #sudo rm -r ./vendor
+    #sudo rm -r ./composer.lock
     sudo ls
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
