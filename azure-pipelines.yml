@@ -13,6 +13,8 @@ variables:
   phpVersion: 7.4
 
 steps:
+- script: 
+    sudo ls
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
     sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
