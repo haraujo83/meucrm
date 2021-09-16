@@ -34,7 +34,7 @@ class Menu extends BaseModel
 
 	public static function breadcrumb()
 	{
-		$request = $_SERVER['REQUEST_URI'];
+        $request = str_replace('http://', '', $_SERVER['REQUEST_URI']);
 
 		$module = "leads";
 		$action = "index";
@@ -66,7 +66,7 @@ class Menu extends BaseModel
 
 	public static function newButton()
 	{
-		$request = $_SERVER['REQUEST_URI'];
+		$request = str_replace('http://', '', $_SERVER['REQUEST_URI']);
 
 		$module = "leads";
 		$action = "index";

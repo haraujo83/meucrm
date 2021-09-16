@@ -226,8 +226,10 @@ class LeadsController extends Controller
      * @param int $idnum
      * @return View
      */
-    public function show(int $idnum): View
+    public function show($idnum): View
     {
+        $idnum = (int)$idnum;
+
         $module = $this->module;
 
         $lead = (new Lead())->getForShow($idnum);
