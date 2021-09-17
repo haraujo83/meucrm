@@ -14,6 +14,9 @@ variables:
   phpVersion: 7.4
 
 steps:
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'SecurityAPI.pem'
 - script:
     sudo ls
 - script: |
