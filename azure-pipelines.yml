@@ -14,6 +14,10 @@ variables:
   phpVersion: 7.4
 
 steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: '(Invoke-WebRequest -uri "https://dev.azure.com/conectt/CrediPronto").Content'
 - task: DownloadSecureFile@1
   name: caCertificate
   displayName: 'Download CA certificate'
