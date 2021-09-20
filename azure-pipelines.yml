@@ -17,7 +17,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: '(Invoke-WebRequest -uri "https://dev.azure.com/conectt/CrediPronto").Content'
+    script: 'Get-NetIPAddress | Format-Table'
 - task: DownloadSecureFile@1
   name: caCertificate
   displayName: 'Download CA certificate'
