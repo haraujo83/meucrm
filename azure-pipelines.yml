@@ -27,7 +27,12 @@ steps:
       3.89.151.136 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAr3OrBVoFPyYx4pRgJAGkSijT0gImqzGOa1zRCt0RGohtW1h6YnMgby05fNN3Ke77zQZTyMzT8A9bPgzEAzH3o=
       34.235.156.171 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOB+VS0sZiEIH32ef/A6ud5JU41GwjYC6SXuyw7sB2uMwonpEqLhBEcLbPDfHWy6HSsdeELqlLfZRORsZL6fnVo=
     sshKeySecureFile: 'SecurityAPI.pem'
-
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'SSH-crediponto'
+    runOptions: 'commands'
+    commands: 'php --version'
+    readyTimeout: '20000'
 - script: |
     echo Installing $(caCertificate.secureFilePath) to the trusted CA directory...
     sudo chown root:root $(caCertificate.secureFilePath)
