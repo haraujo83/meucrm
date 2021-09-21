@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  laravel-app:
+    build:
+      context: ./vendor/laravel/sail/runtimes/8.0
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: '${WWWGROUP}'
+    container_name: laravel-app
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      WWWUSER: '${WWWUSER}'
+      LARAVEL_SAIL: 1
+      XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+      XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "${APP_PORT:-80}:80"
+    networks:
+      - sail
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+      retries: 3
+      timeout: 5s
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    volumes:
+      - ./run/var:/var/lib/mysql
+      - ./run/dump/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '${FORWARD_DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '111111'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - sail
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    links:
+      - "db:database"
+    ports:
+      - "81:80"
+networks:
+  sail:
+    driver: bridge
+volumes:
+  sailmysql:
+    driver: local

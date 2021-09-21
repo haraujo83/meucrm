@@ -15,6 +15,9 @@ use App\Http\Controllers as AppHttpControllers;
 */
 
 Route::get('/', function () {
+    phpinfo();
+    die;
+
     return view('index');
 });
 
