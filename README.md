@@ -3,7 +3,7 @@
 Este é um protótipo de projeto de CRM, onde os módulos, validações, rotas são configuráveis via banco de dados.
 Por enquanto, somente módulo de Leads está feito.
 
-###Tecnologias:
+Tecnologias:
 
 - PHP 8
 - Laravel 8
