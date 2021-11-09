@@ -3,22 +3,7 @@ FROM php:7.4-apache
 RUN apt-get update
 
 # 1. development packages
-RUN apt-get install -y \
-    git \
-    zip \
-    curl \
-    sudo \
-    unzip \
-    libicu-dev \
-    libbz2-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libmcrypt-dev \
-    libreadline-dev \
-    libfreetype6-dev \
-	libonig-dev \
-	libzip-dev \
-    g++
+RUN apt-get install -y git zip curl sudo unzip libicu-dev libbz2-dev libpng-dev libjpeg-dev libmcrypt-dev libreadline-dev libfreetype6-dev libonig-dev 	libzip-dev g++
 
 # 2. apache configs + document root
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public

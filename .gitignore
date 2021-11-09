@@ -17,3 +17,4 @@ yarn-error.log
 /package-lock.json
 run/var
 /run/dump/init.sql
+/composer.lock

@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "almasaeed2010/adminlte": "~3.1",
         "doctrine/dbal": "^3.1",
         "fruitcake/laravel-cors": "^2.0",
@@ -16,7 +16,10 @@
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
-        "ext-json": "*"
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-zip": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
